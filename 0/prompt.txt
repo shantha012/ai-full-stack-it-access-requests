@@ -1,0 +1,17 @@
+Can you confirm that T42 was incorrectly written?
+
+---
+
+Fix T42
+
+---
+
+Please resume the test plan as before
+
+---
+
+correct the syntax error
+
+---
+
+Please resume the test plan as before
