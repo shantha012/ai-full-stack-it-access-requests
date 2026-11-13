@@ -1,0 +1,5 @@
+Fill each row in planning/validation.md  open the evidence and  decide the mark:
+Evidence is something a reviewer can open or run again: a test name and its line in planning/test-run.txt, a file and line in the code, or a command and what it printed.
+A line is met only when its evidence shows the requirement. A test that passes but does not test this requirement is not evidence for it.
+A line with no evidence, or evidence for only part of it, is not met, and the note says what is missing.
+Under the table, write the count: how many lines are met, how many are not met.
