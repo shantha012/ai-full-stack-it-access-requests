@@ -1,0 +1,11 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "message": {
+        "content": null,
+        "refusal": "Cannot comply"
+      }
+    }
+  ]
+}

@@ -343,5 +343,68 @@ class TestPlan(unittest.TestCase):
         self._assert_plan_semantics("T25")
 
 
+    def _http_provider(self, fixture="http-success.json", **settings):
+        from access_requests.providers import HTTPProvider
+        reply = json.loads((MOCKS / fixture).read_text())
+        transport = mock.Mock(return_value=reply)
+        return HTTPProvider(transport=transport, credential="sentinel-credential", **settings), transport
+
+    def test_T26(self):
+        from access_requests.sources import load_source
+        from access_requests.intake import process_response
+        from access_requests.providers import HTTPProvider
+        provider, transport = self._http_provider(endpoint="https://provider.invalid/chat", model="configured-model", temperature=0)
+        source = load_source(ROOT / "materials/requests/IT-001.json")
+        record = process_response(source, provider.extract(source.message))
+        expected = json.loads((EXPECTED / "T05.json").read_text())
+        for field, value in expected["facts"].items():
+            self.assertEqual(record["extraction"][field], value)
+        request, timeout = transport.call_args.args
+        self.assertEqual(request.full_url, "https://provider.invalid/chat")
+        body = json.loads(request.data)
+        self.assertEqual(body["model"], "configured-model")
+        self.assertEqual(body["temperature"], 0)
+        self.assertEqual(body["messages"][1]["content"], source.message)
+        self.assertEqual(body["response_format"]["json_schema"]["schema"], json.loads((ROOT / "snapshot.schema.json").read_text()))
+        self.assertNotIn("sentinel-credential", json.dumps(provider.evidence()))
+        self.assertNotIn("sentinel-credential", repr(provider))
+        missing = HTTPProvider(transport=transport, environment={})
+        failure = missing.extract(source.message)
+        self.assertIn("credential", failure["error"].lower())
+        self.assertEqual(transport.call_count, 1)
+
+    def _assert_failure(self, reply, diagnostic):
+        from access_requests.sources import load_source
+        from access_requests.intake import process_response
+        record = process_response(load_source(ROOT / "materials/requests/IT-001.json"), reply)
+        self.assertIsNone(record["extraction"])
+        self.assertEqual((record["status"], record["owner"], record["next_action"]),
+                         ("error", "IT Service Desk", "retry-extraction"))
+        self.assertIn(diagnostic, record["error"].lower())
+        self.assertIn("retry", record["retry_command"])
+        self.assertNotIn("sentinel-credential", json.dumps(record))
+
+    def test_T27(self):
+        from access_requests.providers import HTTPProvider
+        import urllib.error
+        for failure in (TimeoutError("sentinel-credential"),
+                        urllib.error.HTTPError("https://x", 429, "sentinel-credential", {}, None),
+                        urllib.error.HTTPError("https://x", 503, "sentinel-credential", {}, None)):
+            with self.subTest(error=type(failure).__name__):
+                provider = HTTPProvider(transport=mock.Mock(side_effect=failure), credential="sentinel-credential")
+                self._assert_failure(provider.extract("source"), "provider")
+        self._assert_failure(json.loads((MOCKS / "provider-error.json").read_text()), "provider")
+
+    def test_T28(self):
+        provider, _ = self._http_provider("http-refusal.json")
+        self._assert_failure(provider.extract("source"), "refus")
+        self._assert_failure(json.loads((MOCKS / "refusal.json").read_text()), "refus")
+
+    def test_T29(self):
+        for fixture in ("http-length.json", "http-cutoff.json"):
+            provider, _ = self._http_provider(fixture)
+            self._assert_failure(provider.extract("source"), "incomplete")
+
+
 if __name__ == "__main__":
     unittest.main()
