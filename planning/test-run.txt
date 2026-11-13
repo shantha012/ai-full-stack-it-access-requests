@@ -1,3 +1,170 @@
+Command: env -u API_KEY .venv/bin/python -m unittest discover -s tests -v
+Scope: saved mock responses and injected HTTP transport; no live provider.
+
+test_T01 (test_plan.TestPlan.test_T01)
+Saved envelopes, observable calls, clock/barrier injection, no key/network. ... ok
+test_T02 (test_plan.TestPlan.test_T02)
+Load original bytes/filename/message, independent of export metadata. ... ok
+test_T03 (test_plan.TestPlan.test_T03)
+Required fields, types, enums, JSON and completion precede routing. ... ok
+test_T04 (test_plan.TestPlan.test_T04)
+Quotes must be substrings of decoded source, including real newlines. ... ok
+test_T05 (test_plan.TestPlan.test_T05)
+Complete IT-001: staging/read awaits system owner review. ... ok
+test_T06 (test_plan.TestPlan.test_T06)
+IT-002 and complete new/change risk predicates await security review. ... ok
+test_T07 (test_plan.TestPlan.test_T07)
+Missing facts remain null; every new/change required fact clarifies. ... ok
+test_T08 (test_plan.TestPlan.test_T08)
+Uncorrected environment conflict stays null with both alternatives. ... ok
+test_T09 (test_plan.TestPlan.test_T09)
+Withdrawal rule requires id/date and tolerates other absent facts. ... ok
+test_T10 (test_plan.TestPlan.test_T10)
+Embedded override stays evidence and precedes every ordinary route. ... ok
+test_T11 (test_plan.TestPlan.test_T11)
+IT-007 requests write, replacing existing read access. ... ok
+test_T12 (test_plan.TestPlan.test_T12)
+Explicit environment correction selects staging over production. ... ok
+test_T13 (test_plan.TestPlan.test_T13)
+IT-009's absent manager remains null and requires clarification. ... ok
+test_T14 (test_plan.TestPlan.test_T14)
+Missing end date clarifies before production risk review. ... ok
+test_T15 (test_plan.TestPlan.test_T15)
+Relative dates stay unresolved rather than being calculated. ... ok
+test_T16 (test_plan.TestPlan.test_T16)
+Complete staging/admin request awaits security review. ... ok
+test_T17 (test_plan.TestPlan.test_T17)
+Complete production/read request awaits security review. ... ok
+test_T18 (test_plan.TestPlan.test_T18)
+Reversed dates stay explicit and clarify, including production/admin. ... ok
+test_T19 (test_plan.TestPlan.test_T19)
+Explicit date correction replaces the earlier access window. ... ok
+test_T20 (test_plan.TestPlan.test_T20)
+Retain stated IT-061 while document IT-016.json clarifies mismatch. ... ok
+test_T21 (test_plan.TestPlan.test_T21)
+Other/null kind requires clarification, including otherwise risk facts. ... ok
+test_T22 (test_plan.TestPlan.test_T22)
+Complete IT-018 staging/read request awaits system owner review. ... ok
+test_T23 (test_plan.TestPlan.test_T23)
+IT-019 requests read instead of prior write; production remains risk. ... ok
+test_T24 (test_plan.TestPlan.test_T24)
+Uncorrected manager conflict stays null with both named alternatives. ... ok
+test_T25 (test_plan.TestPlan.test_T25)
+Independently authored paraphrase retains the plan's explicit facts. ... ok
+test_T26 (test_plan.TestPlan.test_T26) ... ok
+test_T27 (test_plan.TestPlan.test_T27) ... ok
+test_T28 (test_plan.TestPlan.test_T28) ... ok
+test_T29 (test_plan.TestPlan.test_T29) ... ok
+test_T30 (test_plan.TestPlan.test_T30) ... ok
+test_T31 (test_plan.TestPlan.test_T31) ... ok
+test_T32 (test_plan.TestPlan.test_T32) ... ok
+test_T33 (test_plan.TestPlan.test_T33) ... ok
+test_T34 (test_plan.TestPlan.test_T34) ... ok
+test_T35 (test_plan.TestPlan.test_T35) ... ok
+test_T36 (test_plan.TestPlan.test_T36) ... ok
+test_T37 (test_plan.TestPlan.test_T37) ... ok
+test_T38 (test_plan.TestPlan.test_T38) ... ok
+test_T39 (test_plan.TestPlan.test_T39) ... ok
+test_T40 (test_plan.TestPlan.test_T40) ... ok
+test_T41 (test_plan.TestPlan.test_T41) ... ok
+test_T42 (test_plan.TestPlan.test_T42) ... ok
+test_T43 (test_plan.TestPlan.test_T43)
+Documented mock CLI workflow executes offline from a clean directory. ... ok
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 6.513s
+
+OK
+
+Exit code: 0
+
+Command: env -u API_KEY .venv/bin/python - <<'PY'
+import hashlib
+import json
+from pathlib import Path
+from jsonschema import Draft202012Validator
+
+root = Path.cwd()
+rows = [json.loads(line) for line in Path('deliverables/extractions.jsonl').read_text().splitlines()]
+queue = json.loads(Path('deliverables/queue.json').read_text())
+sources = sorted(Path('materials/requests').glob('*.json'))
+required = {'document_id','source_sha256','extraction','status','owner','next_action','error','response_source'}
+validator = Draft202012Validator(json.loads(Path('snapshot.schema.json').read_text()))
+assert len(rows) == len(sources) == len({r['document_id'] for r in rows}) == 20
+assert {r['document_id'] for r in rows} == {p.name for p in sources}
+for row in rows:
+    assert required <= row.keys()
+    source = root / 'materials/requests' / row['document_id']
+    assert row['source_sha256'] == hashlib.sha256(source.read_bytes()).hexdigest()
+    validator.validate(row['extraction'])
+    assert row['error'] is None and row['response_source'] == 'mock'
+    assert all(q in json.loads(source.read_text())['message'] for q in row['extraction']['supporting_quotes'])
+print('ARTIFACT-R73: 20 originals, unique filenames, required envelope fields, original-byte hashes, schema-valid extractions, null success errors, mock labels and exact quotes verified.')
+assert len(queue) == 20
+for entry, record in zip(queue, rows):
+    assert all(record[key] == value for key, value in entry.items())
+assert len({r['document_id'] for r in queue}) == 20
+print('ARTIFACT-R74: 20 queue records each agree with extraction document_id, attempt_id, source hash and all queue fields.')
+generation = Path('deliverables') / Path('deliverables/CURRENT').read_text().strip()
+for name in ('queue.json', 'extractions.jsonl'):
+    assert (generation / name).read_bytes() == (Path('deliverables') / name).read_bytes()
+print('ARTIFACT-GENERATION: CURRENT generation files equal both completed portable copies.')
+text = Path('deliverables/accuracy.md').read_text()
+report = json.loads(text.split('```json\n',1)[1].split('\n```',1)[0])
+assert report['exact'] == report['total'] == 231
+assert report['purpose_exact'] == report['purpose_total'] == 21
+assert report['observation'] == 'mock' and report['configurations']
+assert len(report['sources']) == 21
+for source in report['sources']:
+    oracle = next(json.loads(p.read_text()) for p in Path('tests/expected').glob('T[0-9][0-9].json')
+                  if json.loads(p.read_text()).get('document_id') == source['document_id'])
+    assert source['expected_facts'] == oracle['facts']
+    assert source['message'] == oracle['message'] == json.loads(Path(source['input_path']).read_text())['message']
+    assert source['expected_source'] == oracle['plan_source']
+    assert oracle['facts']['business_purpose'] in source['message']
+assert not report['factual_errors'] and not report['quote_errors'] and not report['issue_errors']
+print('ARTIFACT-R75: accuracy.md contains 21 fixed expected fact records, source messages/citations, 231/231 scalar and 21/21 purpose counts, mock configuration, no reported errors; chosen purpose sentences occur in sources.')
+observations = [json.loads(line) for line in Path('deliverables/accuracy-observations.jsonl').read_text().splitlines()]
+assert len(observations) == 21
+for row in rows + observations:
+    assert row['response_source'] == 'mock'
+    assert row['provenance']['producing_config']['provider'] == 'mock'
+    assert row['provenance']['extraction_hash'] and row['provenance']['policy_hash']
+evidence = json.loads(Path('deliverables/request-evidence.json').read_text())
+assert evidence['observation'] == 'transport-stub; no live call'
+assert evidence['headers']['Authorization'] == 'Bearer <redacted>'
+assert evidence['request']['model'] == 'gpt-4o-mini'
+assert evidence['request']['temperature'] == 0 and evidence['timeout_seconds'] == 30
+assert {'refusal','incomplete','schema','quotes','retry'} <= evidence['response_handling'].keys()
+print('ARTIFACT-R76-R81: request evidence labels transport-stub, redacts Authorization, specifies model/temperature/timeout and response handling; all 41 saved observation rows label mock source and producing configuration/policy hashes.')
+PY
+Output:
+ARTIFACT-R73: 20 originals, unique filenames, required envelope fields, original-byte hashes, schema-valid extractions, null success errors, mock labels and exact quotes verified.
+ARTIFACT-R74: 20 queue records each agree with extraction document_id, attempt_id, source hash and all queue fields.
+ARTIFACT-GENERATION: CURRENT generation files equal both completed portable copies.
+ARTIFACT-R75: accuracy.md contains 21 fixed expected fact records, source messages/citations, 231/231 scalar and 21/21 purpose counts, mock configuration, no reported errors; chosen purpose sentences occur in sources.
+ARTIFACT-R76-R81: request evidence labels transport-stub, redacts Authorization, specifies model/temperature/timeout and response handling; all 41 saved observation rows label mock source and producing configuration/policy hashes.
+Exit code: 0
+
+Command: git rev-parse HEAD
+f9d447318a4b8e3b3192d8325b65e7b66b909b80
+Exit code: 0
+
+Command: git log --oneline -- tests/expected
+74249d5 Test first:Implement source-bounded extraction semantics and ordered routing
+8c7abbb test 02'
+Exit code: 0
+
+Command: git status --short
+ M planning/test-run.txt
+Exit code: 0
+
+=== Historical log preserved from f9d4473; not the current successful validation run ===
+The command/environment for this older log was not recorded there. Current row citations use the fresh run above.
+
 test_T01 (test_plan.TestPlan.test_T01)
 Saved envelopes, observable calls, clock/barrier injection, no key/network. ... ok
 test_T02 (test_plan.TestPlan.test_T02)
