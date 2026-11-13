@@ -4,3 +4,6 @@
 node_modules/
 .venv/
 __pycache__/
+work/
+access-requests.sqlite
+access-requests.sqlite-journal
