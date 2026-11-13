@@ -560,5 +560,107 @@ class TestPlan(unittest.TestCase):
         self.assertEqual((control / "calls").read_text().splitlines(), ["IT-001"])
 
 
+    def test_T38(self):
+        from access_requests.storage import Store
+        from access_requests.intake import process_response
+        store = self._store()
+        control = store.path.parent
+        (control / "hold-IT-002").touch()
+        worker = self._cli("intake", "--db", store.path, "--mocks", MOCKS,
+                           ROOT / "materials/requests/IT-001.json", ROOT / "materials/requests/IT-002.json", control=control)
+        self.addCleanup(lambda: worker.kill() if worker.poll() is None else None)
+        self._wait_for(lambda: (control / "entered-IT-002").exists(), worker)
+        self._wait_for(lambda: any(r.get("extraction") for r in store.queue()), worker)
+        worker.kill()
+        worker.communicate(timeout=5)
+        before = store.queue()[0]
+        with store.connection() as db:
+            stale = db.execute("SELECT id,token,lease FROM attempts WHERE state='running'").fetchone()
+        future = Store(store.path, clock=lambda: stale["lease"] + 1)
+        self.assertEqual(future.recover(), 1)
+        source = store.source_for(stale["id"])
+        record = process_response(source, self._mock("IT-002-success.json").extract(source.message))
+        self.assertFalse(future.publish(stale["id"], stale["token"], record))
+        result = self._finish(self._cli("resume", "--db", store.path))
+        self.assertEqual(store.queue()[0], before)
+        self.assertEqual(store.queue()[1]["extraction"]["requester"], "Owen Reed")
+        self.assertEqual((control / "calls").read_text().splitlines().count("IT-001"), 1)
+        self.assertEqual(len(result), 2)
+
+    def test_T39(self):
+        from access_requests.exports import publish_generation, read_generation
+        from access_requests.sources import load_source
+        store = self._store()
+        old = store.process(self._source(), self._mock())
+        destination = store.path.parent / "exports"
+        publish_generation(store, destination)
+        old_generation = read_generation(destination)
+        path = store.path.parent / "IT-001.json"
+        path.write_bytes(self._source().raw_bytes.replace(b"2026-11-06", b"2026-11-09"))
+        updated = load_source(path)
+        original_publish = store._publish
+        def crash_db(*args):
+            original_publish(*args)
+            raise RuntimeError("crash before commit")
+        with mock.patch.object(store, "_publish", side_effect=crash_db):
+            with self.assertRaises(RuntimeError):
+                store.process(updated, self._mock("IT-001-updated-success.json"))
+        self.assertEqual(store.queue()[0]["state"], "running")
+        self.assertEqual(read_generation(destination), old_generation)
+        with store.connection() as db:
+            lease = db.execute("SELECT MAX(lease) FROM attempts").fetchone()[0]
+        from access_requests.storage import Store
+        recovery = Store(store.path, clock=lambda: lease + 1)
+        recovery.recover()
+        from access_requests.workers import run_attempt
+        attempt = store.queue()[0]["attempt_id"]
+        run_attempt(store, attempt, lambda source: self._mock("IT-001-updated-success.json"))
+        def crash(stage):
+            if stage == "before_switch":
+                raise RuntimeError("crash at export switch")
+        with self.assertRaises(RuntimeError):
+            publish_generation(store, destination, hook=crash)
+        self.assertEqual(read_generation(destination), old_generation)
+        publish_generation(store, destination)
+        generation = read_generation(destination)
+        extraction, queue = generation["extractions"][0], generation["queue"][0]
+        self.assertEqual(extraction["extraction"]["end_date"], "2026-11-09")
+        for key in ("document_id", "attempt_id", "source_sha256"):
+            self.assertEqual(queue[key], extraction[key])
+        self.assertEqual(store.history("IT-001.json")[0], old)
+
+    def test_T40(self):
+        from access_requests.workers import run_attempt
+        import shlex
+        store = self._store()
+        failure = store.process(self._source(), self._mock("provider-error.json"))
+        command = shlex.split(failure["retry_command"])
+        self.assertEqual(command[:3], ["python3", "-m", "access_requests"])
+        recovered = self._finish(self._cli(*command[3:]))
+        self.assertEqual(recovered["extraction"]["end_date"], "2026-11-06")
+        self.assertEqual(len(store.history("IT-001.json")), 2)
+        clock = [100.0]
+        store.clock = lambda: clock[0]
+        provider = self._mock("IT-001-success.json")
+        saved_error = json.loads((MOCKS / "provider-error.json").read_text())
+        saved_error["retryable"] = True
+        provider.extract = mock.Mock(side_effect=[saved_error, saved_error, json.loads((MOCKS / "IT-001-success.json").read_text())])
+        attempt = store.enqueue(self._source(), force=True)
+        sleeps = []
+        def advance(delay):
+            self.assertEqual(store.queue()[0]["state"], "running")
+            sleeps.append(delay)
+            clock[0] += delay
+        run_attempt(store, attempt, lambda source: provider, max_retries=2, sleep=advance)
+        self.assertEqual(sleeps, [1, 2])
+        self.assertEqual(provider.extract.call_count, 3)
+        self.assertEqual(store.queue()[0]["status"], "review")
+        provider.extract = mock.Mock(return_value=saved_error)
+        attempt = store.enqueue(self._source(), force=True)
+        run_attempt(store, attempt, lambda source: provider, max_retries=2, sleep=advance)
+        self.assertEqual(provider.extract.call_count, 3)
+        self.assertEqual(store.queue()[0]["status"], "error")
+
+
 if __name__ == "__main__":
     unittest.main()
