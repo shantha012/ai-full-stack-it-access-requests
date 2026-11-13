@@ -1,0 +1,1 @@
+My fork's main branch is behind the upstream repo which exists at https://github.com.GitRollTraining/ai-full-stack-it-access-requests. I would like to integrate the upstream repo's changes to my main without losing my changes. Can you please give me the series of git commands that I can use to add the upstream repo and merge the changes to my local clone
