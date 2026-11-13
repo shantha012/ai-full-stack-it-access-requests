@@ -1,0 +1,1 @@
+generate a plan to read Challenge.md into a structured execution plan and then produce a README.md that reflects the project’s goals, structure, and next steps. README.md should have Setup, supported runtime/provider, exact intake/test/accuracy-check commands, environment-variable names, and how to inspect the queue.
