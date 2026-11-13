@@ -6,13 +6,13 @@ from pathlib import Path
 from .providers import MockProvider, HTTPProvider
 from .sources import load_source
 from .storage import Store
-from .workers import intake
+from .workers import intake, run_attempt
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
-    for command in ('intake', 'queue', 'history'):
+    for command in ('intake', 'queue', 'history', 'retry', 'resume'):
         sub = commands.add_parser(command)
         sub.add_argument('--db', default='access-requests.sqlite')
         if command == 'intake':
@@ -23,7 +23,7 @@ def main(argv=None):
             sub.add_argument('--endpoint', default='https://api.openai.com/v1/chat/completions')
             sub.add_argument('--model', default='gpt-4o-mini')
             sub.add_argument('--timeout', type=float, default=30)
-        if command == 'history':
+        if command in ('history', 'retry'):
             sub.add_argument('--document', required=True)
     args = parser.parse_args(argv)
     store = Store(args.db)
@@ -31,6 +31,26 @@ def main(argv=None):
         result = store.queue()
     elif args.command == 'history':
         result = store.history(args.document)
+    elif args.command in ('retry', 'resume'):
+        def saved_factory(source, config):
+            if config.get('provider') == 'http':
+                return HTTPProvider(endpoint=config['endpoint'], model=config['model'], timeout=config['timeout'])
+            return MockProvider(Path(config.get('mocks', 'tests/mock_responses')) / (Path(source.document_id).stem + '-success.json'))
+        if args.command == 'retry':
+            rows = store.history(args.document)
+            if not rows:
+                parser.error('unknown document')
+            previous = rows[-1]['attempt_id']
+            config, policy = store.settings(previous)
+            attempt = store.enqueue(store.source_for(previous), config=config, policy=policy, force=True)
+            result = run_attempt(store, attempt, lambda source: saved_factory(source, config))
+        else:
+            store.recover()
+            for row in store.queue():
+                if row['state'] == 'pending':
+                    config, _ = store.settings(row['attempt_id'])
+                    run_attempt(store, row['attempt_id'], lambda source: saved_factory(source, config))
+            result = store.queue()
     else:
         paths = []
         for path in map(Path, args.inputs):

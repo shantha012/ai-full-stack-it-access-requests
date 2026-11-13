@@ -93,7 +93,7 @@ class Store:
 
     def _publish(self, db, attempt, token, record):
         row = db.execute('SELECT * FROM attempts WHERE id=?', (attempt,)).fetchone()
-        if row['state'] != 'running' or row['token'] != token:
+        if row['state'] != 'running' or row['token'] != token or (row['lease'] is not None and row['lease'] <= self.clock()):
             return False
         if db.execute('SELECT attempt FROM current WHERE document=?', (row['document'],)).fetchone()[0] != attempt:
             return False
@@ -149,3 +149,21 @@ class Store:
         with self.connection() as db:
             ids = [r[0] for r in db.execute('SELECT id FROM attempts WHERE document=? ORDER BY id', (document,))]
         return [self.result(i) for i in ids]
+
+    def recover(self):
+        """Requeue expired leases; clearing the token fences prior workers."""
+        with self.connection() as db:
+            return db.execute("UPDATE attempts SET state='pending', token=NULL, lease=NULL WHERE state='running' AND lease<=?",
+                              (self.clock(),)).rowcount
+
+    def settings(self, attempt):
+        with self.connection() as db:
+            row = db.execute('SELECT config,policy FROM attempts WHERE id=?', (attempt,)).fetchone()
+        return json.loads(row['config']), json.loads(row['policy'])
+
+    def snapshot(self):
+        # One SELECT provides a single SQLite read snapshot, including current links.
+        with self.connection() as db:
+            return [json.loads(row[0]) for row in db.execute('''
+                SELECT a.result FROM current c JOIN attempts a ON a.id=c.attempt
+                WHERE a.state='completed' ORDER BY c.document''')]
