@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7B5N2SEJXJPPZW0ECQ6AJMX",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "tests/mock_responses/IT-001-success.json",
+    "tests/mock_responses/interrupted.json",
+    "tests/mock_responses/provider-error.json",
+    "tests/mock_responses/refusal.json",
+    "tests/test_plan.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 43847,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 306944,
+    "output_tokens": 2985,
+    "api_call_count": 12
+  },
+  "redaction": {
+    "replacements": 0,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 0,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
