@@ -1,0 +1,13 @@
+one numbered requirement per line, R-01, R-02, ..., each one testable sentence;
+
+---
+
+for each, the file and section it comes from, with the exact words quoted;
+
+---
+
+for each, how it will be checked: which test, which file to inspect, or which command to run;
+
+---
+
+nothing invented: a requirement the files do not state is not in the spec.
