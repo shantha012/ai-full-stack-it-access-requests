@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "stop",
+  "refusal": null,
+  "error": null,
+  "output_text": "{\"request_id\": \"IT-001\", \"request_date\": \"2026-10-22\", \"kind\": null, \"requester\": \"Maya Chen\", \"team\": \"Analytics\", \"system\": null, \"environment\": null, \"permission\": null, \"business_purpose\": null, \"start_date\": null, \"end_date\": null, \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"Request IT-001, dated 2026-10-22.\\\\nMaya Chen from Analytics.\"], \"issues\": [\"Kind, system, environment, permission, business purpose and access dates are absent.\"]}"
+}
