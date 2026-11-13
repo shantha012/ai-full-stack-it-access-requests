@@ -1,0 +1,791 @@
+test_T01 (test_plan.TestPlan.test_T01)
+Saved envelopes, observable calls, clock/barrier injection, no key/network. ... ok
+test_T02 (test_plan.TestPlan.test_T02)
+Load original bytes/filename/message, independent of export metadata. ... ERROR
+test_T03 (test_plan.TestPlan.test_T03)
+Required fields, types, enums, JSON and completion precede routing. ... ERROR
+test_T04 (test_plan.TestPlan.test_T04)
+Quotes must be substrings of decoded source, including real newlines. ... ERROR
+test_T05 (test_plan.TestPlan.test_T05)
+Complete IT-001: staging/read awaits system owner review. ... ERROR
+test_T06 (test_plan.TestPlan.test_T06)
+IT-002 and complete new/change risk predicates await security review. ... ERROR
+test_T07 (test_plan.TestPlan.test_T07)
+Missing facts remain null; every new/change required fact clarifies. ... ERROR
+test_T08 (test_plan.TestPlan.test_T08)
+Uncorrected environment conflict stays null with both alternatives. ... ERROR
+test_T09 (test_plan.TestPlan.test_T09)
+Withdrawal rule requires id/date and tolerates other absent facts. ... ERROR
+test_T10 (test_plan.TestPlan.test_T10)
+Embedded override stays evidence and precedes every ordinary route. ... ERROR
+test_T11 (test_plan.TestPlan.test_T11)
+IT-007 requests write, replacing existing read access. ... ERROR
+test_T12 (test_plan.TestPlan.test_T12)
+Explicit environment correction selects staging over production. ... ERROR
+test_T13 (test_plan.TestPlan.test_T13)
+IT-009's absent manager remains null and requires clarification. ... ERROR
+test_T14 (test_plan.TestPlan.test_T14)
+Missing end date clarifies before production risk review. ... ERROR
+test_T15 (test_plan.TestPlan.test_T15)
+Relative dates stay unresolved rather than being calculated. ... ERROR
+test_T16 (test_plan.TestPlan.test_T16)
+Complete staging/admin request awaits security review. ... ERROR
+test_T17 (test_plan.TestPlan.test_T17)
+Complete production/read request awaits security review. ... ERROR
+test_T18 (test_plan.TestPlan.test_T18)
+Reversed dates stay explicit and clarify, including production/admin. ... ERROR
+test_T19 (test_plan.TestPlan.test_T19)
+Explicit date correction replaces the earlier access window. ... ERROR
+test_T20 (test_plan.TestPlan.test_T20)
+Retain stated IT-061 while document IT-016.json clarifies mismatch. ... ERROR
+test_T21 (test_plan.TestPlan.test_T21)
+Other/null kind requires clarification, including otherwise risk facts. ... ERROR
+test_T22 (test_plan.TestPlan.test_T22)
+Complete IT-018 staging/read request awaits system owner review. ... ERROR
+test_T23 (test_plan.TestPlan.test_T23)
+IT-019 requests read instead of prior write; production remains risk. ... ERROR
+test_T24 (test_plan.TestPlan.test_T24)
+Uncorrected manager conflict stays null with both named alternatives. ... ERROR
+test_T25 (test_plan.TestPlan.test_T25)
+Independently authored paraphrase retains the plan's explicit facts. ... ERROR
+test_T26 (test_plan.TestPlan.test_T26) ... ERROR
+test_T27 (test_plan.TestPlan.test_T27) ... 
+  test_T27 (test_plan.TestPlan.test_T27) (error='TimeoutError') ... ERROR
+  test_T27 (test_plan.TestPlan.test_T27) (error='HTTPError') ... ERROR
+  test_T27 (test_plan.TestPlan.test_T27) (error='HTTPError') ... ERROR
+test_T27 (test_plan.TestPlan.test_T27) ... ERROR
+test_T28 (test_plan.TestPlan.test_T28) ... ERROR
+test_T29 (test_plan.TestPlan.test_T29) ... ERROR
+test_T30 (test_plan.TestPlan.test_T30) ... ERROR
+test_T31 (test_plan.TestPlan.test_T31) ... ERROR
+test_T32 (test_plan.TestPlan.test_T32) ... ERROR
+test_T33 (test_plan.TestPlan.test_T33) ... ERROR
+test_T34 (test_plan.TestPlan.test_T34) ... ERROR
+test_T35 (test_plan.TestPlan.test_T35) ... ERROR
+test_T36 (test_plan.TestPlan.test_T36) ... ERROR
+test_T37 (test_plan.TestPlan.test_T37) ... ERROR
+test_T38 (test_plan.TestPlan.test_T38) ... ERROR
+test_T39 (test_plan.TestPlan.test_T39) ... ERROR
+test_T40 (test_plan.TestPlan.test_T40) ... ERROR
+test_T41 (test_plan.TestPlan.test_T41) ... ERROR
+test_T42 (test_plan.TestPlan.test_T42) ... ERROR
+test_T43 (test_plan.TestPlan.test_T43)
+Documented mock CLI workflow executes offline from a clean directory. ... ERROR
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+======================================================================
+ERROR: test_T02 (test_plan.TestPlan.test_T02)
+Load original bytes/filename/message, independent of export metadata.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 125, in test_T02
+    from access_requests.validation import validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T03 (test_plan.TestPlan.test_T03)
+Required fields, types, enums, JSON and completion precede routing.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 156, in test_T03
+    from access_requests.validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T04 (test_plan.TestPlan.test_T04)
+Quotes must be substrings of decoded source, including real newlines.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 178, in test_T04
+    from access_requests.validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T05 (test_plan.TestPlan.test_T05)
+Complete IT-001: staging/read awaits system owner review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 271, in test_T05
+    self._assert_plan_semantics("T05")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T06 (test_plan.TestPlan.test_T06)
+IT-002 and complete new/change risk predicates await security review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 275, in test_T06
+    self._assert_plan_semantics("T06")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T07 (test_plan.TestPlan.test_T07)
+Missing facts remain null; every new/change required fact clarifies.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 279, in test_T07
+    self._assert_plan_semantics("T07")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T08 (test_plan.TestPlan.test_T08)
+Uncorrected environment conflict stays null with both alternatives.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 283, in test_T08
+    self._assert_plan_semantics("T08")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T09 (test_plan.TestPlan.test_T09)
+Withdrawal rule requires id/date and tolerates other absent facts.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 287, in test_T09
+    self._assert_plan_semantics("T09")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T10 (test_plan.TestPlan.test_T10)
+Embedded override stays evidence and precedes every ordinary route.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 291, in test_T10
+    self._assert_plan_semantics("T10")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T11 (test_plan.TestPlan.test_T11)
+IT-007 requests write, replacing existing read access.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 295, in test_T11
+    self._assert_plan_semantics("T11")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T12 (test_plan.TestPlan.test_T12)
+Explicit environment correction selects staging over production.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 299, in test_T12
+    self._assert_plan_semantics("T12")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T13 (test_plan.TestPlan.test_T13)
+IT-009's absent manager remains null and requires clarification.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 303, in test_T13
+    self._assert_plan_semantics("T13")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T14 (test_plan.TestPlan.test_T14)
+Missing end date clarifies before production risk review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 307, in test_T14
+    self._assert_plan_semantics("T14")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T15 (test_plan.TestPlan.test_T15)
+Relative dates stay unresolved rather than being calculated.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 311, in test_T15
+    self._assert_plan_semantics("T15")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T16 (test_plan.TestPlan.test_T16)
+Complete staging/admin request awaits security review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 315, in test_T16
+    self._assert_plan_semantics("T16")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T17 (test_plan.TestPlan.test_T17)
+Complete production/read request awaits security review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 319, in test_T17
+    self._assert_plan_semantics("T17")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T18 (test_plan.TestPlan.test_T18)
+Reversed dates stay explicit and clarify, including production/admin.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 323, in test_T18
+    self._assert_plan_semantics("T18")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T19 (test_plan.TestPlan.test_T19)
+Explicit date correction replaces the earlier access window.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 327, in test_T19
+    self._assert_plan_semantics("T19")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T20 (test_plan.TestPlan.test_T20)
+Retain stated IT-061 while document IT-016.json clarifies mismatch.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 331, in test_T20
+    self._assert_plan_semantics("T20")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T21 (test_plan.TestPlan.test_T21)
+Other/null kind requires clarification, including otherwise risk facts.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 335, in test_T21
+    self._assert_plan_semantics("T21")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T22 (test_plan.TestPlan.test_T22)
+Complete IT-018 staging/read request awaits system owner review.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 339, in test_T22
+    self._assert_plan_semantics("T22")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T23 (test_plan.TestPlan.test_T23)
+IT-019 requests read instead of prior write; production remains risk.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 343, in test_T23
+    self._assert_plan_semantics("T23")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T24 (test_plan.TestPlan.test_T24)
+Uncorrected manager conflict stays null with both named alternatives.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 347, in test_T24
+    self._assert_plan_semantics("T24")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T25 (test_plan.TestPlan.test_T25)
+Independently authored paraphrase retains the plan's explicit facts.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 351, in test_T25
+    self._assert_plan_semantics("T25")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 262, in _assert_plan_semantics
+    self._assert_semantic_record(oracle)
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 204, in _assert_semantic_record
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T26 (test_plan.TestPlan.test_T26)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 362, in test_T26
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T27 (test_plan.TestPlan.test_T27) (error='TimeoutError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 403, in test_T27
+    self._assert_failure(provider.extract("source"), "provider")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/providers.py", line 79, in extract
+    from .validation import SCHEMA_PATH
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T27 (test_plan.TestPlan.test_T27) (error='HTTPError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 403, in test_T27
+    self._assert_failure(provider.extract("source"), "provider")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/providers.py", line 79, in extract
+    from .validation import SCHEMA_PATH
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T27 (test_plan.TestPlan.test_T27) (error='HTTPError')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 403, in test_T27
+    self._assert_failure(provider.extract("source"), "provider")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/providers.py", line 79, in extract
+    from .validation import SCHEMA_PATH
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T27 (test_plan.TestPlan.test_T27)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 404, in test_T27
+    self._assert_failure(json.loads((MOCKS / "provider-error.json").read_text()), "provider")
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 386, in _assert_failure
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T28 (test_plan.TestPlan.test_T28)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 408, in test_T28
+    self._assert_failure(provider.extract("source"), "refus")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/providers.py", line 79, in extract
+    from .validation import SCHEMA_PATH
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T29 (test_plan.TestPlan.test_T29)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 414, in test_T29
+    self._assert_failure(provider.extract("source"), "incomplete")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/providers.py", line 79, in extract
+    from .validation import SCHEMA_PATH
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T30 (test_plan.TestPlan.test_T30)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 432, in test_T30
+    store, provider = self._store(), self._mock()
+                      ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T31 (test_plan.TestPlan.test_T31)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 443, in test_T31
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T32 (test_plan.TestPlan.test_T32)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 457, in test_T32
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T33 (test_plan.TestPlan.test_T33)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 468, in test_T33
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T34 (test_plan.TestPlan.test_T34)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 480, in test_T34
+    store, provider = self._store(), self._mock()
+                      ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T35 (test_plan.TestPlan.test_T35)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 518, in test_T35
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T36 (test_plan.TestPlan.test_T36)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 537, in test_T36
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T37 (test_plan.TestPlan.test_T37)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 548, in test_T37
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T38 (test_plan.TestPlan.test_T38)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 568, in test_T38
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T39 (test_plan.TestPlan.test_T39)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 597, in test_T39
+    store = self._store()
+            ^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 418, in _store
+    from access_requests.storage import Store
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/storage.py", line 15, in <module>
+    from .intake import process_response, route
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T40 (test_plan.TestPlan.test_T40)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 637, in test_T40
+    from access_requests.workers import run_attempt
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/workers.py", line 4, in <module>
+    from .intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T41 (test_plan.TestPlan.test_T41)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 670, in test_T41
+    from access_requests.validation import validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T42 (test_plan.TestPlan.test_T42)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 701, in test_T42
+    from access_requests.intake import process_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/intake.py", line 4, in <module>
+    from .validation import ExtractionError, validate_response
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 9, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema'
+
+======================================================================
+ERROR: test_T43 (test_plan.TestPlan.test_T43)
+Documented mock CLI workflow executes offline from a clean directory.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 397, in from_name
+    return next(cls.discover(name=name))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_plan.py", line 737, in test_T43
+    self.assertEqual(importlib.metadata.version(name), version)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 889, in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 862, in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 399, in from_name
+    raise PackageNotFoundError(name)
+importlib.metadata.PackageNotFoundError: No package metadata was found for attrs
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.050s
+
+FAILED (errors=45)
