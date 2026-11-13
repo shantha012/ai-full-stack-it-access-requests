@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": null,
+  "refusal": null,
+  "error": {"code": "service_unavailable", "message": "Saved provider failure"},
+  "output_text": null
+}

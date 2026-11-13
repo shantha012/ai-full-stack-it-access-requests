@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "length",
+  "refusal": null,
+  "error": null,
+  "output_text": "{\"request_id\":\"IT-001\""
+}

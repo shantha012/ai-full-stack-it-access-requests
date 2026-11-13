@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "stop",
+  "refusal": "Saved provider refusal",
+  "error": null,
+  "output_text": null
+}
