@@ -1,0 +1,1 @@
+Use the plan-from-spec skill on planning/spec.md. Write planning/plan.md only; write no code   and no tests yet.
