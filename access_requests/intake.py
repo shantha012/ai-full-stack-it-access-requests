@@ -1,7 +1,7 @@
 """Validated extractions and deterministic human review routing."""
 import re
 from pathlib import Path
-from .validation import validate_response
+from .validation import ExtractionError, validate_response
 
 REQUIRED = ('request_id', 'request_date', 'requester', 'team', 'system',
             'environment', 'permission', 'business_purpose', 'start_date', 'end_date', 'manager')
@@ -40,7 +40,15 @@ def route(source, extraction):
 
 
 def process_response(source, reply):
-    extraction = validate_response(reply, source.message)
+    try:
+        extraction = validate_response(reply, source.message)
+    except ExtractionError as exc:
+        import shlex
+        return dict(document_id=source.document_id, source_sha256=source.source_sha256,
+                    extraction=None, status='error', owner='IT Service Desk',
+                    next_action='retry-extraction', error=str(exc),
+                    response_source=reply.get('response_source', 'unknown'),
+                    retry_command='python3 -m access_requests retry --document ' + shlex.quote(source.document_id))
     status, owner, action = route(source, extraction)
     return dict(document_id=source.document_id, source_sha256=source.source_sha256,
                 extraction=extraction, status=status, owner=owner, next_action=action,
