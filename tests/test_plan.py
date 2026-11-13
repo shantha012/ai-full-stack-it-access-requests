@@ -692,5 +692,34 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(read_generation(destination), {"extractions": rows, "queue": queue})
 
 
+    def test_T42(self):
+        from access_requests.accuracy import compare, render_report
+        from access_requests.intake import process_response
+        from access_requests.sources import load_source
+        oracles = [json.loads((EXPECTED / f"T{i:02}.json").read_text()) for i in range(5, 26)]
+        records = [process_response(load_source(ROOT / oracle["input_path"]), self._mock(oracle["response_path"]).extract(oracle["message"])) for oracle in oracles]
+        report = compare(records, oracles)
+        self.assertEqual((report["exact"], report["total"]), (231, 231))
+        self.assertEqual((report["purpose_exact"], report["purpose_total"]), (21, 21))
+        self.assertEqual(report["factual_errors"], [])
+        self.assertEqual(report["quote_errors"], [])
+        self.assertEqual(report["issue_errors"], [])
+        self.assertEqual(report["observation"], "mock")
+        self.assertIn("not live model accuracy", render_report(report))
+        bad = process_response(self._source(), self._mock("IT-001-wrong-date.json").extract(self._source().message))
+        corrupted = [bad] + records[1:]
+        wrong = compare(corrupted, oracles)
+        self.assertEqual((wrong["exact"], wrong["total"]), (230, 231))
+        self.assertEqual(wrong["factual_errors"], [{"document_id": "IT-001.json", "field": "end_date", "expected": "2026-11-06", "actual": "2026-11-09"}])
+        missing = compare(records[1:], oracles)
+        self.assertEqual((missing["exact"], missing["total"]), (220, 231))
+        self.assertEqual(len(missing["factual_errors"]), 11)
+        null_oracle = oracles[2]
+        self.assertIsNone(null_oracle["facts"]["manager"])
+        absent_key = json.loads(json.dumps(records))
+        del absent_key[2]["extraction"]["manager"]
+        self.assertEqual(compare(absent_key, oracles)["exact"], 230)
+
+
 if __name__ == "__main__":
     unittest.main()
