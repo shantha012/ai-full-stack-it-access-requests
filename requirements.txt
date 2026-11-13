@@ -1,0 +1,4 @@
+# Install the full pinned dependency set with: python3 -m pip install -r requirements.lock
+jsonschema==4.23.0
+# Newer rpds-py releases require Python 3.11; retain the planned Python 3.10 runtime.
+rpds-py==0.20.1
