@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import socket
+import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from threading import Event
 import unittest
@@ -404,6 +405,84 @@ class TestPlan(unittest.TestCase):
         for fixture in ("http-length.json", "http-cutoff.json"):
             provider, _ = self._http_provider(fixture)
             self._assert_failure(provider.extract("source"), "incomplete")
+
+
+    def _store(self):
+        from access_requests.storage import Store
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        return Store(Path(temporary.name) / "records.sqlite")
+
+    def _source(self, name="IT-001.json"):
+        from access_requests.sources import load_source
+        return load_source(ROOT / "materials/requests" / name)
+
+    def _mock(self, name="IT-001-success.json"):
+        from access_requests.providers import MockProvider
+        return MockProvider(MOCKS / name, clock=lambda: 0)
+
+    def test_T30(self):
+        store, provider = self._store(), self._mock()
+        first = store.process(self._source(), provider)
+        second = store.process(self._source(), provider)
+        self.assertEqual(first, second)
+        self.assertEqual(len(provider.calls), 1)
+        self.assertEqual(len(store.queue()), 1)
+        self.assertEqual(len(store.history("IT-001.json")), 1)
+        self.assertEqual(second["extraction"]["end_date"], "2026-11-06")
+
+    def test_T31(self):
+        from access_requests.sources import load_source
+        store = self._store()
+        original = self._source()
+        first = store.process(original, self._mock())
+        path = store.path.parent / "IT-001.json"
+        path.write_bytes(original.raw_bytes.replace(b"2026-11-06", b"2026-11-09"))
+        source = load_source(path)
+        latest = store.process(source, self._mock("IT-001-updated-success.json"))
+        self.assertEqual(latest["extraction"]["end_date"], "2026-11-09")
+        self.assertEqual(latest["source_sha256"], hashlib.sha256(path.read_bytes()).hexdigest())
+        self.assertNotEqual(first["source_sha256"], latest["source_sha256"])
+        self.assertEqual([r["extraction"]["end_date"] for r in store.history("IT-001.json")], ["2026-11-06", "2026-11-09"])
+        self.assertEqual(store.source_bytes("IT-001.json", first["source_sha256"]), original.raw_bytes)
+
+    def test_T32(self):
+        store = self._store()
+        first = store.process(self._source(), self._mock())
+        failure = store.process(self._source(), self._mock("provider-error.json"), force=True)
+        self.assertIsNone(failure["extraction"])
+        self.assertEqual(failure["status"], "error")
+        self.assertEqual(store.queue(), [failure])
+        self.assertEqual(store.history("IT-001.json")[0], first)
+        self.assertEqual(len(store.history("IT-001.json")), 2)
+
+    def test_T33(self):
+        from access_requests.sources import load_source
+        store = self._store()
+        store.process(self._source(), self._mock())
+        path = store.path.parent / "IT-099.json"
+        path.write_bytes(self._source().raw_bytes)
+        other = store.process(load_source(path), self._mock())
+        self.assertEqual(other["extraction"]["request_id"], "IT-001")
+        self.assertEqual(other["status"], "needs-information")
+        self.assertIn("mismatch", " ".join(other["extraction"]["issues"]).lower())
+        store.process(self._source("IT-002.json"), self._mock("IT-002-success.json"))
+        self.assertEqual(len(store.queue()), 3)
+
+    def test_T34(self):
+        store, provider = self._store(), self._mock()
+        source = self._source()
+        first = store.process(source, provider, config={"model": "mock-v1"})
+        changed = store.process(source, provider, config={"model": "mock-v2"})
+        self.assertEqual(len(provider.calls), 2)
+        self.assertNotEqual(first["provenance"]["extraction_hash"], changed["provenance"]["extraction_hash"])
+        policy = {"version": "TEST-ONLY", "system_owner": "Test Review Owner"}
+        rerouted = store.process(source, provider, config={"model": "mock-v2"}, policy=policy)
+        self.assertEqual(len(provider.calls), 2)
+        self.assertEqual(rerouted["owner"], "Test Review Owner")
+        self.assertNotEqual(changed["provenance"]["policy_hash"], rerouted["provenance"]["policy_hash"])
+        self.assertEqual(rerouted["provenance"]["producing_config"], {"model": "mock-v2"})
+        self.assertEqual(len(store.history(source.document_id)), 3)
 
 
 if __name__ == "__main__":
