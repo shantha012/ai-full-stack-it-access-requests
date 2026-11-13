@@ -6,6 +6,9 @@ import os
 from pathlib import Path
 import socket
 import tempfile
+import subprocess
+import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from threading import Event
 import unittest
@@ -483,6 +486,78 @@ class TestPlan(unittest.TestCase):
         self.assertNotEqual(changed["provenance"]["policy_hash"], rerouted["provenance"]["policy_hash"])
         self.assertEqual(rerouted["provenance"]["producing_config"], {"model": "mock-v2"})
         self.assertEqual(len(store.history(source.document_id)), 3)
+
+
+    def _cli(self, *args, control=None):
+        environment = dict(os.environ)
+        if control:
+            environment["TEST_CONTROL"] = str(control)
+        return subprocess.Popen([sys.executable, str(ROOT / "tests/cli_runner.py"), *map(str, args)],
+                                cwd=ROOT, env=environment, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+    def _wait_for(self, predicate, process=None):
+        deadline = time.monotonic() + 8
+        while time.monotonic() < deadline:
+            if predicate():
+                return
+            if process and process.poll() is not None:
+                self.fail("worker exited early: " + str(process.communicate()))
+            time.sleep(.02)
+        self.fail("timed out waiting for worker state")
+
+    def _finish(self, process):
+        stdout, stderr = process.communicate(timeout=10)
+        self.assertEqual(process.returncode, 0, stderr)
+        return json.loads(stdout)
+
+    def test_T35(self):
+        store = self._store()
+        control = store.path.parent
+        (control / "hold-IT-002").touch()
+        process = self._cli("intake", "--db", store.path, "--mocks", MOCKS, "--workers", 2,
+                            ROOT / "materials/requests/IT-001.json", ROOT / "materials/requests/IT-002.json", control=control)
+        self.addCleanup(lambda: process.kill() if process.poll() is None else None)
+        try:
+            self._wait_for(lambda: (control / "entered-IT-002").exists(), process)
+            self._wait_for(lambda: any(r.get("extraction") for r in store.queue()), process)
+            records = self._finish(self._cli("queue", "--db", store.path))
+            self.assertEqual(records[0]["extraction"]["requester"], "Maya Chen")
+            self.assertEqual(records[1]["state"], "running")
+            self.assertIsNone(process.poll())
+        finally:
+            (control / "release-IT-002").touch()
+        self._finish(process)
+        self.assertEqual(store.queue()[1]["owner"], "Security Review")
+
+    def test_T36(self):
+        store = self._store()
+        from access_requests.workers import intake
+        providers = {"IT-001.json": self._mock("provider-error.json"), "IT-002.json": self._mock("IT-002-success.json")}
+        intake(store, [self._source(), self._source("IT-002.json")], lambda source: providers[source.document_id], workers=2)
+        one, two = store.queue()
+        self.assertEqual(one["status"], "error")
+        self.assertIsNone(one["extraction"])
+        self.assertEqual(two["owner"], "Security Review")
+        self.assertEqual(two["extraction"]["requester"], "Owen Reed")
+
+    def test_T37(self):
+        store = self._store()
+        control = store.path.parent
+        (control / "hold-IT-001").touch()
+        args = ("intake", "--db", store.path, "--mocks", MOCKS, ROOT / "materials/requests/IT-001.json")
+        first = self._cli(*args, control=control)
+        self.addCleanup(lambda: first.kill() if first.poll() is None else None)
+        try:
+            self._wait_for(lambda: (control / "entered-IT-001").exists(), first)
+            self._finish(self._cli(*args, control=control))
+        finally:
+            (control / "release-IT-001").touch()
+        self._finish(first)
+        records = self._finish(self._cli("queue", "--db", store.path))
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]["extraction"]["end_date"], "2026-11-06")
+        self.assertEqual(len(store.history("IT-001.json")), 1)
+        self.assertEqual((control / "calls").read_text().splitlines(), ["IT-001"])
 
 
 if __name__ == "__main__":
