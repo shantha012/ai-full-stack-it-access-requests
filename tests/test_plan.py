@@ -715,9 +715,9 @@ class TestPlan(unittest.TestCase):
         self.assertEqual((missing["exact"], missing["total"]), (220, 231))
         self.assertEqual(len(missing["factual_errors"]), 11)
         null_oracle = oracles[2]
-        self.assertIsNone(null_oracle["facts"]["manager"])
+        self.assertIsNone(null_oracle["facts"]["environment"])
         absent_key = json.loads(json.dumps(records))
-        del absent_key[2]["extraction"]["manager"]
+        del absent_key[2]["extraction"]["environment"]
         self.assertEqual(compare(absent_key, oracles)["exact"], 230)
 
 
