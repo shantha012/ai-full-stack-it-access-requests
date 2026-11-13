@@ -1,0 +1,42 @@
+{
+  "plan_case": "T24",
+  "plan_source": "IT-020.json message: “IT-020. Dated 2026-10-22. I'm Ethan Clark with Product. I need new Atlas read access to staging from 2026-10-29 to 2026-11-02. I want to look at some sample usage records before I draft the summary on feature adoption. My manager is Priya Shah. The manager for this request is Elena Park. Those are the names I wrote down from notes during the team handover. I copied them exactly as I saw them. The summary will compare the sample records with the feature list and point out where labels make the activity difficult to interpret. I would like this request logged in with the details above so we can follow up prior to the writing session.”; policy § Review queue: “Other messages with kind other/null, conflicting details, an identifier mismatch, or any missing required fact go to IT Service Desk with status needs-information and next_action clarify.”; policy § Extracted facts: “Use explicit facts from each message.” “Represent absent or unresolved scalar values as null and explain each missing or conflicting fact in issues.” “Preserve conflicting alternatives in exact supporting_quotes.” “contradictory statements without a correction remain unresolved.”",
+  "input_path": "materials/requests/IT-020.json",
+  "response_path": "IT-020-success.json",
+  "document_id": "IT-020.json",
+  "message": "IT-020. Dated 2026-10-22. I'm Ethan Clark with Product. I need new Atlas read access to staging from 2026-10-29 to 2026-11-02. I want to look at some sample usage records before I draft the summary on feature adoption. My manager is Priya Shah. The manager for this request is Elena Park. Those are the names I wrote down from notes during the team handover. I copied them exactly as I saw them. The summary will compare the sample records with the feature list and point out where labels make the activity difficult to interpret. I would like this request logged in with the details above so we can follow up prior to the writing session.",
+  "facts": {
+    "request_id": "IT-020",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Ethan Clark",
+    "team": "Product",
+    "system": "Atlas",
+    "environment": "staging",
+    "permission": "read",
+    "business_purpose": "I want to look at some sample usage records before I draft the summary on feature adoption.",
+    "start_date": "2026-10-29",
+    "end_date": "2026-11-02",
+    "manager": null
+  },
+  "route": {
+    "status": "needs-information",
+    "owner": "IT Service Desk",
+    "next_action": "clarify"
+  },
+  "issue_groups": [
+    [
+      "manager"
+    ],
+    [
+      "conflict",
+      "unresolved",
+      "inconsistent"
+    ]
+  ],
+  "evidence_fragments": [
+    "My manager is Priya Shah.",
+    "The manager for this request is Elena Park."
+  ],
+  "has_fact_issues": true
+}

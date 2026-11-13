@@ -1,0 +1,49 @@
+{
+  "plan_case": "T21",
+  "plan_source": "IT-017.json message: “IT-017 was submitted by Chloe Martin from Communications on 2026-10-22. Where can we find the access request form? I noticed the link we have in our onboarding docs goes to an old page. I've had a few new starters ask me which link they should bookmark. I'm wondering if you can let me know the form URL. And who is responsible for that bit of onboarding? I want to update the document before the next bunch start so they're all doing the same thing.”; policy § Review queue: “Other messages with kind other/null, conflicting details, an identifier mismatch, or any missing required fact go to IT Service Desk with status needs-information and next_action clarify.”; policy § Extracted facts: “Use explicit facts from each message.” “Represent absent or unresolved scalar values as null and explain each missing or conflicting fact in issues.”",
+  "input_path": "materials/requests/IT-017.json",
+  "response_path": "IT-017-success.json",
+  "document_id": "IT-017.json",
+  "message": "IT-017 was submitted by Chloe Martin from Communications on 2026-10-22. Where can we find the access request form? I noticed the link we have in our onboarding docs goes to an old page. I've had a few new starters ask me which link they should bookmark. I'm wondering if you can let me know the form URL. And who is responsible for that bit of onboarding? I want to update the document before the next bunch start so they're all doing the same thing.",
+  "facts": {
+    "request_id": "IT-017",
+    "request_date": "2026-10-22",
+    "kind": "other",
+    "requester": "Chloe Martin",
+    "team": "Communications",
+    "system": null,
+    "environment": null,
+    "permission": null,
+    "business_purpose": "I want to update the document before the next bunch start so they're all doing the same thing.",
+    "start_date": null,
+    "end_date": null,
+    "manager": null
+  },
+  "route": {
+    "status": "needs-information",
+    "owner": "IT Service Desk",
+    "next_action": "clarify"
+  },
+  "issue_groups": [
+    [
+      "system"
+    ],
+    [
+      "environment"
+    ],
+    [
+      "permission"
+    ],
+    [
+      "start date"
+    ],
+    [
+      "end date"
+    ],
+    [
+      "manager"
+    ]
+  ],
+  "evidence_fragments": [],
+  "has_fact_issues": true
+}

@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "stop",
+  "refusal": null,
+  "error": null,
+  "output_text": "{\"request_id\": \"IT-008\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Noah Kim\", \"team\": \"Finance\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"I am trying to check the sample billing total vs forecasting workbook before month end rehearsal.\", \"start_date\": \"2026-10-25\", \"end_date\": \"2026-10-31\", \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"For IT-008, submitted date 2026-10-22, Noah Kim from Finance is asking for new read access to Atlas in production from 2026-10-25 to 2026-10-31 (Priya Shah is my manager). I am trying to check the sample billing total vs forecasting workbook before month end rehearsal. (Correction: environment is actually staging. Previous entry used production. Our rehearsal uses sample billing dataset in staging. The rest of the request remains the same) Permission request and dates are the same. When I first wrote this, I'd copied the environment from some old note. When I was reading through rehearsal instructions I noticed the mistake.\"], \"issues\": []}"
+}

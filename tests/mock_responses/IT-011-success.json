@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "stop",
+  "refusal": null,
+  "error": null,
+  "output_text": "{\"request_id\": \"IT-011\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Zoe Adams\", \"team\": \"Research\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"I'm looking at sample experiment records to get ready for our team walkthrough.\", \"start_date\": null, \"end_date\": null, \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"IT-011, 2026-10-22: Research (Zoe Adams) - I need new read access to Atlas in staging for next Monday - Friday. Priya Shah is my boss. I'm looking at sample experiment records to get ready for our team walkthrough. The walkthrough covers how the experiment records relate to the charts. I'm looking to find confusing examples before the walkthrough.\"], \"issues\": [\"Relative start_date and end_date remain unresolved.\"]}"
+}

@@ -1,0 +1,30 @@
+{
+  "plan_case": "T22",
+  "plan_source": "IT-018.json message: “Could you please record IT-018, submitted on 2026-10-22? I (Daniel Wright in Data Engineering) would like to request new read access to Atlas in staging for the dates 2026-10-27 through 2026-11-03. My manager is Priya Shah.<br><br>I am reviewing our sample dataset we use during our weekly analyst workshop. Last time, people noticed a discrepancy between the totals of the sample and what is in the handout. I'd like to try and find the source of the difference prior to the next workshop. I'd like to update example queries (if need be) and provide a brief description to the workshop facilitator that they can give to folks who ask questions. I'm working over two workshop preparations, so that is why I'm asking for access to the following week. I will leave my notes next to the example queries so that the next person working on the workshop preparation can see what I was looking at.”; policy § Review queue: “Complete staging/read requests go to System Owner with status review and next_action review-request.”; policy § Extracted facts: “Use explicit facts from each message.”",
+  "input_path": "materials/requests/IT-018.json",
+  "response_path": "IT-018-success.json",
+  "document_id": "IT-018.json",
+  "message": "Could you please record IT-018, submitted on 2026-10-22? I (Daniel Wright in Data Engineering) would like to request new read access to Atlas in staging for the dates 2026-10-27 through 2026-11-03. My manager is Priya Shah.\n\nI am reviewing our sample dataset we use during our weekly analyst workshop. Last time, people noticed a discrepancy between the totals of the sample and what is in the handout. I'd like to try and find the source of the difference prior to the next workshop. I'd like to update example queries (if need be) and provide a brief description to the workshop facilitator that they can give to folks who ask questions. I'm working over two workshop preparations, so that is why I'm asking for access to the following week. I will leave my notes next to the example queries so that the next person working on the workshop preparation can see what I was looking at.",
+  "facts": {
+    "request_id": "IT-018",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Daniel Wright",
+    "team": "Data Engineering",
+    "system": "Atlas",
+    "environment": "staging",
+    "permission": "read",
+    "business_purpose": "I am reviewing our sample dataset we use during our weekly analyst workshop.",
+    "start_date": "2026-10-27",
+    "end_date": "2026-11-03",
+    "manager": "Priya Shah"
+  },
+  "route": {
+    "status": "review",
+    "owner": "System Owner",
+    "next_action": "review-request"
+  },
+  "issue_groups": [],
+  "evidence_fragments": [],
+  "has_fact_issues": false
+}

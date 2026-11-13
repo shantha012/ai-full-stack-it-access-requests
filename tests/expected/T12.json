@@ -1,0 +1,33 @@
+{
+  "plan_case": "T12",
+  "plan_source": "IT-008.json message: “For IT-008, submitted date 2026-10-22, Noah Kim from Finance is asking for new read access to Atlas in production from 2026-10-25 to 2026-10-31 (Priya Shah is my manager). I am trying to check the sample billing total vs forecasting workbook before month end rehearsal. (Correction: environment is actually staging. Previous entry used production. Our rehearsal uses sample billing dataset in staging. The rest of the request remains the same) Permission request and dates are the same. When I first wrote this, I'd copied the environment from some old note. When I was reading through rehearsal instructions I noticed the mistake.”; policy § Review queue: “Complete staging/read requests go to System Owner with status review and next_action review-request.”; policy § Extracted facts: “Use explicit facts from each message.” “A later statement explicitly labelled as a correction replaces the earlier value”",
+  "input_path": "materials/requests/IT-008.json",
+  "response_path": "IT-008-success.json",
+  "document_id": "IT-008.json",
+  "message": "For IT-008, submitted date 2026-10-22, Noah Kim from Finance is asking for new read access to Atlas in production from 2026-10-25 to 2026-10-31 (Priya Shah is my manager). I am trying to check the sample billing total vs forecasting workbook before month end rehearsal. (Correction: environment is actually staging. Previous entry used production. Our rehearsal uses sample billing dataset in staging. The rest of the request remains the same) Permission request and dates are the same. When I first wrote this, I'd copied the environment from some old note. When I was reading through rehearsal instructions I noticed the mistake.",
+  "facts": {
+    "request_id": "IT-008",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Noah Kim",
+    "team": "Finance",
+    "system": "Atlas",
+    "environment": "staging",
+    "permission": "read",
+    "business_purpose": "I am trying to check the sample billing total vs forecasting workbook before month end rehearsal.",
+    "start_date": "2026-10-25",
+    "end_date": "2026-10-31",
+    "manager": "Priya Shah"
+  },
+  "route": {
+    "status": "review",
+    "owner": "System Owner",
+    "next_action": "review-request"
+  },
+  "issue_groups": [],
+  "evidence_fragments": [
+    "in production",
+    "Correction: environment is actually staging."
+  ],
+  "has_fact_issues": false
+}

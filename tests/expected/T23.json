@@ -1,0 +1,32 @@
+{
+  "plan_case": "T23",
+  "plan_source": "IT-019.json message: “Sara Ahmed, Customer Operations. This is IT-019, submitted 2026-10-22. I need to change my current Beacon access in production from write to read from 2026-10-28 to 2026-11-04. My manager is Elena Park. I am transitioning from updating accounts to reviewing the daily exception report as my colleague will now update the accounts. However, I need to view the records that make up the exception report and to explain any unusual entries when I hand it over. I need to have read access to accomplish this for the above timeframe. I put the prior permission so that they can know exactly what has changed.”; policy § Review queue: “Complete new/change requests involving production, write or admin go to Security Review with status review and next_action review-risk-then-owner.”; policy § Extracted facts: “Use explicit facts from each message.” “For a change request, extract the requested new permission.”",
+  "input_path": "materials/requests/IT-019.json",
+  "response_path": "IT-019-success.json",
+  "document_id": "IT-019.json",
+  "message": "Sara Ahmed, Customer Operations. This is IT-019, submitted 2026-10-22. I need to change my current Beacon access in production from write to read from 2026-10-28 to 2026-11-04. My manager is Elena Park. I am transitioning from updating accounts to reviewing the daily exception report as my colleague will now update the accounts. However, I need to view the records that make up the exception report and to explain any unusual entries when I hand it over. I need to have read access to accomplish this for the above timeframe. I put the prior permission so that they can know exactly what has changed.",
+  "facts": {
+    "request_id": "IT-019",
+    "request_date": "2026-10-22",
+    "kind": "change",
+    "requester": "Sara Ahmed",
+    "team": "Customer Operations",
+    "system": "Beacon",
+    "environment": "production",
+    "permission": "read",
+    "business_purpose": "I am transitioning from updating accounts to reviewing the daily exception report as my colleague will now update the accounts.",
+    "start_date": "2026-10-28",
+    "end_date": "2026-11-04",
+    "manager": "Elena Park"
+  },
+  "route": {
+    "status": "review",
+    "owner": "Security Review",
+    "next_action": "review-risk-then-owner"
+  },
+  "issue_groups": [],
+  "evidence_fragments": [
+    "from write to read"
+  ],
+  "has_fact_issues": false
+}

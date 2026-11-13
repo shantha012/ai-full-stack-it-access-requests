@@ -1,0 +1,43 @@
+{
+  "plan_case": "T15",
+  "plan_source": "IT-011.json message: “IT-011, 2026-10-22: Research (Zoe Adams) - I need new read access to Atlas in staging for next Monday - Friday. Priya Shah is my boss. I'm looking at sample experiment records to get ready for our team walkthrough. The walkthrough covers how the experiment records relate to the charts. I'm looking to find confusing examples before the walkthrough.”; policy § Review queue: “Other messages with kind other/null, conflicting details, an identifier mismatch, or any missing required fact go to IT Service Desk with status needs-information and next_action clarify.”; policy § Extracted facts: “Use explicit facts from each message.” “Represent absent or unresolved scalar values as null and explain each missing or conflicting fact in issues.” “A relative date stays unresolved.”",
+  "input_path": "materials/requests/IT-011.json",
+  "response_path": "IT-011-success.json",
+  "document_id": "IT-011.json",
+  "message": "IT-011, 2026-10-22: Research (Zoe Adams) - I need new read access to Atlas in staging for next Monday - Friday. Priya Shah is my boss. I'm looking at sample experiment records to get ready for our team walkthrough. The walkthrough covers how the experiment records relate to the charts. I'm looking to find confusing examples before the walkthrough.",
+  "facts": {
+    "request_id": "IT-011",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Zoe Adams",
+    "team": "Research",
+    "system": "Atlas",
+    "environment": "staging",
+    "permission": "read",
+    "business_purpose": "I'm looking at sample experiment records to get ready for our team walkthrough.",
+    "start_date": null,
+    "end_date": null,
+    "manager": "Priya Shah"
+  },
+  "route": {
+    "status": "needs-information",
+    "owner": "IT Service Desk",
+    "next_action": "clarify"
+  },
+  "issue_groups": [
+    [
+      "start date"
+    ],
+    [
+      "end date"
+    ],
+    [
+      "relative",
+      "unresolved"
+    ]
+  ],
+  "evidence_fragments": [
+    "next Monday - Friday"
+  ],
+  "has_fact_issues": true
+}

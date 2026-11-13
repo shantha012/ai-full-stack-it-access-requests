@@ -1,0 +1,33 @@
+{
+  "plan_case": "T11",
+  "plan_source": "IT-007.json message: “IT-007 2026-10-22 - Grace Tan / Developer Experience<br><br>I have current (read only) access to Forge (staging) and would like to transition to (write) from 2026-10-24 to 2026-10-28. My manager is Nia Patel.<br><br>We're updating starter project templates, so i want to save our changes for the templates. Also confirming example pipelines are still working.<br><br>The changes involve fixing the sample configuration + testing on a new project. I'll provide a summary of what templates were modified for the team. (so they can reference this during next onboarding session)”; policy § Review queue: “Complete new/change requests involving production, write or admin go to Security Review with status review and next_action review-risk-then-owner.”; policy § Extracted facts: “Use explicit facts from each message.” “For a change request, extract the requested new permission.”",
+  "input_path": "materials/requests/IT-007.json",
+  "response_path": "IT-007-success.json",
+  "document_id": "IT-007.json",
+  "message": "IT-007 2026-10-22 - Grace Tan / Developer Experience\n\nI have current (read only) access to Forge (staging) and would like to transition to (write) from 2026-10-24 to 2026-10-28. My manager is Nia Patel.\n\nWe're updating starter project templates, so i want to save our changes for the templates. Also confirming example pipelines are still working.\n\nThe changes involve fixing the sample configuration + testing on a new project. I'll provide a summary of what templates were modified for the team. (so they can reference this during next onboarding session)",
+  "facts": {
+    "request_id": "IT-007",
+    "request_date": "2026-10-22",
+    "kind": "change",
+    "requester": "Grace Tan",
+    "team": "Developer Experience",
+    "system": "Forge",
+    "environment": "staging",
+    "permission": "write",
+    "business_purpose": "We're updating starter project templates, so i want to save our changes for the templates.",
+    "start_date": "2026-10-24",
+    "end_date": "2026-10-28",
+    "manager": "Nia Patel"
+  },
+  "route": {
+    "status": "review",
+    "owner": "Security Review",
+    "next_action": "review-risk-then-owner"
+  },
+  "issue_groups": [],
+  "evidence_fragments": [
+    "current (read only)",
+    "transition to (write)"
+  ],
+  "has_fact_issues": false
+}

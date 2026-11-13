@@ -1,0 +1,42 @@
+{
+  "plan_case": "T18",
+  "plan_source": "IT-014.json message: “IT-014. 2026-10-22 request. Lucas Brown in Sales Operations. New read access for Atlas in staging. Start date 2026-11-05. End date 2026-11-02. Manager is Priya Shah. I'm giving a demo of the new territory report for sales leads. Trying to match up the sample territories with the handover notes. Also want to make sure I understand the columns for the demo. I just copied above dates from my planning sheet. This email should be the request record.”; policy § Review queue: “Other messages with kind other/null, conflicting details, an identifier mismatch, or any missing required fact go to IT Service Desk with status needs-information and next_action clarify.”; policy § Extracted facts: “Use explicit facts from each message.” “A start_date after end_date is also a clarification issue.”",
+  "input_path": "materials/requests/IT-014.json",
+  "response_path": "IT-014-success.json",
+  "document_id": "IT-014.json",
+  "message": "IT-014. 2026-10-22 request. Lucas Brown in Sales Operations. New read access for Atlas in staging. Start date 2026-11-05. End date 2026-11-02. Manager is Priya Shah. I'm giving a demo of the new territory report for sales leads. Trying to match up the sample territories with the handover notes. Also want to make sure I understand the columns for the demo. I just copied above dates from my planning sheet. This email should be the request record.",
+  "facts": {
+    "request_id": "IT-014",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Lucas Brown",
+    "team": "Sales Operations",
+    "system": "Atlas",
+    "environment": "staging",
+    "permission": "read",
+    "business_purpose": "I'm giving a demo of the new territory report for sales leads.",
+    "start_date": "2026-11-05",
+    "end_date": "2026-11-02",
+    "manager": "Priya Shah"
+  },
+  "route": {
+    "status": "needs-information",
+    "owner": "IT Service Desk",
+    "next_action": "clarify"
+  },
+  "issue_groups": [
+    [
+      "start date"
+    ],
+    [
+      "end date"
+    ],
+    [
+      "after",
+      "reversed",
+      "chronology"
+    ]
+  ],
+  "evidence_fragments": [],
+  "has_fact_issues": true
+}

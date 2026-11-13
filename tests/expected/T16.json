@@ -1,0 +1,30 @@
+{
+  "plan_case": "T16",
+  "plan_source": "IT-012.json message: “Hi, Ravi Shah from Infrastructure here. I'm opening up IT-012 on 2026-10-22. Requesting new admin access to Forge in staging on 2026-10-26 - 2026-10-27. My manager is Nia Patel. We're doing a configuration migration rehearsal before planning the wider rollout. A part of our rehearsal is editing the workspace settings and ensuring a new project adopts these settings. I've scheduled a review at the end of the second day with the infrastructure team. The idea is that at the end of the review we should have detailed notes regarding settings we've changed, commands we've run and any issues that might require another rehearsal. Can you attach this request to this time slot for a temporary rehearsal window?”; policy § Review queue: “Complete new/change requests involving production, write or admin go to Security Review with status review and next_action review-risk-then-owner.”; policy § Extracted facts: “Use explicit facts from each message.”",
+  "input_path": "materials/requests/IT-012.json",
+  "response_path": "IT-012-success.json",
+  "document_id": "IT-012.json",
+  "message": "Hi, Ravi Shah from Infrastructure here. I'm opening up IT-012 on 2026-10-22. Requesting new admin access to Forge in staging on 2026-10-26 - 2026-10-27. My manager is Nia Patel. We're doing a configuration migration rehearsal before planning the wider rollout. A part of our rehearsal is editing the workspace settings and ensuring a new project adopts these settings. I've scheduled a review at the end of the second day with the infrastructure team. The idea is that at the end of the review we should have detailed notes regarding settings we've changed, commands we've run and any issues that might require another rehearsal. Can you attach this request to this time slot for a temporary rehearsal window?",
+  "facts": {
+    "request_id": "IT-012",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Ravi Shah",
+    "team": "Infrastructure",
+    "system": "Forge",
+    "environment": "staging",
+    "permission": "admin",
+    "business_purpose": "We're doing a configuration migration rehearsal before planning the wider rollout.",
+    "start_date": "2026-10-26",
+    "end_date": "2026-10-27",
+    "manager": "Nia Patel"
+  },
+  "route": {
+    "status": "review",
+    "owner": "Security Review",
+    "next_action": "review-risk-then-owner"
+  },
+  "issue_groups": [],
+  "evidence_fragments": [],
+  "has_fact_issues": false
+}

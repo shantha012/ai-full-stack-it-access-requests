@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "stop",
+  "refusal": null,
+  "error": null,
+  "output_text": "{\"request_id\": \"SYN-001\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Maya Chen\", \"team\": \"Analytics\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"I need to check the weekly conversion dashboard against the new event definitions before the next reporting cycle.\", \"start_date\": \"2026-10-23\", \"end_date\": \"2026-11-06\", \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"Request SYN-001, submitted 2026-10-22. I am Maya Chen in Analytics. For a new access window, please let me read Atlas in staging between 2026-10-23 and 2026-11-06. Priya Shah is my manager. I need to check the weekly conversion dashboard against the new event definitions before the next reporting cycle.\"], \"issues\": []}"
+}

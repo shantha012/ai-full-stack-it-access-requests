@@ -1,0 +1,42 @@
+{
+  "plan_case": "T08",
+  "plan_source": "IT-004.json message: “IT-004 submitted on 2026-10-22 by Theo Malik, Quality Engineering. Please grant me new read access in staging to Atlas from 2026-10-23 to 2026-10-30. Nia Patel is my manager. I'm trying to understand why the nightly quality report shows different counts from the release checklist. This request is for the production environment. I'm trying to look into the records for the failed run. I would like to send out a brief summary to the engineers responsible for the report. Dates are during the current release cycle and follow up after cycle completion.”; policy § Review queue: “Other messages with kind other/null, conflicting details, an identifier mismatch, or any missing required fact go to IT Service Desk with status needs-information and next_action clarify.”; policy § Extracted facts: “Use explicit facts from each message.” “Preserve conflicting alternatives in exact supporting_quotes.” “contradictory statements without a correction remain unresolved.”",
+  "input_path": "materials/requests/IT-004.json",
+  "response_path": "IT-004-success.json",
+  "document_id": "IT-004.json",
+  "message": "IT-004 submitted on 2026-10-22 by Theo Malik, Quality Engineering. Please grant me new read access in staging to Atlas from 2026-10-23 to 2026-10-30. Nia Patel is my manager. I'm trying to understand why the nightly quality report shows different counts from the release checklist. This request is for the production environment. I'm trying to look into the records for the failed run. I would like to send out a brief summary to the engineers responsible for the report. Dates are during the current release cycle and follow up after cycle completion.",
+  "facts": {
+    "request_id": "IT-004",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Theo Malik",
+    "team": "Quality Engineering",
+    "system": "Atlas",
+    "environment": null,
+    "permission": "read",
+    "business_purpose": "I'm trying to understand why the nightly quality report shows different counts from the release checklist.",
+    "start_date": "2026-10-23",
+    "end_date": "2026-10-30",
+    "manager": "Nia Patel"
+  },
+  "route": {
+    "status": "needs-information",
+    "owner": "IT Service Desk",
+    "next_action": "clarify"
+  },
+  "issue_groups": [
+    [
+      "environment"
+    ],
+    [
+      "conflict",
+      "unresolved",
+      "inconsistent"
+    ]
+  ],
+  "evidence_fragments": [
+    "in staging",
+    "production environment"
+  ],
+  "has_fact_issues": true
+}

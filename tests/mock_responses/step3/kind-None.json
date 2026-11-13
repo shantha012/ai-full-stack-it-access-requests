@@ -1,0 +1,7 @@
+{
+  "response_source": "mock",
+  "finish_reason": "stop",
+  "refusal": null,
+  "error": null,
+  "output_text": "{\"request_id\": \"MATRIX-001\", \"request_date\": \"2026-10-22\", \"kind\": null, \"requester\": \"Maya Chen\", \"team\": \"Analytics\", \"system\": \"Atlas\", \"environment\": \"production\", \"permission\": \"admin\", \"business_purpose\": \"I need to check the weekly conversion dashboard against the new event definitions before the next reporting cycle.\", \"start_date\": \"2026-10-23\", \"end_date\": \"2026-11-06\", \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"Request identifier: MATRIX-001. Submitted on 2026-10-22. My name is Maya Chen. My team is Analytics. The system is Atlas. The environment is production. The requested permission is admin. I need to check the weekly conversion dashboard against the new event definitions before the next reporting cycle. Start date: 2026-10-23. End date: 2026-11-06. My manager is Priya Shah.\"], \"issues\": [\"kind\"]}"
+}

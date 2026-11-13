@@ -1,0 +1,30 @@
+{
+  "plan_case": "T17",
+  "plan_source": "IT-013.json message: “Hey, can you assist with IT-013 (dated 2026-10-22). This is Emma Wilson from Compliance. I need to get new access to Beacon for reading in production. Need it from 2026-10-28 to 2026-10-30 to review account activity records to help with internal audit we have scheduled. My manager is Elena Park. Audit coordinator already has the accounts to look at lined up. It's my job to check out the dates on the activity records and provide a summary of any gaps that we need to have for our review meeting.”; policy § Review queue: “Complete new/change requests involving production, write or admin go to Security Review with status review and next_action review-risk-then-owner.”; policy § Extracted facts: “Use explicit facts from each message.”",
+  "input_path": "materials/requests/IT-013.json",
+  "response_path": "IT-013-success.json",
+  "document_id": "IT-013.json",
+  "message": "Hey, can you assist with IT-013 (dated 2026-10-22). This is Emma Wilson from Compliance. I need to get new access to Beacon for reading in production. Need it from 2026-10-28 to 2026-10-30 to review account activity records to help with internal audit we have scheduled. My manager is Elena Park. Audit coordinator already has the accounts to look at lined up. It's my job to check out the dates on the activity records and provide a summary of any gaps that we need to have for our review meeting.",
+  "facts": {
+    "request_id": "IT-013",
+    "request_date": "2026-10-22",
+    "kind": "new",
+    "requester": "Emma Wilson",
+    "team": "Compliance",
+    "system": "Beacon",
+    "environment": "production",
+    "permission": "read",
+    "business_purpose": "Need it from 2026-10-28 to 2026-10-30 to review account activity records to help with internal audit we have scheduled.",
+    "start_date": "2026-10-28",
+    "end_date": "2026-10-30",
+    "manager": "Elena Park"
+  },
+  "route": {
+    "status": "review",
+    "owner": "Security Review",
+    "next_action": "review-risk-then-owner"
+  },
+  "issue_groups": [],
+  "evidence_fragments": [],
+  "has_fact_issues": false
+}

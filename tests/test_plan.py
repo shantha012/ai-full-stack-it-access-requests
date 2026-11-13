@@ -191,6 +191,157 @@ class TestPlan(unittest.TestCase):
                     validate_response(reply, source.message)
                 self.assertTrue(str(caught.exception).strip(), "invalid quote needs a diagnostic")
 
+    def _assert_semantic_record(self, oracle):
+        """Check independent plan facts, evidence and human review routing."""
+        from access_requests.intake import process_response
+        from access_requests.providers import MockProvider
+        from access_requests.sources import load_source
+
+        source = load_source(ROOT / oracle["input_path"])
+        self.assertEqual(source.message, oracle["message"])
+        reply = MockProvider(MOCKS / oracle["response_path"], clock=lambda: 0.0).extract(source.message)
+        record = process_response(source, reply)
+        self.assertEqual(record["document_id"], oracle["document_id"])
+        self.assertEqual(record["source_sha256"], hashlib.sha256(source.raw_bytes).hexdigest())
+        self.assertEqual(record["response_source"], "mock")
+        self.assertIsNone(record["error"])
+        for field, value in oracle["facts"].items():
+            with self.subTest(field=field):
+                self.assertIn(field, record["extraction"])
+                self.assertEqual(record["extraction"][field], value)
+        for field, value in oracle["route"].items():
+            self.assertEqual(record[field], value)
+        self.assertIn(record["status"], ("review", "needs-information"))
+        self.assertNotIn(record["next_action"], ("grant", "approve", "approved"))
+
+        quotes = record["extraction"]["supporting_quotes"]
+        self.assertTrue(quotes, "retain evidence for these source-grounded cases")
+        for quote in quotes:
+            self.assertIn(quote, source.message)
+        for fragment in oracle["evidence_fragments"]:
+            self.assertTrue(any(fragment in quote for quote in quotes),
+                            f"missing evidence of {fragment!r}")
+
+        # Match diagnostic meaning without requiring a single sentence or code.
+        issue_text = " ".join(record["extraction"]["issues"]).lower().replace("_", " ")
+        for alternatives in oracle["issue_groups"]:
+            self.assertTrue(any(term.lower() in issue_text for term in alternatives),
+                            f"issues do not explain {alternatives!r}: {issue_text}")
+        if not oracle["has_fact_issues"]:
+            self.assertNotRegex(issue_text, r"\b(missing|absent|conflicting|unresolved)\b")
+
+    def _assert_plan_semantics(self, case_id):
+        """One named case owns its original message and listed policy subcases.
+
+        Canned replies establish local pipeline behavior, not model fidelity.
+        Inspect the prompt manually alongside these checks when implementing.
+        """
+        from access_requests.prompts import build_messages
+
+        oracle = json.loads((EXPECTED / f"{case_id}.json").read_text(encoding="utf-8"))
+        messages = build_messages(oracle["message"])
+        # Keep exported messages as data in their own user role. In particular,
+        # the T10 attack must never become part of the system instructions.
+        self.assertEqual([item["role"] for item in messages], ["system", "user"])
+        self.assertEqual(messages[1]["content"], oracle["message"])
+        self.assertNotIn(oracle["message"], messages[0]["content"])
+        policy = (ROOT / "materials" / "office-policy.md").read_text(encoding="utf-8")
+        self.assertIn(policy, messages[0]["content"])
+        schema = json.loads((ROOT / "snapshot.schema.json").read_text(encoding="utf-8"))
+        for field in schema["required"]:
+            self.assertIn(field, messages[0]["content"])
+        self.assertIn("additionalProperties", messages[0]["content"])
+        self._assert_semantic_record(oracle)
+        variants = json.loads((EXPECTED / "step3-variants.json").read_text(encoding="utf-8"))
+        for variant in variants:
+            if variant["plan_case"] == case_id:
+                with self.subTest(variant=variant["name"]):
+                    self._assert_semantic_record(variant)
+
+    def test_T05(self):
+        """Complete IT-001: staging/read awaits system owner review."""
+        self._assert_plan_semantics("T05")
+
+    def test_T06(self):
+        """IT-002 and complete new/change risk predicates await security review."""
+        self._assert_plan_semantics("T06")
+
+    def test_T07(self):
+        """Missing facts remain null; every new/change required fact clarifies."""
+        self._assert_plan_semantics("T07")
+
+    def test_T08(self):
+        """Uncorrected environment conflict stays null with both alternatives."""
+        self._assert_plan_semantics("T08")
+
+    def test_T09(self):
+        """Withdrawal rule requires id/date and tolerates other absent facts."""
+        self._assert_plan_semantics("T09")
+
+    def test_T10(self):
+        """Embedded override stays evidence and precedes every ordinary route."""
+        self._assert_plan_semantics("T10")
+
+    def test_T11(self):
+        """IT-007 requests write, replacing existing read access."""
+        self._assert_plan_semantics("T11")
+
+    def test_T12(self):
+        """Explicit environment correction selects staging over production."""
+        self._assert_plan_semantics("T12")
+
+    def test_T13(self):
+        """IT-009's absent manager remains null and requires clarification."""
+        self._assert_plan_semantics("T13")
+
+    def test_T14(self):
+        """Missing end date clarifies before production risk review."""
+        self._assert_plan_semantics("T14")
+
+    def test_T15(self):
+        """Relative dates stay unresolved rather than being calculated."""
+        self._assert_plan_semantics("T15")
+
+    def test_T16(self):
+        """Complete staging/admin request awaits security review."""
+        self._assert_plan_semantics("T16")
+
+    def test_T17(self):
+        """Complete production/read request awaits security review."""
+        self._assert_plan_semantics("T17")
+
+    def test_T18(self):
+        """Reversed dates stay explicit and clarify, including production/admin."""
+        self._assert_plan_semantics("T18")
+
+    def test_T19(self):
+        """Explicit date correction replaces the earlier access window."""
+        self._assert_plan_semantics("T19")
+
+    def test_T20(self):
+        """Retain stated IT-061 while document IT-016.json clarifies mismatch."""
+        self._assert_plan_semantics("T20")
+
+    def test_T21(self):
+        """Other/null kind requires clarification, including otherwise risk facts."""
+        self._assert_plan_semantics("T21")
+
+    def test_T22(self):
+        """Complete IT-018 staging/read request awaits system owner review."""
+        self._assert_plan_semantics("T22")
+
+    def test_T23(self):
+        """IT-019 requests read instead of prior write; production remains risk."""
+        self._assert_plan_semantics("T23")
+
+    def test_T24(self):
+        """Uncorrected manager conflict stays null with both named alternatives."""
+        self._assert_plan_semantics("T24")
+
+    def test_T25(self):
+        """Independently authored paraphrase retains the plan's explicit facts."""
+        self._assert_plan_semantics("T25")
+
 
 if __name__ == "__main__":
     unittest.main()
