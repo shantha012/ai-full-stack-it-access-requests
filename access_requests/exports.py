@@ -50,3 +50,18 @@ def read_generation(directory):
     target = directory / generation
     return dict(extractions=[json.loads(line) for line in (target / 'extractions.jsonl').read_text().splitlines()],
                 queue=json.loads((target / 'queue.json').read_text()))
+
+
+def export_current(store, directory):
+    """Publish a generation and portable copies for a completed handover.
+
+    Concurrent readers resolve CURRENT once; portable copies are for completed
+    exports, since replacing two independent files cannot be one atomic action.
+    """
+    directory = Path(directory)
+    generation = publish_generation(store, directory)
+    for name in ('extractions.jsonl', 'queue.json'):
+        temporary = directory / ('.' + name + '-' + uuid.uuid4().hex)
+        _write(temporary, (directory / generation / name).read_text())
+        os.replace(temporary, directory / name)
+    return {'generation': generation, 'records': len(read_generation(directory)['extractions'])}

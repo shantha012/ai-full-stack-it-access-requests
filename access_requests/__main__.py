@@ -12,7 +12,7 @@ from .workers import intake, run_attempt
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
-    for command in ('intake', 'queue', 'history', 'retry', 'resume'):
+    for command in ('intake', 'queue', 'history', 'retry', 'resume', 'export'):
         sub = commands.add_parser(command)
         sub.add_argument('--db', default='access-requests.sqlite')
         if command == 'intake':
@@ -23,6 +23,8 @@ def main(argv=None):
             sub.add_argument('--endpoint', default='https://api.openai.com/v1/chat/completions')
             sub.add_argument('--model', default='gpt-4o-mini')
             sub.add_argument('--timeout', type=float, default=30)
+        if command == 'export':
+            sub.add_argument('--output', default='deliverables')
         if command in ('history', 'retry'):
             sub.add_argument('--document', required=True)
     args = parser.parse_args(argv)
@@ -31,6 +33,9 @@ def main(argv=None):
         result = store.queue()
     elif args.command == 'history':
         result = store.history(args.document)
+    elif args.command == 'export':
+        from .exports import export_current
+        result = export_current(store, args.output)
     elif args.command in ('retry', 'resume'):
         def saved_factory(source, config):
             if config.get('provider') == 'http':
