@@ -662,5 +662,35 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(store.queue()[0]["status"], "error")
 
 
+    def test_T41(self):
+        from access_requests.validation import validate_response
+        store = self._store()
+        self._finish(self._cli("intake", "--db", store.path, "--mocks", MOCKS, ROOT / "materials/requests"))
+        # A forced duplicate is history only; current exports must still have 20 rows.
+        self._finish(self._cli("retry", "--db", store.path, "--document", "IT-001.json"))
+        destination = store.path.parent / "deliverables"
+        self._finish(self._cli("export", "--db", store.path, "--output", destination))
+        rows = [json.loads(line) for line in (destination / "extractions.jsonl").read_text().splitlines()]
+        queue = json.loads((destination / "queue.json").read_text())
+        self.assertEqual(len(rows), 20)
+        self.assertEqual(len({r["document_id"] for r in rows}), 20)
+        self.assertEqual(len(queue), 20)
+        required = {"document_id", "source_sha256", "extraction", "status", "owner", "next_action", "error", "response_source", "provenance"}
+        for index, row in enumerate(rows):
+            oracle = json.loads((EXPECTED / f"T{index+5:02}.json").read_text())
+            self.assertTrue(required <= row.keys())
+            self.assertEqual(row["response_source"], "mock")
+            self.assertIsNone(row["error"])
+            for field, expected in oracle["facts"].items():
+                self.assertEqual(row["extraction"][field], expected)
+            for field, expected in oracle["route"].items():
+                self.assertEqual(row[field], expected)
+            self.assertEqual(queue[index]["document_id"], row["document_id"])
+            self.assertEqual(queue[index]["attempt_id"], row["attempt_id"])
+            validate_response(dict(response_source="mock", finish_reason="stop", output_text=json.dumps(row["extraction"])), oracle["message"])
+        from access_requests.exports import read_generation
+        self.assertEqual(read_generation(destination), {"extractions": rows, "queue": queue})
+
+
 if __name__ == "__main__":
     unittest.main()
