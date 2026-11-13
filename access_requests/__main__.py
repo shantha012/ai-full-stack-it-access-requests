@@ -12,7 +12,7 @@ from .workers import intake, run_attempt
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
-    for command in ('intake', 'queue', 'history', 'retry', 'resume', 'export'):
+    for command in ('intake', 'queue', 'history', 'retry', 'resume', 'export', 'accuracy'):
         sub = commands.add_parser(command)
         sub.add_argument('--db', default='access-requests.sqlite')
         if command == 'intake':
@@ -23,6 +23,10 @@ def main(argv=None):
             sub.add_argument('--endpoint', default='https://api.openai.com/v1/chat/completions')
             sub.add_argument('--model', default='gpt-4o-mini')
             sub.add_argument('--timeout', type=float, default=30)
+        if command == 'accuracy':
+            sub.add_argument('--extractions', required=True)
+            sub.add_argument('--expected', default='tests/expected')
+            sub.add_argument('--output', default='deliverables/accuracy.md')
         if command == 'export':
             sub.add_argument('--output', default='deliverables')
         if command in ('history', 'retry'):
@@ -33,6 +37,12 @@ def main(argv=None):
         result = store.queue()
     elif args.command == 'history':
         result = store.history(args.document)
+    elif args.command == 'accuracy':
+        from .accuracy import compare, render_report, load_oracles
+        records = [json.loads(line) for line in Path(args.extractions).read_text().splitlines()]
+        result = compare(records, load_oracles(args.expected))
+        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.output).write_text(render_report(result))
     elif args.command == 'export':
         from .exports import export_current
         result = export_current(store, args.output)
