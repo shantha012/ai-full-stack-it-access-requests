@@ -1,0 +1,1 @@
+Generate a plan to turn the  Challenge.md into a structured execution plan and then produce a README.md that reflects the project’s goals, structure, and next steps.
