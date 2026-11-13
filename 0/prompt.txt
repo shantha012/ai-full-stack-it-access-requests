@@ -1,0 +1,6 @@
+Please resume the test plan as before
+
+---
+
+Create planning/validation.md with one row per line of planning/spec.md:
+Spec line 	Requirement	Met or not met	Evidence	Note
