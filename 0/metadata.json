@@ -1,0 +1,47 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7B7KP7XAXQ7W3H40GXFMW8F",
+  "session_id": "01a1d66e-1007-7d82-9ee7-8470fbbce454",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-13T19:54:33.198875701Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "tests/mock_responses/IT-001-wrong-date.json",
+    "tests/test_plan.py"
+  ],
+  "agent": "Codex",
+  "model": "gpt-6.1-sol",
+  "turn_id": "465615731a81",
+  "checkpoint_transcript_start": 196,
+  "transcript_lines_at_start": 196,
+  "compact_transcript_start": 41,
+  "token_usage": {
+    "input_tokens": 986,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 128384,
+    "output_tokens": 2528,
+    "api_call_count": 2
+  },
+  "session_token_usage": {
+    "input_tokens": 42083,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1519360,
+    "output_tokens": 18116,
+    "api_call_count": 31
+  },
+  "redaction": {
+    "replacements": 0,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 0,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
