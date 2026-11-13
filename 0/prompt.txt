@@ -1,0 +1,1 @@
+Implement the plan, generate python code, all the artifacts to be submitted in the "What to submit" section of Challenge.md, create test plan, create tests, test coverage and runt he tests. Do not check in any code.
