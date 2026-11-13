@@ -7,6 +7,10 @@ from pathlib import Path
 import socket
 import tempfile
 import subprocess
+import re
+import shlex
+import shutil
+import importlib.metadata
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -719,6 +723,57 @@ class TestPlan(unittest.TestCase):
         absent_key = json.loads(json.dumps(records))
         del absent_key[2]["extraction"]["environment"]
         self.assertEqual(compare(absent_key, oracles)["exact"], 230)
+
+
+    def test_T43(self):
+        """Documented mock CLI workflow executes offline from a clean directory."""
+        readme = (ROOT / "README.md").read_text()
+        self.assertIn("python3 -m pip install -r requirements.lock", readme)
+        self.assertIn("python3 -m unittest discover -s tests", readme)
+        versions = {}
+        for line in (ROOT / "requirements.lock").read_text().splitlines():
+            name, version = line.split("==")
+            versions[name] = version
+            self.assertEqual(importlib.metadata.version(name), version)
+        self.assertEqual(versions["jsonschema"], "4.23.0")
+        blocks = re.findall(r"```sh\n(.*?)```", readme, re.S)
+        self.assertEqual(len(blocks), 1, "one executable mock workflow is documented")
+        commands = [shlex.split(line) for line in blocks[0].splitlines() if line.strip() and not line.startswith("#")]
+        self.assertEqual([command[3] for command in commands],
+                         ["intake", "queue", "history", "retry", "resume", "export", "intake", "export", "accuracy"])
+        with tempfile.TemporaryDirectory() as directory:
+            destination = Path(directory)
+            for name in ("access_requests", "materials", "tests"):
+                shutil.copytree(ROOT / name, destination / name, ignore=shutil.ignore_patterns("__pycache__"))
+            shutil.copy(ROOT / "snapshot.schema.json", destination)
+            results = []
+            for command in commands:
+                self.assertEqual(command[:3], ["python3", "-m", "access_requests"])
+                run = subprocess.run([sys.executable, str(destination / "tests/cli_runner.py"), *command[3:]],
+                                     cwd=destination, capture_output=True, text=True, timeout=20)
+                self.assertEqual(run.returncode, 0, run.stderr)
+                results.append(json.loads(run.stdout))
+            self.assertEqual(len(results[1]), 20)
+            self.assertEqual(results[1][0]["extraction"]["requester"], "Maya Chen")
+            self.assertEqual(results[3]["extraction"]["end_date"], "2026-11-06")
+            self.assertEqual(results[5]["records"], 20)
+            self.assertEqual(results[7]["records"], 21)
+            self.assertEqual((results[8]["exact"], results[8]["total"]), (231, 231))
+            self.assertTrue((destination / "work/accuracy.md").is_file())
+        evidence = json.loads((ROOT / "deliverables/request-evidence.json").read_text())
+        self.assertEqual(evidence["observation"], "transport-stub; no live call")
+        self.assertEqual(evidence["headers"]["Authorization"], "Bearer <redacted>")
+        provider, transport = self._http_provider(endpoint=evidence["endpoint"], model=evidence["request"]["model"])
+        provider.extract(self._source().message)
+        request, timeout = transport.call_args.args
+        self.assertEqual(json.loads(request.data), evidence["request"])
+        self.assertEqual(timeout, evidence["timeout_seconds"])
+        self.assertNotIn("sentinel-credential", json.dumps(evidence))
+        for state in ("refusal", "incomplete", "schema", "quotes", "retry"):
+            self.assertIn(state, evidence["response_handling"])
+        verification = (ROOT / "deliverables/verification.md").read_text().lower()
+        for topic in ("observed", "planned", "limits", "single host", "200–400", "2,000", "t35", "t40", "live", "capture", "default branch"):
+            self.assertIn(topic, verification)
 
 
 if __name__ == "__main__":
