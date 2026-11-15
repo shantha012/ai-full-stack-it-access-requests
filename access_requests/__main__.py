@@ -30,7 +30,7 @@ def main():
     for name in ('retry','refresh'):
         command=sub.add_parser(name); command.add_argument('document_id')
         command.add_argument('--mock-reply',help='explicit saved scripted reply basename')
-    export=sub.add_parser('export'); export.add_argument('--output',default='deliverables')
+    export=sub.add_parser('export'); export.add_argument('--output',default='state/deliverables')
     accuracy=sub.add_parser('accuracy')
     accuracy.add_argument('--expectations',default='tests/fixtures/expectations.json')
     accuracy.add_argument('--extra-records'); accuracy.add_argument('--output')

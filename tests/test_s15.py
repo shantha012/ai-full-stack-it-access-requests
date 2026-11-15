@@ -11,6 +11,8 @@ from support import OfflineTest, ROOT, MOCKS, reply
 
 class T28(OfflineTest):
     def test_frozen_install_and_exact_documented_walkthrough(self):
+        self.assertTrue((ROOT/'deliverables').is_dir())
+        self.assertFalse((ROOT/'deliverables').is_symlink())
         readme=(ROOT/'README.md').read_text()
         match=re.search(r'<!-- offline-walkthrough -->\s*```bash\n(.*?)```',readme,re.S)
         self.assertIsNotNone(match,'README must contain the exact mock walkthrough')
@@ -38,7 +40,7 @@ class T28(OfflineTest):
             self.assertIn('retry-extraction',walkthrough.stdout)
             self.assertIn('needs-information',walkthrough.stdout)
             self.assertEqual(store.pending(),[])
-            resolved=(root/'deliverables').resolve()
+            resolved=(root/'state/deliverables').resolve()
             for name in ('extractions.jsonl','queue.json','accuracy.md','request-evidence.json','verification.md'):
                 self.assertTrue((resolved/name).is_file(),name)
             rows=[json.loads(line) for line in (resolved/'extractions.jsonl').read_text().splitlines()]
