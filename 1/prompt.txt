@@ -1,0 +1,1 @@
+env -u API_KEY python3 -m unittest discover -s tests gives errors. Please fix them
