@@ -92,3 +92,18 @@ class Store:
             temporary.symlink_to(generation.relative_to(destination.parent), target_is_directory=True)
             os.replace(temporary,destination)
             return generation
+
+    def document(self, document_id):
+        from .intake import Document
+        with self.connect() as db:
+            row=db.execute('SELECT * FROM documents WHERE document_id=?',(document_id,)).fetchone()
+        if row is None:
+            raise KeyError(document_id)
+        return Document(row['document_id'],row['source_sha256'],json.loads(row['raw'])['message'],row['raw'])
+
+    def reusable(self, document):
+        with self.connect() as db:
+            row=db.execute('SELECT a.record FROM documents d JOIN attempts a ON a.attempt_id=d.current_attempt '
+                           'WHERE d.document_id=? AND a.source_sha256=?',
+                           (document.document_id,document.source_sha256)).fetchone()
+        return json.loads(row[0]) if row else None
