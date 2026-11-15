@@ -45,6 +45,8 @@ class CorpusProvider:
         self._lock=Lock()
 
     def for_document(self, document_id):
+        if document_id not in self.replies:
+            return MockProvider(self.directory,[Path(document_id).stem.lower()])
         parent=self
         class Saved:
             response_source='mock'

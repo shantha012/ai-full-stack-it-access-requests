@@ -3,6 +3,7 @@ from contextlib import contextmanager
 import fcntl
 import json
 import os
+import shlex
 from pathlib import Path
 import sqlite3
 import tempfile
@@ -27,6 +28,7 @@ class Store:
                     source_sha256 TEXT NOT NULL, record TEXT NOT NULL);
                 CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value INTEGER NOT NULL);
                 INSERT OR IGNORE INTO metadata VALUES ('version',0);
+                CREATE INDEX IF NOT EXISTS attempts_job ON attempts(json_extract(record,'$.source_generation'));
                 CREATE TRIGGER IF NOT EXISTS immutable_attempt_update BEFORE UPDATE ON attempts
                     BEGIN SELECT RAISE(ABORT,'immutable attempt'); END;
                 CREATE TRIGGER IF NOT EXISTS immutable_attempt_delete BEFORE DELETE ON attempts
@@ -88,22 +90,36 @@ class Store:
         destination.parent.mkdir(parents=True, exist_ok=True)
         with (destination.parent / ('.'+destination.name+'.lock')).open('a') as lock:
             fcntl.flock(lock,fcntl.LOCK_EX)
+            # A brief write reservation serializes state changes through publication.
+            # No provider call occurs here. A crash can leave an unreferenced generation.
             with self.connect() as db:
-                db.execute('BEGIN')
+                db.execute('BEGIN IMMEDIATE')
                 version=db.execute("SELECT value FROM metadata WHERE key='version'").fetchone()[0]
                 records=[dict(r,snapshot_generation=version) for r in self._current(db)]
-            generations=destination.parent/('.'+destination.name+'-generations')
-            generations.mkdir(exist_ok=True)
-            generation=Path(tempfile.mkdtemp(prefix=f'{version}-',dir=generations))
-            files={'extractions.jsonl':''.join(json.dumps(r)+'\n' for r in records),
-                   'queue.json':json.dumps([{k:r[k] for k in QUEUE_FIELDS} for r in records],indent=2)+'\n'}
-            for name, contents in files.items():
-                with (generation/name).open('w') as stream:
-                    stream.write(contents); stream.flush(); os.fsync(stream.fileno())
-            temporary=destination.parent/('.'+destination.name+'-'+uuid.uuid4().hex)
-            temporary.symlink_to(generation.relative_to(destination.parent), target_is_directory=True)
-            os.replace(temporary,destination)
-            return generation
+                generations=destination.parent/('.'+destination.name+'-generations')
+                generations.mkdir(exist_ok=True)
+                generation=Path(tempfile.mkdtemp(prefix=f'{version}-',dir=generations))
+                files={'extractions.jsonl':''.join(json.dumps(r)+'\n' for r in records),
+                       'queue.json':json.dumps([{k:r[k] for k in QUEUE_FIELDS} for r in records],indent=2)+'\n'}
+                reports=Path(__file__).resolve().parents[1]/'reports'
+                for name in ('accuracy.md','request-evidence.json','verification.md'):
+                    if (reports/name).is_file(): files[name]=(reports/name).read_text()
+                for name, contents in files.items():
+                    with (generation/name).open('w') as stream:
+                        stream.write(contents); stream.flush(); os.fsync(stream.fileno())
+                self._sync_directory(generation)
+                self._sync_directory(generations)
+                temporary=destination.parent/('.'+destination.name+'-'+uuid.uuid4().hex)
+                temporary.symlink_to(generation.relative_to(destination.parent), target_is_directory=True)
+                os.replace(temporary,destination)
+                self._sync_directory(destination.parent)
+                return generation
+
+    @staticmethod
+    def _sync_directory(path):
+        descriptor=os.open(path,os.O_RDONLY | os.O_DIRECTORY)
+        try: os.fsync(descriptor)
+        finally: os.close(descriptor)
 
     def document(self, document_id):
         from .intake import Document
@@ -162,6 +178,9 @@ class Store:
             record=dict(result,attempt_id=next_id,source_generation=job['job_id'],
                         settings_fingerprint=settings.fingerprint,policy_version=settings.policy_version,
                         producing_settings=settings.public())
+            if record['error']:
+                record['error']['retry_command']=('python -m access_requests --db '+shlex.quote(str(self.path.resolve()))
+                    +' --provider '+shlex.quote(settings.provider)+' retry '+shlex.quote(job['document_id']))
             db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
                        (next_id,job['document_id'],job['source_sha256'],json.dumps(record)))
             db.execute('UPDATE documents SET current_attempt=? WHERE document_id=? AND desired_job=?',
@@ -177,5 +196,20 @@ class Store:
 
     def job_result(self, job_id):
         with self.connect() as db:
-            rows=db.execute('SELECT record FROM attempts ORDER BY attempt_id DESC').fetchall()
-        return next((json.loads(r[0]) for r in rows if json.loads(r[0]).get('source_generation')==job_id),None)
+            row=db.execute("SELECT record FROM attempts WHERE json_extract(record,'$.source_generation')=?",(job_id,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+
+    def inspect(self, history=False, document_id=None):
+        """Read terminal and unfinished views in one SQLite snapshot."""
+        with self.connect() as db:
+            db.execute('BEGIN')
+            if history:
+                rows=db.execute('SELECT record FROM attempts WHERE (? IS NULL OR document_id=?) ORDER BY attempt_id',
+                                (document_id,document_id))
+                completed=[json.loads(r[0]) for r in rows]
+            else:
+                completed=self._current(db)
+            pending=[dict(row) for row in db.execute("SELECT job_id,document_id,source_sha256,fingerprint,state,expires "
+                "FROM jobs WHERE state!='done' AND (? IS NULL OR document_id=?) ORDER BY job_id",(document_id,document_id))]
+            return dict(completed=completed,pending=pending)

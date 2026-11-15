@@ -1,0 +1,1 @@
+Observed: resolved deliverables symlink once; 20 original document IDs; 20 schema-valid mock extractions; all queue fields join to the matching extraction; common snapshot generation; three handover sidecars present. No remote publication or assignment submission.

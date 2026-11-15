@@ -1,0 +1,55 @@
+test_frozen_install_and_exact_documented_walkthrough (test_s15.T28.test_frozen_install_and_exact_documented_walkthrough) ... FAIL
+test_2000_messages_two_processes_bounded_workers_and_progress (test_s15.T29.test_2000_messages_two_processes_bounded_workers_and_progress) ... T29 observed: 2000 mock documents, two processes, workers <=4, 34.52s
+ok
+
+======================================================================
+FAIL: test_frozen_install_and_exact_documented_walkthrough (test_s15.T28.test_frozen_install_and_exact_documented_walkthrough)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s15.py", line 30, in test_frozen_install_and_exact_documented_walkthrough
+    self.assertEqual(walkthrough.returncode,0,walkthrough.stderr)
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/tmpogyv4fda/access_requests/__main__.py", line 83, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/tmp/tmpogyv4fda/access_requests/__main__.py", line 75, in main
+    processed=engine.intake(paths,provider)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpogyv4fda/access_requests/engine.py", line 31, in intake
+    return list(pool.map(lambda job: self.execute(job,provider),jobs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpogyv4fda/access_requests/engine.py", line 31, in <lambda>
+    return list(pool.map(lambda job: self.execute(job,provider),jobs))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpogyv4fda/access_requests/engine.py", line 22, in execute
+    result=process(document,selected,settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpogyv4fda/access_requests/pipeline.py", line 49, in process
+    else provider.extract(settings.prompt + '\n' + document.message))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/tmpogyv4fda/access_requests/provider.py", line 54, in extract
+    return json.loads(json.dumps(parent.replies[document_id]))
+                                 ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'IT-021.json'
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 38.413s
+
+FAILED (failures=1)

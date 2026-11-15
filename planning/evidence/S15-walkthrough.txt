@@ -1,0 +1,6 @@
+test_frozen_install_and_exact_documented_walkthrough (test_s15.T28.test_frozen_install_and_exact_documented_walkthrough) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.570s
+
+OK

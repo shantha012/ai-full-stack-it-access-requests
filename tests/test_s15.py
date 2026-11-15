@@ -86,7 +86,7 @@ class Bounded(CorpusProvider):
     finally:
      with lock: active-=1
   return Saved()
-Engine(Store(sys.argv[1]),workers=4).intake(sorted(Path(sys.argv[2]).glob('*.json')),Bounded(sys.argv[3]))
+Engine(Store(sys.argv[1]),workers=4,lease_seconds=3600).intake(sorted(Path(sys.argv[2]).glob('*.json')),Bounded(sys.argv[3]))
 print('MAX='+str(maximum),flush=True)
 '''
             db=root/'state.sqlite'

@@ -1,0 +1,23 @@
+# Verification
+
+Configuration: Python 3.12.3, uv 0.13.7, jsonschema 4.23.0, SQLite local POSIX storage; mock replies in test/mock_responses, default Settings (pinned real-adapter model gpt-4.1-mini-2025-04-14), 4 configured workers. No live model observation.
+
+Intended checks: `env -u API_KEY python3 -m unittest discover -s tests -v` after activating `.venv`. T01–T29 own the cases in planning/plan.md. Each step has a Test first commit and a subsequent Step commit; red and whole-suite green logs are in planning/evidence. T18 already passed before S09; the test commit explicitly records that fact. Expected facts were authored from source/plan before measured outputs.
+
+T28 installs the lockfile into a temporary copy with `uv sync --frozen --offline` and runs the README mock walkthrough verbatim. It checks successful, clarification, and failed queue triples; durable attempts, retry/refresh/resume/export/accuracy; and all five exported artifacts. Offline installation requires a previously populated uv cache; normal initial setup is `UV_CACHE_DIR=/tmp/access-uv-cache uv sync --frozen`.
+
+T29 creates IT-1001.json through IT-3000.json from A07 and substitutes only the document number in a saved response template. Two local processes share one database. The first blocks IT-1001 with an input barrier; other results stay readable; bounded worker count and exactly one current/terminal row per document are checked. The local timing is printed by the test, not a service performance promise.
+
+T22–T24 exercise a delayed call, killed process with expired claim and resume, and older-source completion after a newer revision. Completed work persists. A repeated call is allowed after uncertain completion. SQLite transactions never span provider calls. All supported snapshot reads resolve the symlink once; export publication holds a brief write reservation. No multi-host, NFS, exactly-once, or live latency guarantee is made. Full power-loss/filesystem failure testing and general injection detection are outside the observed checks.
+
+T25 uses fake HTTP and a dummy credential mapping: model/endpoint/options/schema, separate instructions/user data, completed/refused/incomplete replies, timeouts, HTTP 429/503, redaction, and configured provider/model success provenance. Official provider references and C01/C02 review are in planning/evidence/provider-review.md. Q-49 real failure provenance remains pending; no live provider availability/accuracy was measured.
+
+T27 compares 21 source-derived expectations, 252 cells, exact strings/nulls, failed/missing records and deliberately wrong fields. Routing/evidence/issues are separate from scalar scoring. Q-21/Q-54 purpose equivalence and Q-29 IT-006 permission remain unresolved (22 cells). There is no finalized full-corpus accuracy score. Q-31/Q-32 classifications remain open. C03 evidence is in planning/evidence/source-review.md.
+
+Observed final full-suite gate: all 33 tests passed in 39.745 seconds on Linux x86_64, Python 3.12.3, SQLite 3.45.1, uv 0.13.7. T29 completed 2,000 mocked documents with two processes and workers <=4 in 33.78 seconds during that run. The fresh locked installation and exact mock walkthrough passed. Full output is preserved in planning/evidence/S15-green.txt and planning/test-run.txt. S01–S14 also each have a passing whole-suite log.
+
+Repairs during implementation: each intended initial failure is retained in its red log. Added behavior then satisfied its owning assertions before the full-suite gate. The first dependency install and lock resolution required registry access; tests themselves remain offline. No live response was used to set expected facts.
+
+Pending delivery: C04 facilitator session-pairing instructions; C05 authorized remote default-branch publication and remote artifact inspection; C06 facilitator assignment destination and actual root-link submission. See planning/evidence/delivery-checks.md. Local commits are implementation evidence, not remote submission evidence. Human spec-by-spec validation remains the reviewer's task under docs/03-implement-and-validate.md.
+
+Observed S15 local checks: T28 passed the fresh locked install and exact README walkthrough after repairing lookup of the independently saved paraphrase response. T29 passed 2,000 documents/two processes/workers <=4 in 34.52 seconds on this local host; this is a mock functional observation. The load barrier now uses an explicit one-hour test lease so the synchronization invariant does not depend on a request timeout. The earlier local walkthrough failure and repair remain inspectable in S15-local.txt and S15-walkthrough.txt.
