@@ -1,0 +1,29 @@
+please update validation.md for the new tests
+
+---
+
+please planning/spec.md  planning/plan.md for these tests
+
+---
+
+please update validation.md if needed
+
+---
+
+Record in my  sessions the  reasoning on the extraction model and on how schema enforcement is switched on.
+
+---
+
+Where should the above information be recorded?
+
+---
+
+Please update the docuemnts as you stated above
+
+---
+
+Can tests be written and validation updated for few more lines in validation.md to be "Met"
+
+---
+
+please update plaanning/plan.md, planning/spec.md and write any tests necessary nad update anything else that needs to be updated
