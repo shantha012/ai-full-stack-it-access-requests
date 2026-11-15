@@ -1,0 +1,17 @@
+{
+  "status": "completed",
+  "error": null,
+  "output": [
+    {
+      "type": "message",
+      "role": "assistant",
+      "status": "completed",
+      "content": [
+        {
+          "type": "refusal",
+          "refusal": "Declined"
+        }
+      ]
+    }
+  ]
+}

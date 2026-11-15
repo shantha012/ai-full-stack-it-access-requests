@@ -1,0 +1,14 @@
+test_fake_transport_wire_contract_and_redaction (test_s12.T25.test_fake_transport_wire_contract_and_redaction) ... ERROR
+
+======================================================================
+ERROR: test_fake_transport_wire_contract_and_redaction (test_s12.T25.test_fake_transport_wire_contract_and_redaction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s12.py", line 8, in test_fake_transport_wire_contract_and_redaction
+    from access_requests.http_provider import ResponsesProvider
+ModuleNotFoundError: No module named 'access_requests.http_provider'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
