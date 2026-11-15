@@ -10,6 +10,14 @@ source .venv/bin/activate
 env -u API_KEY python3 -m unittest discover -s tests -v
 ```
 
+To run tests without activating the virtual environment, use:
+
+```bash
+UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -v
+```
+
+Run the setup command first. A bare `python3` outside the activated environment may use the system Python, which does not have the project's dependencies (including `jsonschema`) installed. `env -u API_KEY` removes the API key; it does not select a Python environment or install dependencies.
+
 Install separately from running tests. The fresh-install test uses `uv sync --frozen --offline` with the populated `/tmp/access-uv-cache` cache; the first setup needs registry access. All new saved replies are under `test/mock_responses/`; the supplied starter fixture remains under `tests/mock_responses/`. Tests use saved replies/fake HTTP, temporary state, and blocked sockets. No test reads an operator API_KEY or calls a live model. T25 supplies a dummy key through an isolated mapping.
 
 Run the exact mock walkthrough below from the repository root after activation. It leaves 20 original documents in the main queue and the authored paraphrase in a separate database. Each command explicitly selects mock responses. The injected failure is recorded, then retried; its earlier success remains in attempts.
