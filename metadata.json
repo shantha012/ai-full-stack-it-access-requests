@@ -1,0 +1,61 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7ETQ7BGXQ4GD5HEK2KX7HDH",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".deliverables-generations/20-qqdx2g0a/accuracy.md",
+    ".deliverables-generations/20-qqdx2g0a/extractions.jsonl",
+    ".deliverables-generations/20-qqdx2g0a/queue.json",
+    ".deliverables-generations/20-qqdx2g0a/request-evidence.json",
+    ".deliverables-generations/20-qqdx2g0a/verification.md",
+    ".gitignore",
+    "README.md",
+    "access_requests/__main__.py",
+    "access_requests/provider.py",
+    "access_requests/storage.py",
+    "deliverables",
+    "planning/evidence/S15-green.txt",
+    "planning/evidence/S15-local.txt",
+    "planning/evidence/S15-walkthrough.txt",
+    "planning/evidence/artifact-review.txt",
+    "planning/test-run.txt",
+    "pyproject.toml",
+    "reports/request-evidence.json",
+    "reports/verification.md",
+    "test/mock_responses/load-complete.json",
+    "tests/test_s15.py",
+    "uv.lock"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 13900,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 1759232,
+    "output_tokens": 10242,
+    "api_call_count": 14
+  },
+  "redaction": {
+    "replacements": 4,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 5,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
