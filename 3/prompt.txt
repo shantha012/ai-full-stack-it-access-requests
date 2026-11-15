@@ -1,0 +1,9 @@
+Show a separate approval step in your sessions so completed intake is never treated as approved.
+
+---
+
+Add a separate approval step in your sessions so completed intake is never treated as approved.
+
+---
+
+please update tests, planning/plan.md. spec.md and vaildation.md as needed.

@@ -3,8 +3,9 @@
   "checkpoint_id": "01M7F5D9V1RGYQ1JR8R21HJV20",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 10,
+  "checkpoints_count": 13,
   "files_touched": [
+    "AGENTS.md",
     "README.md",
     "access_requests/pipeline.py",
     "access_requests/validation.py",
@@ -13,15 +14,20 @@
     "planning/evidence/acceptance-gaps-green.txt",
     "planning/evidence/acceptance-gaps-red.txt",
     "planning/evidence/acceptance-gaps-review.md",
+    "planning/evidence/approval-boundary-full-suite.txt",
+    "planning/evidence/approval-boundary-review.md",
+    "planning/evidence/approval-boundary-targeted.txt",
     "planning/evidence/provider-review.md",
     "planning/evidence/validation-follow-up-full-suite.txt",
     "planning/evidence/validation-follow-up-targeted.txt",
     "planning/plan.md",
     "planning/quote-validation-test-run.txt",
     "planning/spec.md",
+    "planning/test-run.txt",
     "planning/validation.md",
     "reports/verification.md",
     "tests/test_acceptance_gaps.py",
+    "tests/test_approval_boundary.py",
     "tests/test_quote_validation.py",
     "tests/test_s03.py"
   ],
@@ -46,14 +52,21 @@
       "compact_transcript": "/2/transcript.jsonl",
       "content_hash": "/2/content_hash.txt",
       "prompt": "/2/prompt.txt"
+    },
+    {
+      "metadata": "/3/metadata.json",
+      "transcript": "/3/full.jsonl",
+      "compact_transcript": "/3/transcript.jsonl",
+      "content_hash": "/3/content_hash.txt",
+      "prompt": "/3/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 156031,
+    "input_tokens": 202030,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 5051008,
-    "output_tokens": 29218,
-    "api_call_count": 73
+    "cache_read_tokens": 5887232,
+    "output_tokens": 35058,
+    "api_call_count": 94
   },
   "redaction": {
     "replacements": 0,
