@@ -1,0 +1,9 @@
+the files under deliverables directory are checked in under https://github.com/shantha012/ai-full-stack-it-access-requests/tree/main/.deliverables-generations/20-qqdx2g0a . Why?
+
+---
+
+canit be corrected?
+
+---
+
+the issue is not fixed. The 5 fiels under deliverables directory are still under https://github.com/shantha012/ai-full-stack-it-access-requests/tree/main/.deliverables-generations/20-qqdx2g0a instead of https://github.com/shantha012/ai-full-stack-it-access-requests/tree/main/deliverables
