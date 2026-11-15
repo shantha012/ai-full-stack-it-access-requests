@@ -1,0 +1,86 @@
+where are overrides specified
+
+---
+
+where are tradeoffs specified
+
+---
+
+what does this mean? What do I need to change manually to accomplish this? : write a session turn that picks the extraction model and states the tradeoff you accepted
+
+---
+
+Whre should I pate this?
+
+---
+
+How can I Send one embedded override through review. Where will I record my disposition?
+
+---
+
+You said separate from the generated queue. Where is the generated queue. Do I create a file called review record and where do I put it?
+
+---
+
+I get Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/__main__.py", line 5, in <module>
+    from .config import Settings
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/config.py", line 6, in <module>
+    from .validation import SCHEMA
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 5, in <module>
+    from jsonschema import Draft202012Validator
+ModuleNotFoundError: No module named 'jsonschema' when I run pythin - access_requests --provider mock intake materials/requests/IT-006.json
+
+---
+
+How do I get the exact hash for IT-006.json from the queue
+
+---
+
+Use gpt-4.1-mini-2025-04-14 with reasoning level Medium for extraction. I would rather have low cost and faster responses, than the higher accuracy provided by a larger model. I accept that in addition to live accuracy still needing validation, complex messages will need more human review.
+
+---
+
+Use gpt-4.1-mini-2025-04-14 for extraction.
+
+---
+
+Do spec.md, plan.md or tests need to be gerated or run for the changes made for IT-006.json
+
+---
+
+how to change evidenc to establish an authorized access decision?
+
+---
+
+I amde the changes. Does the evidence and review docuemtn correct
+
+---
+
+Do spec.md, plan.md or tests need to be regenerated or run for the changes made.
+
+---
+
+env -u API_KEY python3 -m unittest discover -s tests  gave error : FAIL: test_frozen_install_and_exact_documented_walkthrough (test_s15.T28.test_frozen_install_and_exact_documented_walkthrough)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s15.py", line 29, in test_frozen_install_and_exact_documented_walkthrough
+    self.assertEqual(install.returncode,0,install.stderr)
+AssertionError: 1 != 0 : warning: `VIRTUAL_ENV=/home/user/ai-full-stack-it-access-requests/.venv` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+Using CPython 3.12.3 interpreter at: /usr/bin/python3
+Creating virtual environment at: .venv
+error: Failed to download `jsonschema-specifications==2025.9.1`
+  cause: Network connectivity is disabled, but the requested data wasn't found in the cache:
+         https://files.pythonhosted.org/packages/41/45/1a4ed80516f02155c51f51e8cedb3c1902296743db0bbc66608a0db2814f/jsonschema_specifications-2025.9.1-py3-none-any.whl
+
+hint: `jsonschema-specifications` (v2025.9.1) was included because `access-requests` (v0.1.0) depends on `jsonschema` (v4.23.0) which depends on `jsonschema-specifications`
+
+---
+
+Do spec.md, plan.md or tests need to be regenerated or run for the changes made.
+
+---
+
+Do spec.md, plan.md or tests need to be regenerated or run for the changes made to spec.md
