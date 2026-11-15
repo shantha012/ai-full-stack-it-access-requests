@@ -1,4 +1,5 @@
 """Validated extraction followed by deterministic human-review routing."""
+import re
 from .validation import validate_reply
 from .prompt import PROMPT
 
@@ -6,8 +7,22 @@ REQUIRED = ('request_id','request_date','requester','team','system','environment
             'permission','business_purpose','start_date','end_date','manager')
 
 def route(extraction, document_id):
-    if extraction['kind'] in ('other', None) or any(extraction[k] is None for k in REQUIRED):
+    issues = extraction['issues']
+    if extraction['kind'] == 'withdrawal' and extraction['request_id'] and extraction['request_date']:
+        return 'review','IT Service Desk','confirm-withdrawal'
+    identifier = re.fullmatch(r'(IT-\d+)\.json', document_id)
+    mismatch = identifier and extraction['request_id'] and identifier[1] != extraction['request_id']
+    reversed_dates = (extraction['start_date'] and extraction['end_date']
+                      and extraction['start_date'] > extraction['end_date'])
+    if mismatch and not any('mismatch' in i for i in issues):
+        issues.append('identifier mismatch: ' + document_id + ' / ' + extraction['request_id'])
+    if reversed_dates and not any('start_date' in i for i in issues):
+        issues.append('start_date after end_date')
+    if (extraction['kind'] in ('other', None) or any(extraction[k] is None for k in REQUIRED)
+            or mismatch or reversed_dates or any('conflict' in i.lower() for i in issues)):
         return 'needs-information','IT Service Desk','clarify'
+    if extraction['environment'] == 'production' or extraction['permission'] in ('write','admin'):
+        return 'review','Security Review','review-risk-then-owner'
     return 'review','System Owner','review-request'
 
 def process(document, provider):
