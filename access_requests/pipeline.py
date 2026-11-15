@@ -6,7 +6,14 @@ from .prompt import PROMPT
 REQUIRED = ('request_id','request_date','requester','team','system','environment',
             'permission','business_purpose','start_date','end_date','manager')
 
-def route(extraction, document_id):
+def route(extraction, document_id, message=""):
+    attack = re.search(r"SYSTEM OVERRIDE:.*", message, re.I | re.S)
+    if attack or any("override" in i.lower() for i in extraction["issues"]):
+        if attack and attack[0] not in extraction["supporting_quotes"]:
+            extraction["supporting_quotes"].append(attack[0])
+        if not any("override" in i.lower() for i in extraction["issues"]):
+            extraction["issues"].append("instruction-override attempt")
+        return "review", "IT Service Desk", "inspect-message"
     issues = extraction['issues']
     if extraction['kind'] == 'withdrawal' and extraction['request_id'] and extraction['request_date']:
         return 'review','IT Service Desk','confirm-withdrawal'
@@ -28,7 +35,7 @@ def route(extraction, document_id):
 def process(document, provider):
     reply = provider.extract(PROMPT + '\n' + document.message)
     extraction = validate_reply(reply)
-    status, owner, action = route(extraction, document.document_id)
+    status, owner, action = route(extraction, document.document_id, document.message)
     return dict(document_id=document.document_id, source_sha256=document.source_sha256,
                 extraction=extraction,status=status,owner=owner,next_action=action,
                 error=None,response_source=reply.get('response_source',provider.response_source))
