@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7ESK047XVZZ08JED4282ZAB",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "planning/evidence/S05-red.txt",
+    "test/mock_responses/it-002.json",
+    "test/mock_responses/it-005.json",
+    "test/mock_responses/it-007.json",
+    "test/mock_responses/it-008.json",
+    "test/mock_responses/it-012.json",
+    "test/mock_responses/it-014.json",
+    "test/mock_responses/it-015.json",
+    "test/mock_responses/it-016.json",
+    "test/mock_responses/it-017.json",
+    "test/mock_responses/it-019.json",
+    "test/mock_responses/kind-None.json",
+    "test/mock_responses/kind-other.json",
+    "test/mock_responses/minimal-withdrawal.json",
+    "tests/test_s05.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 1841,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 67072,
+    "output_tokens": 557,
+    "api_call_count": 1
+  },
+  "redaction": {
+    "replacements": 0,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 0,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
