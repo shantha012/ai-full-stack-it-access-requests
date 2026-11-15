@@ -33,3 +33,23 @@ class MockProvider:
         if 'error' in reply:
             raise ProviderError(reply['error'])
         return reply
+
+class CorpusProvider:
+    """A fixed bundle keyed by document identity, safe across worker threads."""
+    response_source = 'mock'
+
+    def __init__(self, directory, bundle='corpus-replies.json'):
+        self.directory=Path(directory)
+        self.replies=json.loads((self.directory/bundle).read_text())
+        self.calls=0
+        self._lock=Lock()
+
+    def for_document(self, document_id):
+        parent=self
+        class Saved:
+            response_source='mock'
+            def extract(self, message):
+                with parent._lock:
+                    parent.calls+=1
+                return json.loads(json.dumps(parent.replies[document_id]))
+        return Saved()
