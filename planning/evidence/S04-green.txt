@@ -1,0 +1,15 @@
+test_saved_reply_script_counts_and_barrier (test_s01.T01.test_saved_reply_script_counts_and_barrier) ... ok
+test_decoded_message_filename_and_original_hash (test_s02.T02.test_decoded_message_filename_and_original_hash) ... ok
+test_gate_requires_completion_and_exact_schema (test_s03.T03.test_gate_requires_completion_and_exact_schema) ... ok
+test_complete_source_to_policy (test_s04.T04.test_complete_source_to_policy) ... ok
+test_each_required_fact_new_and_change (test_s04.T05.test_each_required_fact_new_and_change) ... ok
+test_missing_and_relative_dates (test_s04.T05.test_missing_and_relative_dates) ... ok
+test_conflicting_alternatives_retained (test_s04.T06.test_conflicting_alternatives_retained) ... ok
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.110s
+
+OK
