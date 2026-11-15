@@ -45,7 +45,8 @@ def process(document, provider, settings=None):
     from .config import Settings
     settings = settings or Settings()
     try:
-        reply = provider.extract(settings.prompt + '\n' + document.message)
+        reply = (provider.extract_source(document.message) if hasattr(provider,'extract_source')
+                 else provider.extract(settings.prompt + '\n' + document.message))
         extraction = validate_reply(reply)
     except ProviderError:
         # Exception payloads may contain credentials; never retain them.

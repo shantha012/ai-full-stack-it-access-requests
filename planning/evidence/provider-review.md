@@ -6,3 +6,5 @@ Official sources checked 2026-11-15:
 - https://developers.openai.com/api/docs/models/gpt-4.1-mini
 
 Chosen contract: non-streaming Responses, instructions plus user input, text.format json_schema with strict true. Check response status, error, refusal content and message status before parsing output_text content. Pinned model: gpt-4.1-mini-2025-04-14; configurable endpoint/timeout/output budget. No SDK dependency.
+
+Observed C01/C02 artifact review: T25 passes fake endpoint/model/budget/schema/header and source-boundary assertions; complete fake response routes to System Owner and records openai/gpt-4.1-mini-2025-04-14. Mock records retain mock. Refusal/incomplete/error paths produce null-extraction error records. Dummy credential absent from error records and evidence. Q-49 transport-failure provenance remains unaccepted pending a person; no live observation was performed.
