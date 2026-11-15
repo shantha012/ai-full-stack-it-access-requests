@@ -1,0 +1,5 @@
+{
+  "status": "completed",
+  "output_text": "{\"request_id\": \"IT-011\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Zoe Adams\", \"team\": \"Research\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"looking at sample experiment records to get ready for our team walkthrough\", \"start_date\": null, \"end_date\": null, \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"IT-011\", \"2026-10-22\", \"new\", \"Zoe Adams\", \"Research\", \"Atlas\", \"staging\", \"read\", \"next Monday - Friday\", \"Priya Shah\", \"looking at sample experiment records to get ready for our team walkthrough\"], \"issues\": [\"start_date missing or unresolved\", \"end_date missing or unresolved\"]}",
+  "response_source": "mock"
+}

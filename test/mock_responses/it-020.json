@@ -1,0 +1,5 @@
+{
+  "status": "completed",
+  "output_text": "{\"request_id\": \"IT-020\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Ethan Clark\", \"team\": \"Product\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"look at some sample usage records before I draft the summary on feature adoption\", \"start_date\": \"2026-10-29\", \"end_date\": \"2026-11-02\", \"manager\": null, \"supporting_quotes\": [\"IT-020\", \"2026-10-22\", \"new\", \"Ethan Clark\", \"Product\", \"Atlas\", \"staging\", \"read\", \"2026-10-29\", \"2026-11-02\", \"My manager is Priya Shah.\", \"look at some sample usage records before I draft the summary on feature adoption\", \"The manager for this request is Elena Park.\"], \"issues\": [\"manager missing or unresolved\", \"manager conflict: Priya Shah versus Elena Park\"]}",
+  "response_source": "mock"
+}

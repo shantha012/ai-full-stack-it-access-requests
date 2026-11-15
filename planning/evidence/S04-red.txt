@@ -1,0 +1,50 @@
+test_complete_source_to_policy (test_s04.T04.test_complete_source_to_policy) ... ERROR
+test_each_required_fact_new_and_change (test_s04.T05.test_each_required_fact_new_and_change) ... ERROR
+test_missing_and_relative_dates (test_s04.T05.test_missing_and_relative_dates) ... ERROR
+test_conflicting_alternatives_retained (test_s04.T06.test_conflicting_alternatives_retained) ... ERROR
+
+======================================================================
+ERROR: test_complete_source_to_policy (test_s04.T04.test_complete_source_to_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s04.py", line 15, in test_complete_source_to_policy
+    record = run_case(1)
+             ^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/support.py", line 22, in run_case
+    from access_requests.pipeline import process
+ModuleNotFoundError: No module named 'access_requests.pipeline'
+
+======================================================================
+ERROR: test_each_required_fact_new_and_change (test_s04.T05.test_each_required_fact_new_and_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s04.py", line 36, in test_each_required_fact_new_and_change
+    from access_requests.pipeline import process
+ModuleNotFoundError: No module named 'access_requests.pipeline'
+
+======================================================================
+ERROR: test_missing_and_relative_dates (test_s04.T05.test_missing_and_relative_dates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s04.py", line 29, in test_missing_and_relative_dates
+    result = run_case(number)
+             ^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/support.py", line 22, in run_case
+    from access_requests.pipeline import process
+ModuleNotFoundError: No module named 'access_requests.pipeline'
+
+======================================================================
+ERROR: test_conflicting_alternatives_retained (test_s04.T06.test_conflicting_alternatives_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s04.py", line 52, in test_conflicting_alternatives_retained
+    result=run_case(number)
+           ^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/support.py", line 22, in run_case
+    from access_requests.pipeline import process
+ModuleNotFoundError: No module named 'access_requests.pipeline'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+FAILED (errors=4)

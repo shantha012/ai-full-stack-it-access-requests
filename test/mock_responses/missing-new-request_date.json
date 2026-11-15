@@ -1,0 +1,5 @@
+{
+  "status": "completed",
+  "output_text": "{\"request_id\": \"IT-021\", \"request_date\": null, \"kind\": \"new\", \"requester\": \"Maya Chen\", \"team\": \"Analytics\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"checking dashboard totals\", \"start_date\": \"2026-10-23\", \"end_date\": \"2026-11-06\", \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"This is a new request. Request IT-021. Requester: Maya Chen. Team: Analytics. System: Atlas. Environment: staging. Requested permission: read. Business purpose: checking dashboard totals. Start date: 2026-10-23. End date: 2026-11-06. Manager: Priya Shah.\"], \"issues\": [\"request_date missing\"]}",
+  "response_source": "mock"
+}
