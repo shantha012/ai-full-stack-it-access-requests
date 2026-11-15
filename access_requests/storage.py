@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import sqlite3
 import tempfile
+import time
 import uuid
 
 QUEUE_FIELDS = ('document_id','attempt_id','source_sha256','settings_fingerprint','policy_version',
@@ -30,7 +31,15 @@ class Store:
                     BEGIN SELECT RAISE(ABORT,'immutable attempt'); END;
                 CREATE TRIGGER IF NOT EXISTS immutable_attempt_delete BEFORE DELETE ON attempts
                     BEGIN SELECT RAISE(ABORT,'immutable attempt'); END;
+                CREATE TABLE IF NOT EXISTS jobs (
+                    job_id INTEGER PRIMARY KEY AUTOINCREMENT, document_id TEXT NOT NULL,
+                    source_sha256 TEXT NOT NULL, raw BLOB NOT NULL, settings TEXT NOT NULL,
+                    fingerprint TEXT NOT NULL, state TEXT NOT NULL DEFAULT 'pending',
+                    token TEXT, expires REAL);
             ''')
+            columns={r[1] for r in db.execute('PRAGMA table_info(documents)')}
+            if 'desired_job' not in columns:
+                db.execute('ALTER TABLE documents ADD COLUMN desired_job INTEGER')
 
     @contextmanager
     def connect(self):
@@ -52,7 +61,7 @@ class Store:
                           producing_settings=settings.public())
             db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
                        (next_id,document.document_id,document.source_sha256,json.dumps(record)))
-            db.execute('INSERT INTO documents VALUES (?,?,?,?) ON CONFLICT(document_id) DO UPDATE SET '
+            db.execute('INSERT INTO documents (document_id,raw,source_sha256,current_attempt) VALUES (?,?,?,?) ON CONFLICT(document_id) DO UPDATE SET '
                        'raw=excluded.raw, source_sha256=excluded.source_sha256, current_attempt=excluded.current_attempt',
                        (document.document_id,document.raw,document.source_sha256,next_id))
             db.execute("UPDATE metadata SET value=value+1 WHERE key='version'")
@@ -111,3 +120,62 @@ class Store:
                            (document.document_id,document.source_sha256)).fetchone()
         record=json.loads(row[0]) if row else None
         return record if record and record['settings_fingerprint']==settings.fingerprint else None
+
+    def register(self, document, settings, force=False):
+        """Register desired work before calling providers; job IDs define source order."""
+        with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
+            desired=db.execute('SELECT j.* FROM documents d JOIN jobs j ON j.job_id=d.desired_job '
+                               'WHERE d.document_id=?',(document.document_id,)).fetchone()
+            if (not force and desired and desired['source_sha256']==document.source_sha256
+                    and desired['fingerprint']==settings.fingerprint):
+                return desired['job_id']
+            job_id=db.execute('INSERT INTO jobs (document_id,source_sha256,raw,settings,fingerprint) '
+                              'VALUES (?,?,?,?,?)',(document.document_id,document.source_sha256,
+                              document.raw,json.dumps(settings.public()),settings.fingerprint)).lastrowid
+            db.execute('INSERT INTO documents (document_id,raw,source_sha256,desired_job) VALUES (?,?,?,?) '
+                       'ON CONFLICT(document_id) DO UPDATE SET raw=excluded.raw,source_sha256=excluded.source_sha256,'
+                       'desired_job=excluded.desired_job',
+                       (document.document_id,document.raw,document.source_sha256,job_id))
+            return job_id
+
+    def claim(self, job_id, lease_seconds):
+        with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
+            job=db.execute('SELECT * FROM jobs WHERE job_id=?',(job_id,)).fetchone()
+            if job['state']=='done' or (job['state']=='running' and job['expires']>time.time()):
+                return None
+            token=uuid.uuid4().hex
+            db.execute("UPDATE jobs SET state='running',token=?,expires=? WHERE job_id=?",
+                       (token,time.time()+lease_seconds,job_id))
+            return dict(job,token=token)
+
+    def finish(self, job, result):
+        from .config import Settings
+        settings=Settings(**json.loads(job['settings']))
+        with self.connect() as db:
+            db.execute('BEGIN IMMEDIATE')
+            active=db.execute('SELECT state,token FROM jobs WHERE job_id=?',(job['job_id'],)).fetchone()
+            if active['state']!='running' or active['token']!=job['token']:
+                return None
+            next_id=db.execute('SELECT COALESCE(MAX(attempt_id),0)+1 FROM attempts').fetchone()[0]
+            record=dict(result,attempt_id=next_id,source_generation=job['job_id'],
+                        settings_fingerprint=settings.fingerprint,policy_version=settings.policy_version,
+                        producing_settings=settings.public())
+            db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
+                       (next_id,job['document_id'],job['source_sha256'],json.dumps(record)))
+            db.execute('UPDATE documents SET current_attempt=? WHERE document_id=? AND desired_job=?',
+                       (next_id,job['document_id'],job['job_id']))
+            db.execute("UPDATE jobs SET state='done',token=NULL,expires=NULL WHERE job_id=?",(job['job_id'],))
+            db.execute("UPDATE metadata SET value=value+1 WHERE key='version'")
+            return record
+
+    def pending(self):
+        with self.connect() as db:
+            return [dict(row) for row in db.execute("SELECT job_id,document_id,source_sha256,fingerprint,state,expires "
+                                                  "FROM jobs WHERE state!='done' ORDER BY job_id")]
+
+    def job_result(self, job_id):
+        with self.connect() as db:
+            rows=db.execute('SELECT record FROM attempts ORDER BY attempt_id DESC').fetchall()
+        return next((json.loads(r[0]) for r in rows if json.loads(r[0]).get('source_generation')==job_id),None)
