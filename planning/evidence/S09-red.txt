@@ -1,0 +1,53 @@
+test_unchanged_success_and_failure_reused (test_s09.T17.test_unchanged_success_and_failure_reused) ... ERROR
+test_changed_source_retains_old_hash_and_result (test_s09.T18.test_changed_source_retains_old_hash_and_result) ... ok
+test_durable_failed_retry_replaces_success (test_s09.T19.test_durable_failed_retry_replaces_success) ... ERROR
+test_omitted_document_remains (test_s09.T20.test_omitted_document_remains) ... ERROR
+
+======================================================================
+ERROR: test_unchanged_success_and_failure_reused (test_s09.T17.test_unchanged_success_and_failure_reused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s09.py", line 24, in test_unchanged_success_and_failure_reused
+    second=self.engine.intake([path],unused)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/engine.py", line 12, in intake
+    results.append(self.store.save(document,process(document,provider)))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/pipeline.py", line 46, in process
+    reply = provider.extract(PROMPT + '\n' + document.message)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/provider.py", line 26, in extract
+    name = next(self.script)
+           ^^^^^^^^^^^^^^^^^
+StopIteration
+
+======================================================================
+ERROR: test_durable_failed_retry_replaces_success (test_s09.T19.test_durable_failed_retry_replaces_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s09.py", line 44, in test_durable_failed_retry_replaces_success
+    failed=self.engine.retry('IT-001.json',self.provider('unavailable'))
+           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Engine' object has no attribute 'retry'
+
+======================================================================
+ERROR: test_omitted_document_remains (test_s09.T20.test_omitted_document_remains)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s09.py", line 57, in test_omitted_document_remains
+    self.engine.intake([self.two],unused)
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/engine.py", line 12, in intake
+    results.append(self.store.save(document,process(document,provider)))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/pipeline.py", line 46, in process
+    reply = provider.extract(PROMPT + '\n' + document.message)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/provider.py", line 26, in extract
+    name = next(self.script)
+           ^^^^^^^^^^^^^^^^^
+StopIteration
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.222s
+
+FAILED (errors=3)
