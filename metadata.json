@@ -1,0 +1,45 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7ETC21GQ61VSCGXTH8JZZQS",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "access_requests/__main__.py",
+    "access_requests/accuracy.py",
+    "access_requests/provider.py",
+    "planning/evidence/S14-green.txt",
+    "planning/evidence/source-review.md",
+    "reports/accuracy.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 484,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 107136,
+    "output_tokens": 4162,
+    "api_call_count": 1
+  },
+  "redaction": {
+    "replacements": 4,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 0,
+      "credentialed_uri": 0,
+      "entropy": 5,
+      "key_context": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    }
+  }
+}
