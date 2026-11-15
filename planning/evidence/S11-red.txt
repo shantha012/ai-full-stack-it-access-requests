@@ -1,0 +1,43 @@
+test_completed_work_readable_while_another_waits (test_s11.T22.test_completed_work_readable_while_another_waits) ... ERROR
+test_killed_process_claim_reclaimed_and_completed_work_preserved (test_s11.T23.test_killed_process_claim_reclaimed_and_completed_work_preserved) ... Traceback (most recent call last):
+  File "<string>", line 11, in <module>
+TypeError: Engine.__init__() got an unexpected keyword argument 'lease_seconds'
+FAIL
+test_older_completion_cannot_replace_last_registered_source (test_s11.T24.test_older_completion_cannot_replace_last_registered_source) ... FAIL
+
+======================================================================
+ERROR: test_completed_work_readable_while_another_waits (test_s11.T22.test_completed_work_readable_while_another_waits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s11.py", line 18, in test_completed_work_readable_while_another_waits
+    engine=Engine(self.store,workers=2)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Engine.__init__() got an unexpected keyword argument 'workers'
+
+======================================================================
+FAIL: test_killed_process_claim_reclaimed_and_completed_work_preserved (test_s11.T23.test_killed_process_claim_reclaimed_and_completed_work_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s11.py", line 61, in test_killed_process_claim_reclaimed_and_completed_work_preserved
+    self.assertEqual(child.stdout.readline().strip(),'CLAIMED')
+AssertionError: '' != 'CLAIMED'
++ CLAIMED
+
+
+======================================================================
+FAIL: test_older_completion_cannot_replace_last_registered_source (test_s11.T24.test_older_completion_cannot_replace_last_registered_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s11.py", line 91, in test_older_completion_cannot_replace_last_registered_source
+    self.assertEqual(self.store.current()[0]['extraction']['end_date'],'2026-11-09')
+AssertionError: '2026-11-06' != '2026-11-09'
+- 2026-11-06
+?          ^
++ 2026-11-09
+?          ^
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.421s
+
+FAILED (failures=2, errors=1)
