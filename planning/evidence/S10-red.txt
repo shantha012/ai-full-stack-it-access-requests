@@ -1,0 +1,14 @@
+test_each_producing_setting_invalidates_and_refreshes (test_s10.T21.test_each_producing_setting_invalidates_and_refreshes) ... ERROR
+
+======================================================================
+ERROR: test_each_producing_setting_invalidates_and_refreshes (test_s10.T21.test_each_producing_setting_invalidates_and_refreshes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s10.py", line 7, in test_each_producing_setting_invalidates_and_refreshes
+    from access_requests.config import Settings
+ModuleNotFoundError: No module named 'access_requests.config'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.112s
+
+FAILED (errors=1)
