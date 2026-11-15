@@ -1,0 +1,110 @@
+test_withdrawal_precedes_completeness (test_s05.T07.test_withdrawal_precedes_completeness) ... FAIL
+test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) ... 
+  test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=2) ... FAIL
+  test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=7) ... FAIL
+  test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=12) ... FAIL
+  test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=19) ... FAIL
+test_corrections_and_reversed_dates (test_s05.T09.test_corrections_and_reversed_dates) ... FAIL
+test_mismatch_and_nonrequest (test_s05.T10.test_mismatch_and_nonrequest) ... FAIL
+
+======================================================================
+FAIL: test_withdrawal_precedes_completeness (test_s05.T07.test_withdrawal_precedes_completeness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 10, in test_withdrawal_precedes_completeness
+    self.assertEqual((result['status'],result['owner'],result['next_action']),('review','IT Service Desk','confirm-withdrawal'))
+AssertionError: Tuples differ: ('needs-information', 'IT Service Desk', 'clarify') != ('review', 'IT Service Desk', 'confirm-withdrawal')
+
+First differing element 0:
+'needs-information'
+'review'
+
+- ('needs-information', 'IT Service Desk', 'clarify')
++ ('review', 'IT Service Desk', 'confirm-withdrawal')
+
+======================================================================
+FAIL: test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 20, in test_change_new_permission_and_all_risk_triggers
+    self.assertEqual((result['status'],result['owner'],result['next_action']),('review','Security Review','review-risk-then-owner'))
+AssertionError: Tuples differ: ('review', 'System Owner', 'review-request') != ('review', 'Security Review', 'review-risk-then-owner')
+
+First differing element 1:
+'System Owner'
+'Security Review'
+
+- ('review', 'System Owner', 'review-request')
++ ('review', 'Security Review', 'review-risk-then-owner')
+
+======================================================================
+FAIL: test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=7)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 20, in test_change_new_permission_and_all_risk_triggers
+    self.assertEqual((result['status'],result['owner'],result['next_action']),('review','Security Review','review-risk-then-owner'))
+AssertionError: Tuples differ: ('review', 'System Owner', 'review-request') != ('review', 'Security Review', 'review-risk-then-owner')
+
+First differing element 1:
+'System Owner'
+'Security Review'
+
+- ('review', 'System Owner', 'review-request')
++ ('review', 'Security Review', 'review-risk-then-owner')
+
+======================================================================
+FAIL: test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=12)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 20, in test_change_new_permission_and_all_risk_triggers
+    self.assertEqual((result['status'],result['owner'],result['next_action']),('review','Security Review','review-risk-then-owner'))
+AssertionError: Tuples differ: ('review', 'System Owner', 'review-request') != ('review', 'Security Review', 'review-risk-then-owner')
+
+First differing element 1:
+'System Owner'
+'Security Review'
+
+- ('review', 'System Owner', 'review-request')
++ ('review', 'Security Review', 'review-risk-then-owner')
+
+======================================================================
+FAIL: test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) (n=19)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 20, in test_change_new_permission_and_all_risk_triggers
+    self.assertEqual((result['status'],result['owner'],result['next_action']),('review','Security Review','review-risk-then-owner'))
+AssertionError: Tuples differ: ('review', 'System Owner', 'review-request') != ('review', 'Security Review', 'review-risk-then-owner')
+
+First differing element 1:
+'System Owner'
+'Security Review'
+
+- ('review', 'System Owner', 'review-request')
++ ('review', 'Security Review', 'review-risk-then-owner')
+
+======================================================================
+FAIL: test_corrections_and_reversed_dates (test_s05.T09.test_corrections_and_reversed_dates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 32, in test_corrections_and_reversed_dates
+    self.assertEqual(result['next_action'],'clarify')
+AssertionError: 'review-request' != 'clarify'
+- review-request
++ clarify
+
+
+======================================================================
+FAIL: test_mismatch_and_nonrequest (test_s05.T10.test_mismatch_and_nonrequest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s05.py", line 39, in test_mismatch_and_nonrequest
+    self.assertEqual(result['next_action'],'clarify')
+AssertionError: 'review-request' != 'clarify'
+- review-request
++ clarify
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.105s
+
+FAILED (failures=7)

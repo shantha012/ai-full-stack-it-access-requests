@@ -1,0 +1,5 @@
+{
+  "status": "completed",
+  "output_text": "{\"request_id\": \"IT-061\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Alex Turner\", \"team\": \"Platform\", \"system\": \"Forge\", \"environment\": \"staging\", \"permission\": \"read\", \"business_purpose\": \"looking at the example pipeline runs to figure out why the starter project takes longer to build some of the time\", \"start_date\": \"2026-10-26\", \"end_date\": \"2026-10-28\", \"manager\": \"Nia Patel\", \"supporting_quotes\": [\"IT-061\", \"2026-10-22\", \"new\", \"Alex Turner\", \"Platform\", \"Forge\", \"staging\", \"read\", \"2026-10-26\", \"2026-10-28\", \"Nia Patel\", \"looking at the example pipeline runs to figure out why the starter project takes longer to build some of the time\", \"submitting request IT-061\"], \"issues\": [\"identifier mismatch IT-016.json / IT-061\"]}",
+  "response_source": "mock"
+}
