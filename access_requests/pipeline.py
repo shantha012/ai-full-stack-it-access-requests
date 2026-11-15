@@ -41,9 +41,11 @@ def error_record(document, category, explanation, origin='mock'):
                            retry_command='python -m access_requests retry ' + shlex.quote(document.document_id)),
                 response_source=origin)
 
-def process(document, provider):
+def process(document, provider, settings=None):
+    from .config import Settings
+    settings = settings or Settings()
     try:
-        reply = provider.extract(PROMPT + '\n' + document.message)
+        reply = provider.extract(settings.prompt + '\n' + document.message)
         extraction = validate_reply(reply)
     except ProviderError:
         # Exception payloads may contain credentials; never retain them.
@@ -53,6 +55,10 @@ def process(document, provider):
                     'incomplete' if reply.get('status') != 'completed' else 'invalid-response')
         return error_record(document,category,category + ': retry extraction.',provider.response_source)
     status, owner, action = route(extraction, document.document_id, document.message)
+    if owner == 'System Owner':
+        match = re.search(r'Complete staging/read requests go to (.+?) with status review', settings.policy)
+        if match:
+            owner = match[1]
     return dict(document_id=document.document_id, source_sha256=document.source_sha256,
                 extraction=extraction,status=status,owner=owner,next_action=action,
                 error=None,response_source=reply.get('response_source',provider.response_source))

@@ -42,11 +42,14 @@ class Store:
         finally:
             db.close()
 
-    def save(self, document, result):
+    def save(self, document, result, settings=None):
+        from .config import Settings
+        settings=settings or Settings()
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             next_id = db.execute('SELECT COALESCE(MAX(attempt_id),0)+1 FROM attempts').fetchone()[0]
-            record = dict(result,attempt_id=next_id,settings_fingerprint='initial',policy_version='initial')
+            record = dict(result,attempt_id=next_id,settings_fingerprint=settings.fingerprint,policy_version=settings.policy_version,
+                          producing_settings=settings.public())
             db.execute('INSERT INTO attempts VALUES (?,?,?,?)',
                        (next_id,document.document_id,document.source_sha256,json.dumps(record)))
             db.execute('INSERT INTO documents VALUES (?,?,?,?) ON CONFLICT(document_id) DO UPDATE SET '
@@ -101,9 +104,10 @@ class Store:
             raise KeyError(document_id)
         return Document(row['document_id'],row['source_sha256'],json.loads(row['raw'])['message'],row['raw'])
 
-    def reusable(self, document):
+    def reusable(self, document, settings):
         with self.connect() as db:
             row=db.execute('SELECT a.record FROM documents d JOIN attempts a ON a.attempt_id=d.current_attempt '
                            'WHERE d.document_id=? AND a.source_sha256=?',
                            (document.document_id,document.source_sha256)).fetchone()
-        return json.loads(row[0]) if row else None
+        record=json.loads(row[0]) if row else None
+        return record if record and record['settings_fingerprint']==settings.fingerprint else None

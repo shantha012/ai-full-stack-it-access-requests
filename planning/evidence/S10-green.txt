@@ -1,0 +1,30 @@
+test_saved_reply_script_counts_and_barrier (test_s01.T01.test_saved_reply_script_counts_and_barrier) ... ok
+test_decoded_message_filename_and_original_hash (test_s02.T02.test_decoded_message_filename_and_original_hash) ... ok
+test_gate_requires_completion_and_exact_schema (test_s03.T03.test_gate_requires_completion_and_exact_schema) ... ok
+test_complete_source_to_policy (test_s04.T04.test_complete_source_to_policy) ... ok
+test_each_required_fact_new_and_change (test_s04.T05.test_each_required_fact_new_and_change) ... ok
+test_missing_and_relative_dates (test_s04.T05.test_missing_and_relative_dates) ... ok
+test_conflicting_alternatives_retained (test_s04.T06.test_conflicting_alternatives_retained) ... ok
+test_withdrawal_precedes_completeness (test_s05.T07.test_withdrawal_precedes_completeness) ... ok
+test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) ... ok
+test_corrections_and_reversed_dates (test_s05.T09.test_corrections_and_reversed_dates) ... ok
+test_mismatch_and_nonrequest (test_s05.T10.test_mismatch_and_nonrequest) ... ok
+test_override_precedence_and_source_boundary (test_s06.T11.test_override_precedence_and_source_boundary) ... ok
+test_failures_unaffected_and_targeted_retry (test_s07.T12.test_failures_unaffected_and_targeted_retry) ... ok
+test_malformed_and_schema_failures (test_s07.T13.test_malformed_and_schema_failures) ... ok
+test_refusal (test_s07.T14.test_refusal) ... ok
+test_incomplete_json_and_parseable_reply (test_s07.T15.test_incomplete_json_and_parseable_reply) ... ok
+test_independent_attempts_consistent_exports_and_cli (test_s08.T16.test_independent_attempts_consistent_exports_and_cli) ... ok
+test_unchanged_success_and_failure_reused (test_s09.T17.test_unchanged_success_and_failure_reused) ... ok
+test_changed_source_retains_old_hash_and_result (test_s09.T18.test_changed_source_retains_old_hash_and_result) ... ok
+test_durable_failed_retry_replaces_success (test_s09.T19.test_durable_failed_retry_replaces_success) ... ok
+test_omitted_document_remains (test_s09.T20.test_omitted_document_remains) ... ok
+test_each_producing_setting_invalidates_and_refreshes (test_s10.T21.test_each_producing_setting_invalidates_and_refreshes) ... ok
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.551s
+
+OK
