@@ -1,0 +1,77 @@
+test_failures_unaffected_and_targeted_retry (test_s07.T12.test_failures_unaffected_and_targeted_retry) ... ERROR
+test_malformed_and_schema_failures (test_s07.T13.test_malformed_and_schema_failures) ... ERROR
+test_refusal (test_s07.T14.test_refusal) ... ERROR
+test_incomplete_json_and_parseable_reply (test_s07.T15.test_incomplete_json_and_parseable_reply) ... ERROR
+
+======================================================================
+ERROR: test_failures_unaffected_and_targeted_retry (test_s07.T12.test_failures_unaffected_and_targeted_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 16, in test_failures_unaffected_and_targeted_retry
+    from access_requests.pipeline import Dispatcher
+ImportError: cannot import name 'Dispatcher' from 'access_requests.pipeline' (/home/user/ai-full-stack-it-access-requests/access_requests/pipeline.py)
+
+======================================================================
+ERROR: test_malformed_and_schema_failures (test_s07.T13.test_malformed_and_schema_failures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 33, in test_malformed_and_schema_failures
+    for name in ('malformed','schema-invalid'): self.check_error(name,'invalid-response')
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 5, in check_error
+    result=run_case(1,saved)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/support.py", line 24, in run_case
+    return process(doc, MockProvider(MOCKS, [saved or f'it-{number:03}']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/pipeline.py", line 37, in process
+    extraction = validate_reply(reply)
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 21, in validate_reply
+    raise InvalidResponse('malformed extraction: ' + type(error).__name__) from None
+access_requests.validation.InvalidResponse: malformed extraction: JSONDecodeError
+
+======================================================================
+ERROR: test_refusal (test_s07.T14.test_refusal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 36, in test_refusal
+    def test_refusal(self): self.check_error('refusal','refusal')
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 5, in check_error
+    result=run_case(1,saved)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/support.py", line 24, in run_case
+    return process(doc, MockProvider(MOCKS, [saved or f'it-{number:03}']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/pipeline.py", line 37, in process
+    extraction = validate_reply(reply)
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 14, in validate_reply
+    raise InvalidResponse('refused or incomplete response')
+access_requests.validation.InvalidResponse: refused or incomplete response
+
+======================================================================
+ERROR: test_incomplete_json_and_parseable_reply (test_s07.T15.test_incomplete_json_and_parseable_reply)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 40, in test_incomplete_json_and_parseable_reply
+    for name in ('interrupted','interrupted-parseable'): self.check_error(name,'incomplete')
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s07.py", line 5, in check_error
+    result=run_case(1,saved)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/tests/support.py", line 24, in run_case
+    return process(doc, MockProvider(MOCKS, [saved or f'it-{number:03}']))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/pipeline.py", line 37, in process
+    extraction = validate_reply(reply)
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/ai-full-stack-it-access-requests/access_requests/validation.py", line 14, in validate_reply
+    raise InvalidResponse('refused or incomplete response')
+access_requests.validation.InvalidResponse: refused or incomplete response
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.092s
+
+FAILED (errors=4)
