@@ -1,0 +1,5 @@
+{
+  "status": "completed",
+  "output_text": "{\"request_id\": \"IT-003\", \"request_date\": \"2026-10-22\", \"kind\": \"new\", \"requester\": \"Lina Gomez\", \"team\": \"Customer Success\", \"system\": \"Beacon\", \"environment\": null, \"permission\": null, \"business_purpose\": \"get the account notes together before we meet as a team\", \"start_date\": null, \"end_date\": null, \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"IT-003\", \"2026-10-22\", \"new\", \"Lina Gomez\", \"Customer Success\", \"Beacon\", \"didn't note what environment he was on or what the permission is named\", \"next week\", \"Priya Shah\", \"get the account notes together before we meet as a team\", \"The same access Sam has.\"], \"issues\": [\"environment missing or unresolved\", \"permission missing or unresolved\", \"start_date missing or unresolved\", \"end_date missing or unresolved\"]}",
+  "response_source": "mock"
+}

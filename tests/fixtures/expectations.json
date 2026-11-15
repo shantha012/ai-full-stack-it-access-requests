@@ -1,0 +1,1205 @@
+{
+  "IT-001.json": {
+    "scalars": {
+      "request_id": "IT-001",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Maya Chen",
+      "team": "Analytics",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "checking the weekly conversion dashboard with the new event definition changes",
+      "start_date": "2026-10-23",
+      "end_date": "2026-11-06",
+      "manager": "Priya Shah"
+    },
+    "source": "materials/requests/IT-001.json",
+    "ledger": "L01",
+    "evidence": {
+      "request_id": [
+        "IT-001"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Maya Chen"
+      ],
+      "team": [
+        "Analytics"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "checking the weekly conversion dashboard with the new event definition changes"
+      ],
+      "start_date": [
+        "2026-10-23"
+      ],
+      "end_date": [
+        "2026-11-06"
+      ],
+      "manager": [
+        "Priya Shah"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-002.json": {
+    "scalars": {
+      "request_id": "IT-002",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Owen Reed",
+      "team": "Payments",
+      "system": "Ledger",
+      "environment": "production",
+      "permission": "write",
+      "business_purpose": "make the corrections at the time of our scheduled maintenance and then check the totals against the settlement report",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-25",
+      "manager": "Elena Park"
+    },
+    "source": "materials/requests/IT-002.json",
+    "ledger": "L02",
+    "evidence": {
+      "request_id": [
+        "IT-002"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Owen Reed"
+      ],
+      "team": [
+        "Payments"
+      ],
+      "system": [
+        "Ledger"
+      ],
+      "environment": [
+        "production"
+      ],
+      "permission": [
+        "write"
+      ],
+      "business_purpose": [
+        "make the corrections at the time of our scheduled maintenance and then check the totals against the settlement report"
+      ],
+      "start_date": [
+        "2026-10-24"
+      ],
+      "end_date": [
+        "2026-10-25"
+      ],
+      "manager": [
+        "Elena Park"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-003.json": {
+    "scalars": {
+      "request_id": "IT-003",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Lina Gomez",
+      "team": "Customer Success",
+      "system": "Beacon",
+      "environment": null,
+      "permission": null,
+      "business_purpose": "get the account notes together before we meet as a team",
+      "start_date": null,
+      "end_date": null,
+      "manager": "Priya Shah"
+    },
+    "source": "materials/requests/IT-003.json",
+    "ledger": "L03",
+    "evidence": {
+      "request_id": [
+        "IT-003"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Lina Gomez"
+      ],
+      "team": [
+        "Customer Success"
+      ],
+      "system": [
+        "Beacon"
+      ],
+      "environment": [
+        "absence/unresolved: inspect full source and L03"
+      ],
+      "permission": [
+        "absence/unresolved: inspect full source and L03"
+      ],
+      "business_purpose": [
+        "get the account notes together before we meet as a team"
+      ],
+      "start_date": [
+        "absence/unresolved: inspect full source and L03"
+      ],
+      "end_date": [
+        "absence/unresolved: inspect full source and L03"
+      ],
+      "manager": [
+        "Priya Shah"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-004.json": {
+    "scalars": {
+      "request_id": "IT-004",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Theo Malik",
+      "team": "Quality Engineering",
+      "system": "Atlas",
+      "environment": null,
+      "permission": "read",
+      "business_purpose": "understand why the nightly quality report shows different counts from the release checklist",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-30",
+      "manager": "Nia Patel"
+    },
+    "source": "materials/requests/IT-004.json",
+    "ledger": "L04",
+    "evidence": {
+      "request_id": [
+        "IT-004"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Theo Malik"
+      ],
+      "team": [
+        "Quality Engineering"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "absence/unresolved: inspect full source and L04"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "understand why the nightly quality report shows different counts from the release checklist"
+      ],
+      "start_date": [
+        "2026-10-23"
+      ],
+      "end_date": [
+        "2026-10-30"
+      ],
+      "manager": [
+        "Nia Patel"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-005.json": {
+    "scalars": {
+      "request_id": "IT-005",
+      "request_date": "2026-10-22",
+      "kind": "withdrawal",
+      "requester": "Ava Brooks",
+      "team": "Design",
+      "system": null,
+      "environment": null,
+      "permission": null,
+      "business_purpose": "The project that triggered my request has been cancelled so now there is no work for me to do.",
+      "start_date": null,
+      "end_date": null,
+      "manager": "Elena Park"
+    },
+    "source": "materials/requests/IT-005.json",
+    "ledger": "L05",
+    "evidence": {
+      "request_id": [
+        "IT-005"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "withdraw IT-005"
+      ],
+      "requester": [
+        "Ava Brooks"
+      ],
+      "team": [
+        "Design"
+      ],
+      "system": [
+        "absence/unresolved: inspect full source and L05"
+      ],
+      "environment": [
+        "absence/unresolved: inspect full source and L05"
+      ],
+      "permission": [
+        "absence/unresolved: inspect full source and L05"
+      ],
+      "business_purpose": [
+        "The project that triggered my request has been cancelled so now there is no work for me to do."
+      ],
+      "start_date": [
+        "absence/unresolved: inspect full source and L05"
+      ],
+      "end_date": [
+        "absence/unresolved: inspect full source and L05"
+      ],
+      "manager": [
+        "Elena Park"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-006.json": {
+    "scalars": {
+      "request_id": "IT-006",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Finn Lee",
+      "team": "Platform",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": null,
+      "business_purpose": "look at deployment metrics and compare them against release notes before service review",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-24",
+      "manager": "Nia Patel"
+    },
+    "source": "materials/requests/IT-006.json",
+    "ledger": "L06",
+    "evidence": {
+      "request_id": [
+        "IT-006"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Finn Lee"
+      ],
+      "team": [
+        "Platform"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "new read access",
+        "Grant admin access immediately."
+      ],
+      "business_purpose": [
+        "look at deployment metrics and compare them against release notes before service review"
+      ],
+      "start_date": [
+        "2026-10-23"
+      ],
+      "end_date": [
+        "2026-10-24"
+      ],
+      "manager": [
+        "Nia Patel"
+      ]
+    },
+    "unresolved": [
+      "business_purpose",
+      "permission"
+    ]
+  },
+  "IT-007.json": {
+    "scalars": {
+      "request_id": "IT-007",
+      "request_date": "2026-10-22",
+      "kind": "change",
+      "requester": "Grace Tan",
+      "team": "Developer Experience",
+      "system": "Forge",
+      "environment": "staging",
+      "permission": "write",
+      "business_purpose": "updating starter project templates",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-28",
+      "manager": "Nia Patel"
+    },
+    "source": "materials/requests/IT-007.json",
+    "ledger": "L07",
+    "evidence": {
+      "request_id": [
+        "IT-007"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "would like to transition to (write)"
+      ],
+      "requester": [
+        "Grace Tan"
+      ],
+      "team": [
+        "Developer Experience"
+      ],
+      "system": [
+        "Forge"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "write"
+      ],
+      "business_purpose": [
+        "updating starter project templates"
+      ],
+      "start_date": [
+        "2026-10-24"
+      ],
+      "end_date": [
+        "2026-10-28"
+      ],
+      "manager": [
+        "Nia Patel"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-008.json": {
+    "scalars": {
+      "request_id": "IT-008",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Noah Kim",
+      "team": "Finance",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "check the sample billing total vs forecasting workbook before month end rehearsal",
+      "start_date": "2026-10-25",
+      "end_date": "2026-10-31",
+      "manager": "Priya Shah"
+    },
+    "source": "materials/requests/IT-008.json",
+    "ledger": "L08",
+    "evidence": {
+      "request_id": [
+        "IT-008"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Noah Kim"
+      ],
+      "team": [
+        "Finance"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "check the sample billing total vs forecasting workbook before month end rehearsal"
+      ],
+      "start_date": [
+        "2026-10-25"
+      ],
+      "end_date": [
+        "2026-10-31"
+      ],
+      "manager": [
+        "Priya Shah"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-009.json": {
+    "scalars": {
+      "request_id": "IT-009",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Isla Morgan",
+      "team": "Support",
+      "system": "Beacon",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "go through example support cases before updating our troubleshooting guide",
+      "start_date": "2026-10-26",
+      "end_date": "2026-10-29",
+      "manager": null
+    },
+    "source": "materials/requests/IT-009.json",
+    "ledger": "L09",
+    "evidence": {
+      "request_id": [
+        "IT-009"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Isla Morgan"
+      ],
+      "team": [
+        "Support"
+      ],
+      "system": [
+        "Beacon"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "go through example support cases before updating our troubleshooting guide"
+      ],
+      "start_date": [
+        "2026-10-26"
+      ],
+      "end_date": [
+        "2026-10-29"
+      ],
+      "manager": [
+        "absence/unresolved: inspect full source and L09"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-010.json": {
+    "scalars": {
+      "request_id": "IT-010",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Ben Carter",
+      "team": "Operations",
+      "system": "Ledger",
+      "environment": "production",
+      "permission": "read",
+      "business_purpose": "compare the daily reconciliation report to the entries that the operations folks see",
+      "start_date": "2026-10-27",
+      "end_date": null,
+      "manager": "Elena Park"
+    },
+    "source": "materials/requests/IT-010.json",
+    "ledger": "L10",
+    "evidence": {
+      "request_id": [
+        "IT-010"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Ben Carter"
+      ],
+      "team": [
+        "Operations"
+      ],
+      "system": [
+        "Ledger"
+      ],
+      "environment": [
+        "production"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "compare the daily reconciliation report to the entries that the operations folks see"
+      ],
+      "start_date": [
+        "2026-10-27"
+      ],
+      "end_date": [
+        "absence/unresolved: inspect full source and L10"
+      ],
+      "manager": [
+        "Elena Park"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-011.json": {
+    "scalars": {
+      "request_id": "IT-011",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Zoe Adams",
+      "team": "Research",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "looking at sample experiment records to get ready for our team walkthrough",
+      "start_date": null,
+      "end_date": null,
+      "manager": "Priya Shah"
+    },
+    "source": "materials/requests/IT-011.json",
+    "ledger": "L11",
+    "evidence": {
+      "request_id": [
+        "IT-011"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Zoe Adams"
+      ],
+      "team": [
+        "Research"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "looking at sample experiment records to get ready for our team walkthrough"
+      ],
+      "start_date": [
+        "absence/unresolved: inspect full source and L11"
+      ],
+      "end_date": [
+        "absence/unresolved: inspect full source and L11"
+      ],
+      "manager": [
+        "Priya Shah"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-012.json": {
+    "scalars": {
+      "request_id": "IT-012",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Ravi Shah",
+      "team": "Infrastructure",
+      "system": "Forge",
+      "environment": "staging",
+      "permission": "admin",
+      "business_purpose": "doing a configuration migration rehearsal before planning the wider rollout",
+      "start_date": "2026-10-26",
+      "end_date": "2026-10-27",
+      "manager": "Nia Patel"
+    },
+    "source": "materials/requests/IT-012.json",
+    "ledger": "L12",
+    "evidence": {
+      "request_id": [
+        "IT-012"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Ravi Shah"
+      ],
+      "team": [
+        "Infrastructure"
+      ],
+      "system": [
+        "Forge"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "admin"
+      ],
+      "business_purpose": [
+        "doing a configuration migration rehearsal before planning the wider rollout"
+      ],
+      "start_date": [
+        "2026-10-26"
+      ],
+      "end_date": [
+        "2026-10-27"
+      ],
+      "manager": [
+        "Nia Patel"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-013.json": {
+    "scalars": {
+      "request_id": "IT-013",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Emma Wilson",
+      "team": "Compliance",
+      "system": "Beacon",
+      "environment": "production",
+      "permission": "read",
+      "business_purpose": "review account activity records to help with internal audit we have scheduled",
+      "start_date": "2026-10-28",
+      "end_date": "2026-10-30",
+      "manager": "Elena Park"
+    },
+    "source": "materials/requests/IT-013.json",
+    "ledger": "L13",
+    "evidence": {
+      "request_id": [
+        "IT-013"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Emma Wilson"
+      ],
+      "team": [
+        "Compliance"
+      ],
+      "system": [
+        "Beacon"
+      ],
+      "environment": [
+        "production"
+      ],
+      "permission": [
+        "reading"
+      ],
+      "business_purpose": [
+        "review account activity records to help with internal audit we have scheduled"
+      ],
+      "start_date": [
+        "2026-10-28"
+      ],
+      "end_date": [
+        "2026-10-30"
+      ],
+      "manager": [
+        "Elena Park"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-014.json": {
+    "scalars": {
+      "request_id": "IT-014",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Lucas Brown",
+      "team": "Sales Operations",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "giving a demo of the new territory report for sales leads",
+      "start_date": "2026-11-05",
+      "end_date": "2026-11-02",
+      "manager": "Priya Shah"
+    },
+    "source": "materials/requests/IT-014.json",
+    "ledger": "L14",
+    "evidence": {
+      "request_id": [
+        "IT-014"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Lucas Brown"
+      ],
+      "team": [
+        "Sales Operations"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "giving a demo of the new territory report for sales leads"
+      ],
+      "start_date": [
+        "2026-11-05"
+      ],
+      "end_date": [
+        "2026-11-02"
+      ],
+      "manager": [
+        "Priya Shah"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-015.json": {
+    "scalars": {
+      "request_id": "IT-015",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Mia Davis",
+      "team": "Learning",
+      "system": "Beacon",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "make sure that the sample conversations in the examples I'm building match up to the exercise handout for the Support onboarding workshop",
+      "start_date": "2026-10-29",
+      "end_date": "2026-10-31",
+      "manager": "Elena Park"
+    },
+    "source": "materials/requests/IT-015.json",
+    "ledger": "L15",
+    "evidence": {
+      "request_id": [
+        "IT-015"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Mia Davis"
+      ],
+      "team": [
+        "Learning"
+      ],
+      "system": [
+        "Beacon"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "make sure that the sample conversations in the examples I'm building match up to the exercise handout for the Support onboarding workshop"
+      ],
+      "start_date": [
+        "2026-10-29"
+      ],
+      "end_date": [
+        "2026-10-31"
+      ],
+      "manager": [
+        "Elena Park"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-016.json": {
+    "scalars": {
+      "request_id": "IT-061",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Alex Turner",
+      "team": "Platform",
+      "system": "Forge",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "looking at the example pipeline runs to figure out why the starter project takes longer to build some of the time",
+      "start_date": "2026-10-26",
+      "end_date": "2026-10-28",
+      "manager": "Nia Patel"
+    },
+    "source": "materials/requests/IT-016.json",
+    "ledger": "L16",
+    "evidence": {
+      "request_id": [
+        "IT-061"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Alex Turner"
+      ],
+      "team": [
+        "Platform"
+      ],
+      "system": [
+        "Forge"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "looking at the example pipeline runs to figure out why the starter project takes longer to build some of the time"
+      ],
+      "start_date": [
+        "2026-10-26"
+      ],
+      "end_date": [
+        "2026-10-28"
+      ],
+      "manager": [
+        "Nia Patel"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-017.json": {
+    "scalars": {
+      "request_id": "IT-017",
+      "request_date": "2026-10-22",
+      "kind": "other",
+      "requester": "Chloe Martin",
+      "team": "Communications",
+      "system": null,
+      "environment": null,
+      "permission": null,
+      "business_purpose": "update the document before the next bunch start",
+      "start_date": null,
+      "end_date": null,
+      "manager": null
+    },
+    "source": "materials/requests/IT-017.json",
+    "ledger": "L17",
+    "evidence": {
+      "request_id": [
+        "IT-017"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "Where can we find the access request form?"
+      ],
+      "requester": [
+        "Chloe Martin"
+      ],
+      "team": [
+        "Communications"
+      ],
+      "system": [
+        "absence/unresolved: inspect full source and L17"
+      ],
+      "environment": [
+        "absence/unresolved: inspect full source and L17"
+      ],
+      "permission": [
+        "absence/unresolved: inspect full source and L17"
+      ],
+      "business_purpose": [
+        "update the document before the next bunch start"
+      ],
+      "start_date": [
+        "absence/unresolved: inspect full source and L17"
+      ],
+      "end_date": [
+        "absence/unresolved: inspect full source and L17"
+      ],
+      "manager": [
+        "absence/unresolved: inspect full source and L17"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-018.json": {
+    "scalars": {
+      "request_id": "IT-018",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Daniel Wright",
+      "team": "Data Engineering",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "find the source of the difference prior to the next workshop",
+      "start_date": "2026-10-27",
+      "end_date": "2026-11-03",
+      "manager": "Priya Shah"
+    },
+    "source": "materials/requests/IT-018.json",
+    "ledger": "L18",
+    "evidence": {
+      "request_id": [
+        "IT-018"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Daniel Wright"
+      ],
+      "team": [
+        "Data Engineering"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "find the source of the difference prior to the next workshop"
+      ],
+      "start_date": [
+        "2026-10-27"
+      ],
+      "end_date": [
+        "2026-11-03"
+      ],
+      "manager": [
+        "Priya Shah"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-019.json": {
+    "scalars": {
+      "request_id": "IT-019",
+      "request_date": "2026-10-22",
+      "kind": "change",
+      "requester": "Sara Ahmed",
+      "team": "Customer Operations",
+      "system": "Beacon",
+      "environment": "production",
+      "permission": "read",
+      "business_purpose": "view the records that make up the exception report and to explain any unusual entries when I hand it over",
+      "start_date": "2026-10-28",
+      "end_date": "2026-11-04",
+      "manager": "Elena Park"
+    },
+    "source": "materials/requests/IT-019.json",
+    "ledger": "L19",
+    "evidence": {
+      "request_id": [
+        "IT-019"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "change my current Beacon access"
+      ],
+      "requester": [
+        "Sara Ahmed"
+      ],
+      "team": [
+        "Customer Operations"
+      ],
+      "system": [
+        "Beacon"
+      ],
+      "environment": [
+        "production"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "view the records that make up the exception report and to explain any unusual entries when I hand it over"
+      ],
+      "start_date": [
+        "2026-10-28"
+      ],
+      "end_date": [
+        "2026-11-04"
+      ],
+      "manager": [
+        "Elena Park"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-020.json": {
+    "scalars": {
+      "request_id": "IT-020",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Ethan Clark",
+      "team": "Product",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "business_purpose": "look at some sample usage records before I draft the summary on feature adoption",
+      "start_date": "2026-10-29",
+      "end_date": "2026-11-02",
+      "manager": null
+    },
+    "source": "materials/requests/IT-020.json",
+    "ledger": "L20",
+    "evidence": {
+      "request_id": [
+        "IT-020"
+      ],
+      "request_date": [
+        "2026-10-22"
+      ],
+      "kind": [
+        "new"
+      ],
+      "requester": [
+        "Ethan Clark"
+      ],
+      "team": [
+        "Product"
+      ],
+      "system": [
+        "Atlas"
+      ],
+      "environment": [
+        "staging"
+      ],
+      "permission": [
+        "read"
+      ],
+      "business_purpose": [
+        "look at some sample usage records before I draft the summary on feature adoption"
+      ],
+      "start_date": [
+        "2026-10-29"
+      ],
+      "end_date": [
+        "2026-11-02"
+      ],
+      "manager": [
+        "absence/unresolved: inspect full source and L20"
+      ]
+    },
+    "unresolved": [
+      "business_purpose"
+    ]
+  },
+  "IT-021.json": {
+    "scalars": {
+      "request_id": "IT-021",
+      "request_date": "2026-10-22",
+      "kind": "new",
+      "requester": "Maya Chen",
+      "team": "Analytics",
+      "system": "Atlas",
+      "environment": "staging",
+      "permission": "read",
+      "start_date": "2026-10-23",
+      "end_date": "2026-11-06",
+      "manager": "Priya Shah",
+      "business_purpose": "checking the weekly conversion dashboard against the revised event definitions"
+    },
+    "source": "tests/fixtures/IT-021.json",
+    "ledger": "A01",
+    "unresolved": [
+      "business_purpose"
+    ]
+  }
+}
