@@ -1,0 +1,46 @@
+test_200_word_cli_intake_queue_and_export (test_acceptance_gaps.AcceptanceGaps.test_200_word_cli_intake_queue_and_export) ... ok
+test_dates_accept_exact_format_and_null (test_acceptance_gaps.AcceptanceGaps.test_dates_accept_exact_format_and_null) ... ok
+test_invalid_provider_output_durable_error_and_retry (test_acceptance_gaps.AcceptanceGaps.test_invalid_provider_output_durable_error_and_retry) ... ok
+test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) ... ok
+test_accepts_exact_substrings_without_requiring_unique_occurrences (test_quote_validation.QuoteValidation.test_accepts_exact_substrings_without_requiring_unique_occurrences) ... ok
+test_pipeline_checks_decoded_message_only (test_quote_validation.QuoteValidation.test_pipeline_checks_decoded_message_only) ... ok
+test_rejects_every_inexact_quote (test_quote_validation.QuoteValidation.test_rejects_every_inexact_quote) ... ok
+test_saved_reply_script_counts_and_barrier (test_s01.T01.test_saved_reply_script_counts_and_barrier) ... ok
+test_decoded_message_filename_and_original_hash (test_s02.T02.test_decoded_message_filename_and_original_hash) ... ok
+test_gate_requires_completion_and_exact_schema (test_s03.T03.test_gate_requires_completion_and_exact_schema) ... ok
+test_complete_source_to_policy (test_s04.T04.test_complete_source_to_policy) ... ok
+test_each_required_fact_new_and_change (test_s04.T05.test_each_required_fact_new_and_change) ... ok
+test_missing_and_relative_dates (test_s04.T05.test_missing_and_relative_dates) ... ok
+test_conflicting_alternatives_retained (test_s04.T06.test_conflicting_alternatives_retained) ... ok
+test_withdrawal_precedes_completeness (test_s05.T07.test_withdrawal_precedes_completeness) ... ok
+test_change_new_permission_and_all_risk_triggers (test_s05.T08.test_change_new_permission_and_all_risk_triggers) ... ok
+test_corrections_and_reversed_dates (test_s05.T09.test_corrections_and_reversed_dates) ... ok
+test_mismatch_and_nonrequest (test_s05.T10.test_mismatch_and_nonrequest) ... ok
+test_override_precedence_and_source_boundary (test_s06.T11.test_override_precedence_and_source_boundary) ... ok
+test_failures_unaffected_and_targeted_retry (test_s07.T12.test_failures_unaffected_and_targeted_retry) ... ok
+test_malformed_and_schema_failures (test_s07.T13.test_malformed_and_schema_failures) ... ok
+test_refusal (test_s07.T14.test_refusal) ... ok
+test_incomplete_json_and_parseable_reply (test_s07.T15.test_incomplete_json_and_parseable_reply) ... ok
+test_independent_attempts_consistent_exports_and_cli (test_s08.T16.test_independent_attempts_consistent_exports_and_cli) ... ok
+test_unchanged_success_and_failure_reused (test_s09.T17.test_unchanged_success_and_failure_reused) ... ok
+test_changed_source_retains_old_hash_and_result (test_s09.T18.test_changed_source_retains_old_hash_and_result) ... ok
+test_durable_failed_retry_replaces_success (test_s09.T19.test_durable_failed_retry_replaces_success) ... ok
+test_omitted_document_remains (test_s09.T20.test_omitted_document_remains) ... ok
+test_each_producing_setting_invalidates_and_refreshes (test_s10.T21.test_each_producing_setting_invalidates_and_refreshes) ... ok
+test_completed_work_readable_while_another_waits (test_s11.T22.test_completed_work_readable_while_another_waits) ... ok
+test_killed_process_claim_reclaimed_and_completed_work_preserved (test_s11.T23.test_killed_process_claim_reclaimed_and_completed_work_preserved) ... ok
+test_older_completion_cannot_replace_last_registered_source (test_s11.T24.test_older_completion_cannot_replace_last_registered_source) ... ok
+test_fake_transport_wire_contract_and_redaction (test_s12.T25.test_fake_transport_wire_contract_and_redaction) ... ok
+test_independently_authored_paraphrase (test_s13.T26.test_independently_authored_paraphrase) ... ok
+test_full_corpus_denominator_differences_and_unresolved (test_s14.T27.test_full_corpus_denominator_differences_and_unresolved) ... ok
+test_frozen_install_and_exact_documented_walkthrough (test_s15.T28.test_frozen_install_and_exact_documented_walkthrough) ... ok
+test_2000_messages_two_processes_bounded_workers_and_progress (test_s15.T29.test_2000_messages_two_processes_bounded_workers_and_progress) ... T29 observed: 2000 mock documents, two processes, workers <=4, 24.20s
+ok
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 32.287s
+
+OK

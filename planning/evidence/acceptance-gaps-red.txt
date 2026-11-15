@@ -1,0 +1,251 @@
+test_200_word_cli_intake_queue_and_export (test_acceptance_gaps.AcceptanceGaps.test_200_word_cli_intake_queue_and_export) ... ok
+test_dates_accept_exact_format_and_null (test_acceptance_gaps.AcceptanceGaps.test_dates_accept_exact_format_and_null) ... ok
+test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) ... 
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-1-09') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-01-9') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='09/01/2026') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='tomorrow') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value=' 2026-01-09') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-01-09\n') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-01-09T00:00:00Z') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='２０２６-０１-０９') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-1-09') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-01-9') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='09/01/2026') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='tomorrow') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value=' 2026-01-09') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-01-09\n') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-01-09T00:00:00Z') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='２０２６-０１-０９') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-1-09') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-01-9') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='09/01/2026') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='tomorrow') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value=' 2026-01-09') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-01-09\n') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-01-09T00:00:00Z') ... FAIL
+  test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='２０２６-０１-０９') ... FAIL
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-1-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-01-9')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='09/01/2026')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='tomorrow')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value=' 2026-01-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-01-09\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='2026-01-09T00:00:00Z')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='request_date', value='２０２６-０１-０９')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-1-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-01-9')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='09/01/2026')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='tomorrow')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value=' 2026-01-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-01-09\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='2026-01-09T00:00:00Z')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='start_date', value='２０２６-０１-０９')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-1-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-01-9')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='09/01/2026')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='tomorrow')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value=' 2026-01-09')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-01-09\n')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='2026-01-09T00:00:00Z')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+======================================================================
+FAIL: test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) (field='end_date', value='２０２６-０１-０９')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_acceptance_gaps.py", line 89, in test_malformed_dates_rejected_before_routing
+    with self.assertRaises(InvalidResponse):
+AssertionError: InvalidResponse not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.640s
+
+FAILED (failures=27)

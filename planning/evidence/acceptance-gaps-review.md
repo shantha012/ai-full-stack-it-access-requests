@@ -1,0 +1,15 @@
+# Acceptance gap verification — 2026-11-15 UTC
+
+Scope: R-16 (200-word input), R-34 (date syntax), R-121 (verification run attribution). All provider observations use mock replies or fake HTTP; no live model call was made.
+
+Targeted command: `UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -p test_acceptance_gaps.py -v`.
+
+Initial result: 3 tests, 27 subcase failures in test_malformed_dates_rejected_before_routing; the boundary and valid-date/null tests already passed. Output: acceptance-gaps-red.txt. Added a pre-routing ASCII YYYY-MM-DD gate for all three non-null date fields. The same targeted command then passed 3 tests in 0.646s; output: acceptance-gaps-green.txt. Rejected format errors follow the existing invalid-response path rather than being normalized. Calendar validity and factual date accuracy are not established by this syntax check.
+
+Full regression command: `UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -v`. Observed: 39 tests passed in 28.678s; T29 processed 2,000 mock documents with two processes and workers <=4 in 23.83s. Output: acceptance-gaps-full-suite.txt. The 200-word test covers CLI intake, stored queue, pending state and linked queue/extraction export with source-authored expectations. It verifies supported input length, not live extraction accuracy.
+
+C07 report inspection: reports/verification.md and deliverables/verification.md now attribute 33 tests / 39.745s / T29 33.78s to planning/evidence/S15-green.txt and the separate 33 tests / 27.357s / T29 22.97s to planning/test-run.txt. Both source logs contain their stated results. The new 39-test run is recorded separately. Commands, assertions, intended comparisons, operating limits, repairs and mock origin remain disclosed in both reports.
+
+Follow-up T36 (2026-11-15 UTC): test_acceptance_gaps.AcceptanceGaps.test_invalid_provider_output_durable_error_and_retry exercises both malformed-date and inexact-quote provider replies through CLI intake/retry, durable history and linked exports. Each variant starts with a saved valid IT-001 review, publishes the latest validation error with null extraction and an actionable error, and recovers on a corrected saved reply. Source hash stays fixed, attempts remain distinct and earlier success/error records remain in history. No new production behavior or initial failure is claimed for this regression test.
+
+Targeted follow-up command: `UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -p test_acceptance_gaps.py -v`. Observed: 4 tests passed in 3.877s; output: validation-follow-up-targeted.txt. Full regression command: `UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -v`. Observed: 40 tests passed in 32.287s; T29 took 24.20s. Output: validation-follow-up-full-suite.txt. Both use mock replies/fake transport and the same default producing settings described in verification.md. No live model observation.

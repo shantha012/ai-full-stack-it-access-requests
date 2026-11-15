@@ -1,0 +1,8 @@
+test_200_word_cli_intake_queue_and_export (test_acceptance_gaps.AcceptanceGaps.test_200_word_cli_intake_queue_and_export) ... ok
+test_dates_accept_exact_format_and_null (test_acceptance_gaps.AcceptanceGaps.test_dates_accept_exact_format_and_null) ... ok
+test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.646s
+
+OK

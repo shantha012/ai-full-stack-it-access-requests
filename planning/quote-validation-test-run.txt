@@ -1,0 +1,19 @@
+Targeted offline validation run: 2026-11-15 UTC
+
+$ UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -p 'test_quote_validation.py' -v
+test_accepts_exact_substrings_without_requiring_unique_occurrences (test_quote_validation.QuoteValidation.test_accepts_exact_substrings_without_requiring_unique_occurrences) ... ok
+test_pipeline_checks_decoded_message_only (test_quote_validation.QuoteValidation.test_pipeline_checks_decoded_message_only) ... ok
+test_rejects_every_inexact_quote (test_quote_validation.QuoteValidation.test_rejects_every_inexact_quote) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.007s
+
+OK
+
+$ UV_CACHE_DIR=/tmp/access-uv-cache uv run --frozen --offline env -u API_KEY python3 -m unittest discover -s tests -p 'test_s03.py' -v
+test_gate_requires_completion_and_exact_schema (test_s03.T03.test_gate_requires_completion_and_exact_schema) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.063s
+
+OK

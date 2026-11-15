@@ -1,0 +1,6 @@
+test_completed_intake_never_approves (test_approval_boundary.ApprovalBoundary.test_completed_intake_never_approves) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.739s
+
+OK

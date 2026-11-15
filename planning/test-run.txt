@@ -1,3 +1,11 @@
+test_200_word_cli_intake_queue_and_export (test_acceptance_gaps.AcceptanceGaps.test_200_word_cli_intake_queue_and_export) ... ok
+test_dates_accept_exact_format_and_null (test_acceptance_gaps.AcceptanceGaps.test_dates_accept_exact_format_and_null) ... ok
+test_invalid_provider_output_durable_error_and_retry (test_acceptance_gaps.AcceptanceGaps.test_invalid_provider_output_durable_error_and_retry) ... ok
+test_malformed_dates_rejected_before_routing (test_acceptance_gaps.AcceptanceGaps.test_malformed_dates_rejected_before_routing) ... ok
+test_completed_intake_never_approves (test_approval_boundary.ApprovalBoundary.test_completed_intake_never_approves) ... ok
+test_accepts_exact_substrings_without_requiring_unique_occurrences (test_quote_validation.QuoteValidation.test_accepts_exact_substrings_without_requiring_unique_occurrences) ... ok
+test_pipeline_checks_decoded_message_only (test_quote_validation.QuoteValidation.test_pipeline_checks_decoded_message_only) ... ok
+test_rejects_every_inexact_quote (test_quote_validation.QuoteValidation.test_rejects_every_inexact_quote) ... ok
 test_saved_reply_script_counts_and_barrier (test_s01.T01.test_saved_reply_script_counts_and_barrier) ... ok
 test_decoded_message_filename_and_original_hash (test_s02.T02.test_decoded_message_filename_and_original_hash) ... ok
 test_gate_requires_completion_and_exact_schema (test_s03.T03.test_gate_requires_completion_and_exact_schema) ... ok
@@ -27,13 +35,13 @@ test_fake_transport_wire_contract_and_redaction (test_s12.T25.test_fake_transpor
 test_independently_authored_paraphrase (test_s13.T26.test_independently_authored_paraphrase) ... ok
 test_full_corpus_denominator_differences_and_unresolved (test_s14.T27.test_full_corpus_denominator_differences_and_unresolved) ... ok
 test_frozen_install_and_exact_documented_walkthrough (test_s15.T28.test_frozen_install_and_exact_documented_walkthrough) ... ok
-test_2000_messages_two_processes_bounded_workers_and_progress (test_s15.T29.test_2000_messages_two_processes_bounded_workers_and_progress) ... T29 observed: 2000 mock documents, two processes, workers <=4, 22.97s
+test_2000_messages_two_processes_bounded_workers_and_progress (test_s15.T29.test_2000_messages_two_processes_bounded_workers_and_progress) ... T29 observed: 2000 mock documents, two processes, workers <=4, 22.62s
 ok
 test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
 test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
 test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
 
 ----------------------------------------------------------------------
-Ran 33 tests in 27.357s
+Ran 41 tests in 31.952s
 
 OK
