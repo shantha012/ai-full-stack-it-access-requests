@@ -1,0 +1,14 @@
+test_independent_attempts_consistent_exports_and_cli (test_s08.T16.test_independent_attempts_consistent_exports_and_cli) ... ERROR
+
+======================================================================
+ERROR: test_independent_attempts_consistent_exports_and_cli (test_s08.T16.test_independent_attempts_consistent_exports_and_cli)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s08.py", line 10, in test_independent_attempts_consistent_exports_and_cli
+    from access_requests.storage import Store
+ModuleNotFoundError: No module named 'access_requests.storage'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
