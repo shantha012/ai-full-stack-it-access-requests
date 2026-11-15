@@ -1,0 +1,17 @@
+Read CHALLENGE.md, docs/requirements.md, materials/office-policy.md and snapshot.schema.json and write planning/spec.md: a table with columns ID, Requirement, Source, Check. One numbered requirement per line, IDs R-01 onward. Requirement is one testable sentence that a test or inspection can check. Source names the file and section it comes from and quotes the exact words. Check says how we will know if it is met: the test, file to inspect, or which command to run. Do not add anything that the files do not say. A requirement the files do not state is not in the spec. Do not write any code.
+
+---
+
+Read CHALLENGE.md, docs/requirements.md, materials/office-policy.md and snapshot.schema.json.   Write planning/spec.md: a table with columns ID, Requirement, Source, Check. One row per   requirement, IDs R-01 onward. Requirement is one sentence that a test or an inspection can   check. Source names the file and section and quotes the exact words. Check says how we will   know it is met: the test, the file to inspect, or the command to run. Do not add anything the files   do not say. A requirement the files do not state is not in the spec. Do not write any code.
+
+---
+
+planning/spec.md does not have requriemetns for the objects in snapshot.schema.json.
+
+---
+
+Read planning/spec.md, Check that each of these have their own lines: every fact the policy says to extract, and the rules for missing, conflicting and corrected values; each of the five review-queue rules, in the policy's order; each processing and recovery rule: errors, retries, hashes, reruns, changed input, history; each file `CHALLENGE.md` asks you to submit; each case `docs/requirements.md` § Verification lists.
+
+---
+
+List every place where two readings are possible, or where a term is not defined. For each, look it up (in the files first, then in the documentation of the tool or standard it names). Add a section ## Open questions to the planning/spec.md: each question, what you found, and what stays open. Do not turn an open question into a requirement by guessing.
