@@ -1,0 +1,2 @@
+env -u API_KEY python3 -m unittest discover -s tests Reports  "FAILED (failures=1, err
+ors=30)" Please fix the errors
