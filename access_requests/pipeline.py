@@ -1,6 +1,8 @@
 """Validated extraction followed by deterministic human-review routing."""
 import re
-from .validation import validate_reply
+from .validation import validate_reply, InvalidResponse
+from .provider import ProviderError
+import shlex
 from .prompt import PROMPT
 
 REQUIRED = ('request_id','request_date','requester','team','system','environment',
@@ -32,10 +34,38 @@ def route(extraction, document_id, message=""):
         return 'review','Security Review','review-risk-then-owner'
     return 'review','System Owner','review-request'
 
+def error_record(document, category, explanation, origin='mock'):
+    return dict(document_id=document.document_id, source_sha256=document.source_sha256,
+                extraction=None,status='error',owner='IT Service Desk',next_action='retry-extraction',
+                error=dict(category=category,message=explanation,
+                           retry_command='python -m access_requests retry ' + shlex.quote(document.document_id)),
+                response_source=origin)
+
 def process(document, provider):
-    reply = provider.extract(PROMPT + '\n' + document.message)
-    extraction = validate_reply(reply)
+    try:
+        reply = provider.extract(PROMPT + '\n' + document.message)
+        extraction = validate_reply(reply)
+    except ProviderError:
+        # Exception payloads may contain credentials; never retain them.
+        return error_record(document,'provider','Provider unavailable; retry this document.',provider.response_source)
+    except InvalidResponse:
+        category = ('refusal' if reply.get('status') == 'refused' or reply.get('refusal') else
+                    'incomplete' if reply.get('status') != 'completed' else 'invalid-response')
+        return error_record(document,category,category + ': retry extraction.',provider.response_source)
     status, owner, action = route(extraction, document.document_id, document.message)
     return dict(document_id=document.document_id, source_sha256=document.source_sha256,
                 extraction=extraction,status=status,owner=owner,next_action=action,
                 error=None,response_source=reply.get('response_source',provider.response_source))
+
+class Dispatcher:
+    def __init__(self):
+        self.documents = {}
+        self.results = {}
+
+    def run(self, document, provider):
+        self.documents[document.document_id] = document
+        self.results[document.document_id] = process(document, provider)
+        return self.results[document.document_id]
+
+    def retry(self, document_id, provider):
+        return self.run(self.documents[document_id], provider)
