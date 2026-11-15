@@ -1,0 +1,21 @@
+test_independently_authored_paraphrase (test_s13.T26.test_independently_authored_paraphrase) ... ERROR
+
+======================================================================
+ERROR: test_independently_authored_paraphrase (test_s13.T26.test_independently_authored_paraphrase)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/ai-full-stack-it-access-requests/tests/test_s13.py", line 9, in test_independently_authored_paraphrase
+    export=json.loads(source.read_text())
+                      ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/ai-full-stack-it-access-requests/tests/fixtures/IT-021.json'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.002s
+
+FAILED (errors=1)
