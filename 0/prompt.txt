@@ -1,0 +1,25 @@
+Use IRS IRM https://www.irs.gov/irm/part2/irm_02-012-002 and evaluate if the itake process is in line with the guidance
+
+---
+
+classify the protected surface (which specific fields are §6103-protected, which action is a regulated write, which hop crosses a confidentiality boundary), name what the classification triggers in plain delivery terms (e.g. §6103 -> masking + access logging + restricted scope; ATO -> control map + POA&M; non-FedRAMP dependency -> authorized-service substitution; AI step in a taxpayer-data repo -> guardrail + approval-policy tightening; Section-508 surface -> keyboard/screen-reader pass), state the forbidden actions, write it up as an actionable delivery requirement,
+
+---
+
+Do not change any code or document
+
+---
+
+How do I route this to its owner?
+
+---
+
+Please this as review/Federal_constraints_trigger_for_the_work.txt
+
+---
+
+I menat under reviews
+
+---
+
+Measure whether a harness change (a rule, a skill, a context move, an added agent) actually helps: design an eval on a real task with paired with / without arms in the same turn (control for run-to-run drift);
