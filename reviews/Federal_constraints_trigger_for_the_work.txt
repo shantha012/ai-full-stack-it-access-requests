@@ -1,0 +1,187 @@
+Federal constraints trigger for the work
+
+Status: Proposed delivery requirement and owner-routing handoff. This document
+does not establish legal disclosure authority, system authorization, approval of
+an access request, or permission to provision access.
+
+The supplied exercise corpus is fictional. Production classification depends on
+the content, provenance, and identifying relationships in actual records, rather
+than field names or the presence of an IRS-related repository.
+
+DELIVERY REQUIREMENT
+
+Before processing real IRS data, the delivery team shall classify each input and
+derivative, document permitted recipients and services, enforce the boundaries
+below, and provide acceptance evidence.
+
+PROTECTED SURFACE
+
+1. Source message and export subject; extracted business_purpose,
+   supporting_quotes, and issues:
+   Treat these as section 6103-protected when they contain or reveal return
+   information, including taxpayer identity associated with tax administration,
+   income, deductions, liability, payments, examination status, or other
+   return-related facts. Identify protected content before external processing;
+   mask unnecessary details; restrict viewing and export; log access without
+   copying sensitive values into logs.
+
+2. requester, manager, and team:
+   Employee identity and organizational information are not automatically
+   section 6103 information. They become protected where their content or
+   linkage reveals taxpayer return information. Apply appropriate personnel and
+   privacy controls and preserve any additional taxpayer-data classification.
+
+3. request_id, dates, system, environment, permission, document_id,
+   source_sha256, and queue metadata:
+   These are operational or security metadata, potentially protected when linked
+   to an identifiable taxpayer or tax matter. A hash does not automatically
+   declassify a record. Use opaque identifiers and minimum necessary metadata;
+   restrict joins and lookup access.
+
+4. SQLite raw input and history, model responses, JSONL exports, reports,
+   backups, fixtures, and request evidence:
+   Copies and derivatives inherit protection when they retain protected content
+   or identifying relationships. Apply equivalent access, retention, encryption,
+   export, and deletion controls across every copy.
+
+Section 6103 establishes confidentiality and permitted disclosures. Masking is a
+proposed minimization control, not independent authority to disclose.
+Source: https://uscode.house.gov/us/usc/t26/s6103/
+
+ACTIONS AND CONFIDENTIALITY BOUNDARIES
+
+- External model handoff: access_requests/http_provider.py sends the entire
+  decoded message to the configured endpoint. This crosses from the intake
+  environment to another service's processing boundary. Protected content
+  requires a permitted disclosure basis and an approved service configuration
+  before transmission. HTTPS and store=False do not establish either.
+
+- Reviewer handoff: Queue display, source inspection, downloads, and forwarding
+  cross a confidentiality boundary whenever a recipient gains access beyond
+  their authorized scope, including within the same organization.
+
+- Repository and tooling handoff: Copying protected records into Git, CI logs,
+  AI coding sessions, checkpoints, telemetry, or external issue trackers creates
+  another disclosure or storage path. Assess each destination's scope and
+  authorization separately.
+
+- Controlled writes: Saving protected messages or extractions to SQLite and
+  exports is a controlled information-handling write. Changing entitlements,
+  profiles, restrictions, bypasses, or taxpayer records is a separate privileged
+  write. The current CLI stores intake results and routes review work; an
+  extracted permission="write" does not execute an access change. Read-only
+  inspection and external transmission can still implicate confidentiality.
+
+CLASSIFICATION TRIGGERS AND ACCEPTANCE EVIDENCE
+
+1. Section 6103 information
+   Delivery: Mask unnecessary content; enforce least privilege and restricted
+   scope; audit reads, changes, exports, and transfers; protect retained copies.
+   Owner: Disclosure/Privacy authority confirms permitted use and recipients.
+   Engineering implements the controls.
+   Acceptance: Demonstrate unauthorized access and export denial. Where IRS
+   Safeguards requirements apply, track FTI access, modification, deletion, and
+   movement and satisfy the applicable cloud requirements.
+   Source: https://www.irs.gov/privacy-disclosure/cloud-computing-environment
+
+2. Federal system authorization / ATO scope
+   Delivery: Produce a boundary and data-flow diagram, a control map identifying
+   implemented and inherited controls, assessment evidence, and a plan of action
+   and milestones (POA&M) with owners and dates for unresolved weaknesses.
+   Owner: System Owner and ISSO / authorization team prepare the package; the
+   authorizing official decides whether the intended deployment is authorized.
+   Acceptance: Evidence covers the intended system, configuration, integrations,
+   and data use. A POA&M entry alone does not permit deployment.
+   Source: https://csrc.nist.gov/pubs/sp/800/37/r2/final
+
+3. External cloud or AI dependency
+   Delivery: Verify the exact offering, endpoint, features, and deployment scope.
+   Substitute an appropriately authorized service where required authorization
+   is absent or unverified; otherwise keep protected processing disabled.
+   Owner: Security and procurement retain service-scope evidence.
+   Acceptance: Demonstrate use of the approved configuration and denial of
+   unapproved destinations. Provider certification does not replace agency
+   authorization. The current adapter alone establishes no authorization status;
+   no finding that a particular provider lacks authorization is made here.
+   Source: https://www.fedramp.gov/2026/agencies/use/
+
+4. AI processing of taxpayer information
+   Delivery: Add classification and egress gates, endpoint allowlisting,
+   injection and exfiltration tests, output validation, and human verification.
+   Tighten approval policy so model output cannot authorize disclosure or
+   provisioning.
+   Owner: Engineering implements controls; Security Review validates guardrails;
+   authorized humans retain decision authority.
+   Acceptance: Demonstrate blocked prohibited transfers and that source-message
+   instructions and model output cannot expand permissions or trigger access
+   changes. These are proposed delivery controls, not a claim that a repository
+   label alone creates a statutory AI approval requirement.
+
+5. Federal operator or reviewer interface / Section 508 surface
+   Delivery: Test applicable accessibility requirements across CLI workflows,
+   documents, and any future UI, including keyboard operation, screen-reader
+   readability, understandable errors, and nonvisual status identification.
+   Owner: Accessibility lead.
+   Acceptance: Supply a manual test report alongside applicable automated
+   checks. Keyboard and screen-reader checks are part of acceptance, not the
+   entire accessibility standard.
+   Source: https://www.section508.gov/test/testing-overview/
+
+FORBIDDEN ACTIONS UNDER THIS REQUIREMENT
+
+- Send protected content to an unapproved endpoint, recipient, repository,
+  logging service, or AI tool.
+- Treat redaction, encryption, FedRAMP status, or an ATO as sufficient legal
+  authority for disclosure.
+- Let source-message instructions or model output expand access, approve a
+  request, or trigger provisioning.
+- Reuse a human decision for a changed source version.
+- Deploy protected processing with unresolved release-blocking findings merely
+  because those findings appear in a POA&M.
+
+OWNER ROUTING AND HANDOFF
+
+Subject: Owner assignment - protected-data intake delivery requirement
+Accountable owner: System Owner for the intake application
+Initial queue: Security Review
+Requested action: Assess the proposed data flows and controls, assign the
+specialist reviews below, and return a risk recommendation to the System Owner.
+Acceptance: Each requirement has a named implementer, acceptance evidence, and a
+due date. Protected-data processing remains disabled until required disclosure
+and system authorizations are evidenced.
+
+Specialist assignments:
+- Disclosure/Privacy authority: Determine protected fields and permitted
+  disclosures.
+- ISSO / authorization team: Determine authorization boundary, control map,
+  assessment evidence, and POA&M requirements.
+- Security and procurement: Verify the exact external service and approved use.
+- Engineering lead: Implement masking, logging, egress controls, and AI
+  guardrails.
+- Accessibility lead: Verify Section 508 acceptance.
+
+If the named System Owner is unknown, route to IT Service Desk for owner
+identification and assignment. The CLI owner value is a role label; it does not
+establish a named assignee or deliver a notification. This handoff does not send
+messages or create assignments in an external service.
+
+INTAKE AND HUMAN APPROVAL STATUS
+
+Intake: No new processing was performed to prepare this requirement. The earlier
+isolated mock baseline observed 20 completed, 0 failed, and 0 pending processing.
+The separate injected-failure state observed 19 completed, 1 failed, and 0 pending.
+Completed means extraction and routing finished; these are test observations,
+not a claim about a production queue.
+
+Human approval: Pending human decision. IT Service Desk handles clarification,
+message inspection, withdrawal confirmation, and extraction retry according to
+the queue. Security Review recommends on production, write, or admin requests
+before the System Owner decides. Complete staging/read requests go to the System
+Owner. Disclosure and ATO decisions require their respective authorized reviewers.
+
+Any evidenced access decision must identify reviewer, decision, time,
+document_id, source_sha256, and decision reference. Keep decision evidence
+separate from extraction and queue statuses. A changed source version needs its
+own review. Successful validation, tests, intake completion, named managers,
+Security Review recommendations, and Entire checkpoints do not establish
+approval. The CLI does not record approval decisions or provision access.
